@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridgr — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:     #08090A;
+  --carbon:   #16181C;
+  --graphite: #252830;
+  --steel:    #888C99;
+  --chalk:    #F4F4F2;
+  --teal:     #00C2A8;
+  --deep-teal:#0B1F1D;
+  --gold:     #C9A96E;
+  --border:   rgba(255,255,255,0.07);
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; }
+body {
+  background: var(--void);
+  color: var(--chalk);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* BG */
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(0,194,168,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,169,110,0.04) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.logo-mark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+}
+.logo-mark span { border-radius: 3px; display: block; }
+.logo-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+  color: var(--chalk);
+  line-height: 1;
+}
+.logo-name span { color: var(--teal); }
+.logo-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.logo-sub {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* BADGE */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 0.5px solid rgba(0,194,168,0.3);
+  padding: 6px 16px;
+  margin-bottom: 1.75rem;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* HEADLINE */
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--chalk);
+  margin-bottom: 1.25rem;
+  max-width: 700px;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+h1 .teal { color: var(--teal); }
+h1 .gold { color: var(--gold); }
+
+.sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--steel);
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+
+/* COUNTDOWN */
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.6s ease 0.5s both;
+}
+.count-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.count-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.04em;
+  color: var(--chalk);
+  background: var(--carbon);
+  border: 1px solid var(--border);
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.count-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.count-sep {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--graphite);
+  margin-bottom: 20px;
+}
+
+/* EMAIL FORM */
+.email-form {
+  display: flex;
+  gap: 0;
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto 1rem;
+  animation: fadeUp 0.6s ease 0.6s both;
+}
+.email-input {
+  flex: 1;
+  background: var(--carbon);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-right: none;
+  color: var(--chalk);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 13px 18px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-input:focus { border-color: var(--teal); }
+.email-input::placeholder { color: var(--graphite); }
+.email-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--teal);
+  border: none;
+  padding: 13px 22px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.email-btn:hover { background: #00D4B8; }
+
+.form-note {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--steel);
+  opacity: 0.55;
+  animation: fadeUp 0.6s ease 0.7s both;
+  margin-bottom: 3rem;
+}
+
+/* FEATURES STRIP */
+.features-strip {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.6s ease 0.8s both;
+}
+.feat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+}
+.feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+/* SUCCESS STATE */
+.success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeUp 0.4s ease both;
+}
+.success-icon { font-size: 2rem; }
+.success-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--teal);
+}
+.success-sub {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--steel);
+}
+
+/* FOOTER */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.footer-left {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  color: var(--steel);
+  opacity: 0.45;
+  letter-spacing: 0.06em;
+}
+.footer-right {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  color: var(--steel);
+  opacity: 0.45;
+}
+.footer-right a { color: var(--teal); text-decoration: none; opacity: 1; }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.4; transform:scale(0.75); }
+}
+
+@media (max-width: 600px) {
+  .countdown { gap: 0.5rem; }
+  .count-num { width:58px; height:58px; font-size:1.8rem; }
+  .email-form { flex-direction: column; }
+  .email-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+  .email-btn { padding: 13px; }
+  footer { justify-content: center; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+
+<main>
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="logo-mark">
+      <span style="background:#00C2A8"></span>
+      <span style="background:#F4F4F2;opacity:0.12"></span>
+      <span style="background:#F4F4F2;opacity:0.06"></span>
+      <span style="background:#C9A96E"></span>
+    </div>
+    <div class="logo-name">bridg<span>r</span></div>
+    <div class="logo-line"></div>
+    <div class="logo-sub">Powered by MCP</div>
+  </div>
+
+  <!-- BADGE -->
+  <div class="badge">
+    <span class="badge-dot"></span>
+    Launching soon
+  </div>
+
+  <!-- HEADLINE -->
+  <h1>UK bridging finance.<br><span class="teal">Faster.</span> <span class="gold">Smarter.</span></h1>
+
+  <p class="sub">The UK's first fully digital bridging finance platform. Apply in 7 minutes. Matched lenders in seconds. Decisions in hours. We're putting the finishing touches on something built to change the market.</p>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown">
+    <div class="count-block">
+      <div class="count-num" id="days">00</div>
+      <div class="count-label">Days</div>
+    </div>
+    <div class="count-sep">:</div>
+    <div class="count-block">
+      <div class="count-num" id="hours">00</div>
+      <div class="count-label">Hours</div>
+    </div>
+    <div class="count-sep">:</div>
+    <div class="count-block">
+      <div class="count-num" id="minutes">00</div>
+      <div class="count-label">Minutes</div>
+    </div>
+    <div class="count-sep">:</div>
+    <div class="count-block">
+      <div class="count-num" id="seconds">00</div>
+      <div class="count-label">Seconds</div>
+    </div>
+  </div>
+
+  <!-- EMAIL FORM -->
+  <div id="form-wrap">
+    <div class="email-form">
+      <input class="email-input" type="email" id="email-input" placeholder="Enter your email for early access">
+      <button class="email-btn" onclick="submitEmail()">Notify me</button>
+    </div>
+    <div class="form-note">No spam. Early access and launch updates only.</div>
+  </div>
+
+  <div class="success" id="success-state">
+    <div class="success-icon">⚡</div>
+    <div class="success-text">You're on the list.</div>
+    <div class="success-sub">We'll notify you the moment Bridgr launches. Watch this space.</div>
+  </div>
+
+  <!-- FEATURES STRIP -->
+  <div class="features-strip">
+    <div class="feat-item"><div class="feat-dot"></div>Apply in 7 minutes</div>
+    <div class="feat-item"><div class="feat-dot"></div>40+ lenders matched instantly</div>
+    <div class="feat-item"><div class="feat-dot"></div>Same-day DIP</div>
+    <div class="feat-item"><div class="feat-dot"></div>Automated KYC in 60 seconds</div>
+    <div class="feat-item"><div class="feat-dot"></div>Real underwriting expertise</div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-left">© 2025 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</div>
+  <div class="footer-right">Questions? <a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></div>
+</footer>
+
+<script>
+// COUNTDOWN — set your launch date here
+const launchDate = new Date('2025-09-01T00:00:00').getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = launchDate - now;
+  if (distance < 0) {
+    document.getElementById('days').textContent = '00';
+    document.getElementById('hours').textContent = '00';
+    document.getElementById('minutes').textContent = '00';
+    document.getElementById('seconds').textContent = '00';
+    return;
+  }
+  const d = Math.floor(distance / (1000*60*60*24));
+  const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const m = Math.floor((distance%(1000*60*60))/(1000*60));
+  const s = Math.floor((distance%(1000*60))/1000);
+  document.getElementById('days').textContent    = String(d).padStart(2,'0');
+  document.getElementById('hours').textContent   = String(h).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(m).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// EMAIL SUBMIT
+function submitEmail() {
+  const email = document.getElementById('email-input').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('email-input').style.borderColor = '#E05252';
+    return;
+  }
+  document.getElementById('form-wrap').style.display = 'none';
+  const s = document.getElementById('success-state');
+  s.style.display = 'flex';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridging Loan Calculator — Maplehill Capital Partners</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:      #08090A;
+  --carbon:    #16181C;
+  --graphite:  #252830;
+  --steel:     #888C99;
+  --chalk:     #F4F4F2;
+  --chalk-dim: #B8B8B4;
+  --teal:      #00C2A8;
+  --deep-teal: #0B1F1D;
+  --gold:      #C9A96E;
+  --gold-dim:  #8A7045;
+  --border:    rgba(255,255,255,0.07);
+  --border-md: rgba(255,255,255,0.12);
+  --red:       #E05252;
+  --amber:     #E09A3A;
+  --green:     #3ABF8A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--void);
+  color: var(--chalk);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  height: 72px;
+  background: rgba(8,9,10,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+.logo-mark { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 28px; height: 28px; }
+.logo-mark span { border-radius: 2px; display: block; }
+.nav-wordmark { display: flex; flex-direction: column; gap: 3px; }
+.nav-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: -0.01em; color: var(--chalk); line-height: 1; }
+.nav-line { width: 100%; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+.nav-sub { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 0.36rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--steel); }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a { font-family: 'Outfit', sans-serif; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--steel); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--chalk); }
+.nav-cta { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--void); background: var(--teal); padding: 10px 22px; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: #00D4B8; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 10rem 4rem 4rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  background: var(--void);
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 80% 40%, rgba(0,194,168,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 80% at 80% 30%, black 20%, transparent 80%);
+}
+.eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--chalk);
+}
+.page-title em { font-style: normal; color: var(--teal); }
+.page-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--steel);
+  line-height: 1.8;
+  max-width: 480px;
+  align-self: end;
+}
+.disclaimer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 0.5px solid rgba(201,169,110,0.3);
+  padding: 5px 12px;
+  margin-top: 1.25rem;
+}
+
+/* ── CALCULATOR LAYOUT ── */
+.calc-wrap {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2px;
+  min-height: calc(100vh - 300px);
+}
+
+/* LEFT: INPUTS */
+.calc-inputs {
+  padding: 3rem 4rem;
+  background: var(--carbon);
+  border-right: 1px solid var(--border);
+}
+
+.input-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.input-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+.input-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-section-title::before { content: ''; width: 16px; height: 1px; background: var(--teal); }
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.input-row.single { grid-template-columns: 1fr; }
+
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--steel);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.input-label span {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--chalk);
+  letter-spacing: -0.01em;
+}
+
+/* Slider */
+.slider-wrap { position: relative; padding-bottom: 4px; }
+input[type=range] {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  background: var(--graphite);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--void);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type=range]::-moz-range-thumb {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--void);
+  cursor: pointer;
+}
+
+/* Segment control */
+.segment {
+  display: grid;
+  gap: 2px;
+  background: var(--graphite);
+  border-radius: 4px;
+  padding: 2px;
+}
+.segment.cols-2 { grid-template-columns: 1fr 1fr; }
+.segment.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.seg-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  background: transparent;
+  border: none;
+  padding: 8px 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.15s, color 0.15s;
+  text-align: center;
+}
+.seg-btn.active {
+  background: var(--teal);
+  color: var(--void);
+  font-weight: 600;
+}
+.seg-btn:hover:not(.active) { color: var(--chalk); }
+
+/* Mini input */
+.mini-input {
+  background: var(--graphite);
+  border: 1px solid var(--border-md);
+  color: var(--chalk);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 3px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.mini-input:focus { border-color: var(--teal); }
+
+/* Tooltip */
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 0.5px solid var(--steel);
+  font-size: 9px;
+  color: var(--steel);
+  cursor: help;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+/* RIGHT: RESULTS */
+.calc-results {
+  background: var(--void);
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.result-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.result-header-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.result-total {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  letter-spacing: -0.04em;
+  color: var(--chalk);
+  line-height: 1;
+}
+.result-total-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--steel);
+}
+
+/* Cost breakdown bars */
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.breakdown-bar-wrap {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.breakdown-bar-wrap:last-child { border-bottom: none; }
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.breakdown-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--chalk-dim);
+  letter-spacing: 0.04em;
+}
+.breakdown-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--chalk);
+}
+.bar-track {
+  width: 100%;
+  height: 3px;
+  background: var(--graphite);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* LTV meter */
+.ltv-meter {
+  background: var(--carbon);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 4px;
+}
+.ltv-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.ltv-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.ltv-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--chalk);
+}
+.ltv-track {
+  width: 100%;
+  height: 8px;
+  background: var(--graphite);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.ltv-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease, background 0.3s;
+}
+.ltv-status {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Summary cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.summary-card {
+  background: var(--carbon);
+  padding: 1rem;
+}
+.summary-card-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+.summary-card-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--chalk);
+  letter-spacing: -0.01em;
+}
+.summary-card-val.teal { color: var(--teal); }
+.summary-card-val.gold { color: var(--gold); }
+
+/* CTA block */
+.calc-cta {
+  background: var(--deep-teal);
+  border: 1px solid rgba(0,194,168,0.2);
+  padding: 1.5rem;
+}
+.calc-cta-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  color: var(--chalk);
+  margin-bottom: 0.5rem;
+}
+.calc-cta-body {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--steel);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+.btn-teal {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--teal);
+  padding: 12px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-teal:hover { background: #00D4B8; }
+
+/* Disclaimer */
+.calc-disclaimer {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--steel);
+  line-height: 1.6;
+  opacity: 0.55;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+/* Info cards at bottom */
+.info-section {
+  background: var(--carbon);
+  padding: 4rem;
+  border-top: 1px solid var(--border);
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 2.5rem;
+}
+.info-card {
+  background: var(--void);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+.info-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--chalk);
+  margin-bottom: 0.5rem;
+}
+.info-card-body {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--steel);
+  line-height: 1.7;
+}
+.info-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.info-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--teal); }
+.info-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+  color: var(--chalk);
+}
+
+/* Footer strip */
+.footer-strip {
+  background: var(--void);
+  border-top: 1px solid var(--border);
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-strip p { font-family: 'Outfit', sans-serif; font-size: 0.62rem; color: var(--steel); opacity: 0.45; letter-spacing: 0.08em; }
+.footer-strip a { font-family: 'Outfit', sans-serif; font-size: 0.62rem; color: var(--teal); text-decoration: none; letter-spacing: 0.08em; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.fade-up { opacity:0; animation: fadeUp 0.6s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="maplehill_homepage.html" class="nav-logo">
+    <div class="logo-mark">
+      <span style="background:#00C2A8"></span>
+      <span style="background:#F4F4F2;opacity:0.12"></span>
+      <span style="background:#F4F4F2;opacity:0.06"></span>
+      <span style="background:#C9A96E"></span>
+    </div>
+    <div class="nav-wordmark">
+      <div class="nav-name">MAPLEHILL</div>
+      <div class="nav-line"></div>
+      <div class="nav-sub">Capital Partners</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="maplehill_homepage.html#services">Services</a></li>
+    <li><a href="maplehill_homepage.html#bridging">Finance</a></li>
+    <li><a href="maplehill_homepage.html#track-record">Track Record</a></li>
+    <li><a href="maplehill_homepage.html#team">Team</a></li>
+    <li><a href="maplehill_homepage.html#contact">Contact</a></li>
+  </ul>
+  <a href="maplehill_homepage.html#bridging" class="nav-cta">Speak to us</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-grid"></div>
+  <div class="fade-up" style="animation-delay:0.1s">
+    <div class="eyebrow">Structured Finance Tool</div>
+    <h1 class="page-title">Bridging loan<br><em>calculator.</em></h1>
+    <div class="disclaimer-pill">Indicative estimates only — not a formal quote</div>
+  </div>
+  <p class="page-desc fade-up" style="animation-delay:0.3s">
+    Use this calculator to estimate your total bridging loan costs based on current UK market rates. Adjust loan amount, term, interest rate and fee structure to model your deal. All figures are indicative — speak to our team for a bespoke quote within 4 hours.
+  </p>
+</div>
+
+<!-- CALCULATOR -->
+<div class="calc-wrap">
+
+  <!-- LEFT: INPUTS -->
+  <div class="calc-inputs">
+
+    <!-- LOAN DETAILS -->
+    <div class="input-section">
+      <div class="input-section-title">Loan details</div>
+
+      <div class="input-row single">
+        <div class="input-group">
+          <div class="input-label">
+            Loan amount
+            <span id="lbl-loan">£2,000,000</span>
+          </div>
+          <input type="range" id="sl-loan" min="100000" max="30000000" step="50000" value="2000000" oninput="calc()">
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">£100k</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">£30m+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row single">
+        <div class="input-group">
+          <div class="input-label">
+            Property value
+            <span id="lbl-prop">£2,800,000</span>
+          </div>
+          <input type="range" id="sl-prop" min="100000" max="50000000" step="50000" value="2800000" oninput="calc()">
+        </div>
+      </div>
+
+      <div class="input-row single">
+        <div class="input-group">
+          <div class="input-label">
+            Loan term
+            <span id="lbl-term">12 months</span>
+          </div>
+          <input type="range" id="sl-term" min="1" max="36" step="1" value="12" oninput="calc()">
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">1 month</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">36 months</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTEREST RATE -->
+    <div class="input-section">
+      <div class="input-section-title">Interest rate</div>
+
+      <div class="input-row single">
+        <div class="input-group">
+          <div class="input-label">
+            Monthly rate
+            <span id="lbl-rate">0.85% / month</span>
+          </div>
+          <input type="range" id="sl-rate" min="0.50" max="2.00" step="0.01" value="0.85" oninput="calc()">
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--teal)">0.50% — Prime</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">Market avg ~0.76%</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">2.00% — Complex</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row single">
+        <div class="input-group">
+          <div class="input-label" style="margin-bottom:6px">Interest structure</div>
+          <div class="segment cols-3" id="seg-interest">
+            <button class="seg-btn" onclick="setInterest('monthly',this)">Monthly</button>
+            <button class="seg-btn active" onclick="setInterest('rolled',this)">Rolled up</button>
+            <button class="seg-btn" onclick="setInterest('retained',this)">Retained</button>
+          </div>
+          <div id="interest-note" style="font-size:0.72rem;font-weight:300;color:var(--steel);margin-top:8px;line-height:1.5">Interest added to loan and repaid on exit — most common for investors.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEES -->
+    <div class="input-section">
+      <div class="input-section-title">Fees & costs</div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">
+            Arrangement fee
+            <span id="lbl-arr">2.00%</span>
+          </div>
+          <input type="range" id="sl-arr" min="0" max="3" step="0.25" value="2.00" oninput="calc()">
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">0%</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">3%</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">
+            Exit fee
+            <span id="lbl-exit">0.00%</span>
+          </div>
+          <input type="range" id="sl-exit" min="0" max="2" step="0.25" value="0" oninput="calc()">
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--teal)">0% — Common</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">2%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">
+            Valuation fee
+            <span id="lbl-val">£1,500</span>
+          </div>
+          <input type="range" id="sl-val" min="500" max="5000" step="250" value="1500" oninput="calc()">
+        </div>
+        <div class="input-group">
+          <div class="input-label">
+            Legal fees
+            <span id="lbl-legal">£2,500</span>
+          </div>
+          <input type="range" id="sl-legal" min="500" max="8000" step="250" value="2500" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <!-- LOAN TYPE -->
+    <div class="input-section">
+      <div class="input-section-title">Loan type</div>
+      <div class="segment cols-2" id="seg-type">
+        <button class="seg-btn active" onclick="setType('residential',this)">Residential</button>
+        <button class="seg-btn" onclick="setType('commercial',this)">Commercial</button>
+      </div>
+      <div id="type-note" style="font-size:0.72rem;font-weight:300;color:var(--steel);margin-top:10px;line-height:1.5">Max LTV typically 75–80% on residential. Lower rates available for lower LTVs.</div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: RESULTS -->
+  <div class="calc-results">
+
+    <div class="result-header">
+      <div class="result-header-label">Total estimated cost</div>
+      <div class="result-total" id="res-total">£237,500</div>
+      <div class="result-total-label">Interest + all fees</div>
+    </div>
+
+    <!-- LTV METER -->
+    <div class="ltv-meter">
+      <div class="ltv-label-row">
+        <span class="ltv-label">Loan to value (LTV)</span>
+        <span class="ltv-val" id="res-ltv">71.4%</span>
+      </div>
+      <div class="ltv-track">
+        <div class="ltv-fill" id="ltv-fill" style="width:71.4%;background:var(--teal)"></div>
+      </div>
+      <div class="ltv-status" id="ltv-status" style="color:var(--teal)">✓ Within typical lending parameters</div>
+    </div>
+
+    <!-- BREAKDOWN BARS -->
+    <div class="breakdown">
+      <div class="breakdown-bar-wrap">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Total interest</span>
+          <span class="breakdown-val" id="res-interest">£204,000</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-interest" style="width:86%;background:var(--teal)"></div></div>
+      </div>
+      <div class="breakdown-bar-wrap">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Arrangement fee</span>
+          <span class="breakdown-val" id="res-arr">£40,000</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-arr" style="width:17%;background:var(--gold)"></div></div>
+      </div>
+      <div class="breakdown-bar-wrap">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Exit fee</span>
+          <span class="breakdown-val" id="res-exit">£0</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-exit" style="width:0%;background:var(--gold-dim)"></div></div>
+      </div>
+      <div class="breakdown-bar-wrap">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Valuation + legal</span>
+          <span class="breakdown-val" id="res-other">£4,000</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-other" style="width:2%;background:var(--graphite)"></div></div>
+      </div>
+    </div>
+
+    <!-- SUMMARY CARDS -->
+    <div class="summary-cards">
+      <div class="summary-card">
+        <div class="summary-card-label">Gross loan</div>
+        <div class="summary-card-val" id="res-gross">£2,000,000</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-label">Total repayable</div>
+        <div class="summary-card-val teal" id="res-repay">£2,237,500</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-label">Monthly interest</div>
+        <div class="summary-card-val gold" id="res-monthly">£17,000</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-label">Effective annual rate</div>
+        <div class="summary-card-val" id="res-ear">10.2%</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="calc-cta">
+      <div class="calc-cta-title">Ready to discuss your deal?</div>
+      <div class="calc-cta-body">These are indicative figures. Our team will give you a bespoke quote — typically within 4 hours — tailored to your asset, exit strategy and borrower profile.</div>
+      <a href="maplehill_homepage.html#bridging" class="btn-teal">Submit a finance enquiry →</a>
+    </div>
+
+    <div class="calc-disclaimer">
+      Indicative estimates only. Actual rates, fees and terms will vary based on individual circumstances, asset type, LTV, exit strategy and lender assessment. This calculator does not constitute a financial offer or advice. Maplehill Capital Partners arranges finance through its lender network; not all products are available to all borrowers. Seek independent financial advice before proceeding.
+    </div>
+
+  </div>
+</div>
+
+<!-- INFO SECTION -->
+<div class="info-section">
+  <div class="info-eyebrow">UK market context</div>
+  <div class="info-title">How bridging costs work.</div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-title">Interest rates</div>
+      <div class="info-card-body">UK bridging rates currently range from 0.52% to 2.00% per month. The average in 2025 is around 0.76% per month. Your rate depends on LTV, asset type, exit strategy and borrower profile. Lower LTV = lower rate.</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Interest structures</div>
+      <div class="info-card-body">You can pay interest monthly (like a mortgage), roll it up to exit (most common for investors — no monthly payments), or retain it upfront from the loan. Rolled-up interest means a higher loan balance at exit.</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Fees to expect</div>
+      <div class="info-card-body">Arrangement fee: typically 1–2%. Exit fee: 0–1% (many lenders charge none). Valuation: £600–£5,000+ depending on asset. Legal fees: £1,500–£4,000+ for both parties. Broker fee: varies.</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Complex deals</div>
+      <div class="info-card-body">Listed buildings, mixed-use, distressed assets, second charges and high LTV deals typically attract higher rates. MCP specialises in structuring these — deals that mainstream lenders won't touch.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER STRIP -->
+<div class="footer-strip">
+  <p>© 2025 Maplehill Capital Partners. Calculator figures are indicative estimates only.</p>
+  <a href="maplehill_homepage.html">← Back to main site</a>
+</div>
+
+<script>
+let interestMode = 'rolled';
+let loanType = 'residential';
+
+function setInterest(mode, btn) {
+  interestMode = mode;
+  document.querySelectorAll('#seg-interest .seg-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const notes = {
+    monthly: 'You pay interest each month — lower total cost but requires cash flow during the term.',
+    rolled: 'Interest added to loan and repaid on exit — most common for investors.',
+    retained: 'Interest deducted from the loan upfront — you receive less but make no payments.'
+  };
+  document.getElementById('interest-note').textContent = notes[mode];
+  calc();
+}
+
+function setType(type, btn) {
+  loanType = type;
+  document.querySelectorAll('#seg-type .seg-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const notes = {
+    residential: 'Max LTV typically 75–80% on residential. Lower rates available for lower LTVs.',
+    commercial: 'Max LTV typically 65–75% on commercial. Rates may be higher for complex assets.'
+  };
+  document.getElementById('type-note').textContent = notes[type];
+  calc();
+}
+
+function fmt(n) {
+  if (n >= 1000000) return '£' + (n/1000000).toFixed(n%1000000===0?0:2) + 'm';
+  if (n >= 1000) return '£' + Math.round(n).toLocaleString('en-GB');
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+
+function fmtFull(n) {
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+
+function calc() {
+  const loan   = parseFloat(document.getElementById('sl-loan').value);
+  const prop   = parseFloat(document.getElementById('sl-prop').value);
+  const term   = parseInt(document.getElementById('sl-term').value);
+  const rate   = parseFloat(document.getElementById('sl-rate').value) / 100;
+  const arrPct = parseFloat(document.getElementById('sl-arr').value) / 100;
+  const exitPct= parseFloat(document.getElementById('sl-exit').value) / 100;
+  const val    = parseFloat(document.getElementById('sl-val').value);
+  const legal  = parseFloat(document.getElementById('sl-legal').value);
+
+  // Update labels
+  document.getElementById('lbl-loan').textContent = fmt(loan);
+  document.getElementById('lbl-prop').textContent = fmt(prop);
+  document.getElementById('lbl-term').textContent = term + (term === 1 ? ' month' : ' months');
+  document.getElementById('lbl-rate').textContent = (rate*100).toFixed(2) + '% / month';
+  document.getElementById('lbl-arr').textContent  = (arrPct*100).toFixed(2) + '%';
+  document.getElementById('lbl-exit').textContent = (exitPct*100).toFixed(2) + '%';
+  document.getElementById('lbl-val').textContent  = fmtFull(val);
+  document.getElementById('lbl-legal').textContent = fmtFull(legal);
+
+  // LTV
+  const ltv = prop > 0 ? (loan / prop * 100) : 0;
+  const maxLtv = loanType === 'residential' ? 80 : 72;
+  document.getElementById('res-ltv').textContent = ltv.toFixed(1) + '%';
+
+  const ltvFill = document.getElementById('ltv-fill');
+  const ltvStatus = document.getElementById('ltv-status');
+  const ltvPct = Math.min(ltv, 100);
+  ltvFill.style.width = ltvPct + '%';
+
+  if (ltv <= maxLtv * 0.75) {
+    ltvFill.style.background = 'var(--green)';
+    ltvStatus.style.color = 'var(--green)';
+    ltvStatus.textContent = '✓ Strong LTV — competitive rates likely';
+  } else if (ltv <= maxLtv) {
+    ltvFill.style.background = 'var(--teal)';
+    ltvStatus.style.color = 'var(--teal)';
+    ltvStatus.textContent = '✓ Within typical lending parameters';
+  } else if (ltv <= maxLtv * 1.05) {
+    ltvFill.style.background = 'var(--amber)';
+    ltvStatus.style.color = 'var(--amber)';
+    ltvStatus.textContent = '⚠ Approaching maximum LTV — specialist lenders only';
+  } else {
+    ltvFill.style.background = 'var(--red)';
+    ltvStatus.style.color = 'var(--red)';
+    ltvStatus.textContent = '✕ Exceeds typical maximum LTV for this asset type';
+  }
+
+  // Interest calculation
+  let totalInterest;
+  if (interestMode === 'monthly') {
+    totalInterest = loan * rate * term;
+  } else if (interestMode === 'rolled') {
+    // compound monthly roll-up
+    totalInterest = loan * (Math.pow(1 + rate, term) - 1);
+  } else {
+    // retained: same as rolled for estimation purposes
+    totalInterest = loan * (Math.pow(1 + rate, term) - 1);
+  }
+
+  const arrFee   = loan * arrPct;
+  const exitFee  = loan * exitPct;
+  const otherFees = val + legal;
+  const totalCost = totalInterest + arrFee + exitFee + otherFees;
+  const totalRepay = loan + totalCost;
+  const monthlyInterest = loan * rate;
+  const ear = (Math.pow(1 + rate, 12) - 1) * 100;
+
+  // Update results
+  document.getElementById('res-total').textContent   = fmtFull(Math.round(totalCost));
+  document.getElementById('res-interest').textContent = fmtFull(Math.round(totalInterest));
+  document.getElementById('res-arr').textContent      = fmtFull(Math.round(arrFee));
+  document.getElementById('res-exit').textContent     = fmtFull(Math.round(exitFee));
+  document.getElementById('res-other').textContent    = fmtFull(Math.round(otherFees));
+  document.getElementById('res-gross').textContent    = fmtFull(Math.round(loan));
+  document.getElementById('res-repay').textContent    = fmtFull(Math.round(totalRepay));
+  document.getElementById('res-monthly').textContent  = fmtFull(Math.round(monthlyInterest));
+  document.getElementById('res-ear').textContent      = ear.toFixed(1) + '%';
+
+  // Update bars (as % of total cost)
+  const safe = n => totalCost > 0 ? Math.min(100, Math.max(0, (n / totalCost) * 100)) : 0;
+  document.getElementById('bar-interest').style.width = safe(totalInterest) + '%';
+  document.getElementById('bar-arr').style.width      = safe(arrFee) + '%';
+  document.getElementById('bar-exit').style.width     = safe(exitFee) + '%';
+  document.getElementById('bar-other').style.width    = safe(otherFees) + '%';
+}
+
+// Init
+calc();
+</script>
+</body>
+</html>
