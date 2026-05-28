@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bridgr
 ### The UK's Digital Bridging Finance Platform
 **Powered by MCP — Maplehill Capital Partners**
@@ -27,3 +28,7 @@ Domain: maplehillcapitalpartners.co.uk
 ## Contact
 
 info@maplehillcapitalpartners.co.uk
+=======
+# bridgr
+The UK's first fully digital bridging finance platform.
+>>>>>>> 39bd5177c2e6bf8eaeeac2f75e605a63b2011aac
