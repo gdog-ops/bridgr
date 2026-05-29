@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broker Registration — Bridgr</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:#08090A;--carbon:#16181C;--graphite:#252830;
+  --border:rgba(255,255,255,0.07);--border-md:rgba(255,255,255,0.12);
+  --steel:#888C99;--chalk:#F4F4F2;--chalk-dim:#B8B8B4;
+  --teal:#00C2A8;--teal-glow:rgba(0,194,168,0.1);
+  --deep-teal:#0B1F1D;--gold:#C9A96E;--gold-dim:#8A7045;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--chalk);font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+
+/* LOGO */
+.logo-wrap{display:flex;flex-direction:column;gap:3px;text-decoration:none}
+.logo-wm{display:flex;align-items:baseline;gap:3px}
+.logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;color:var(--chalk);line-height:1}
+.logo-word .r{color:var(--teal)}
+.logo-dot{border-radius:50%;background:var(--gold);flex-shrink:0;margin-bottom:1px}
+.logo-line{width:100%;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.logo-sub{font-family:'Outfit',sans-serif;font-weight:300;font-size:0.36rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--steel)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(8,9,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:0.06em;color:var(--steel);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--chalk)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-ghost{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:400;letter-spacing:0.08em;color:var(--chalk);border:0.5px solid var(--graphite);padding:8px 18px;text-decoration:none;transition:border-color 0.2s}
+.nav-ghost:hover{border-color:var(--steel)}
+.nav-primary{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--void);background:var(--teal);padding:9px 20px;text-decoration:none;transition:background 0.2s}
+.nav-primary:hover{background:#00D4B8}
+
+/* PAGE HEADER */
+.page-header{padding:10rem 3.5rem 5rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;overflow:hidden}
+.header-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 80% 50%,rgba(0,194,168,0.06) 0%,transparent 70%);pointer-events:none}
+.header-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 80% at 80% 50%,black 20%,transparent 80%);pointer-events:none}
+.eyebrow{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--teal)}
+.page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.2rem);letter-spacing:-0.04em;line-height:0.95;color:var(--chalk);margin-bottom:1.25rem}
+.page-title .teal{color:var(--teal)}
+.page-sub{font-size:1rem;font-weight:300;color:var(--steel);line-height:1.8;max-width:480px;margin-bottom:2.5rem}
+
+/* STATS ROW */
+.header-stats{display:flex;align-items:center;gap:2rem}
+.hs-item{display:flex;flex-direction:column;gap:3px}
+.hs-num{font-family:'Syne',sans-serif;font-weight:700;font-size:1.6rem;letter-spacing:-0.03em;color:var(--chalk);line-height:1}
+.hs-num .t{color:var(--teal)}.hs-num .g{color:var(--gold)}
+.hs-label{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--steel)}
+.hs-div{width:1px;height:32px;background:var(--border-md)}
+
+/* REGISTRATION FORM */
+.reg-form-wrap{background:var(--carbon);border:1px solid var(--border-md);padding:2.5rem;position:relative;z-index:1}
+.form-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-0.02em;color:var(--chalk);margin-bottom:0.4rem}
+.form-sub{font-size:0.82rem;font-weight:300;color:var(--steel);margin-bottom:2rem;line-height:1.6}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fg-full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:5px}
+.field-label{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel)}
+.field-input,.field-select{background:rgba(255,255,255,0.04);border:1px solid var(--border-md);color:var(--chalk);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:300;padding:11px 14px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;width:100%;border-radius:0}
+.field-input:focus,.field-select:focus{border-color:var(--teal);background:rgba(0,194,168,0.04)}
+.field-input::placeholder{color:var(--graphite)}
+.field-select option{background:var(--carbon);color:var(--chalk)}
+.field-hint{font-size:0.68rem;font-weight:300;color:var(--steel);opacity:0.6;line-height:1.5}
+.form-submit{width:100%;background:var(--teal);color:var(--void);font-family:'Outfit',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;padding:14px;border:none;cursor:pointer;margin-top:4px;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.form-submit:hover{background:#00D4B8}
+.form-submit::after{content:'→'}
+.form-note{font-size:0.68rem;font-weight:300;color:var(--steel);opacity:0.5;text-align:center;margin-top:10px;line-height:1.5}
+
+/* SUCCESS STATE */
+.success-state{display:none;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:3rem 1rem}
+.success-icon{font-size:3rem}
+.success-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-0.02em;color:var(--teal)}
+.success-sub{font-size:0.85rem;font-weight:300;color:var(--steel);line-height:1.7;max-width:320px}
+
+/* BENEFITS */
+.benefits{padding:6rem 3.5rem;background:var(--carbon);border-top:1px solid var(--border)}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3rem}
+.benefit-card{background:var(--void);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;transition:border-color 0.3s}
+.benefit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.benefit-card:hover::before{transform:scaleX(1)}.benefit-card:hover{border-color:var(--border-md)}
+.benefit-num{font-family:'Syne',sans-serif;font-weight:700;font-size:2.5rem;letter-spacing:-0.04em;color:var(--graphite);line-height:1;margin-bottom:1rem}
+.benefit-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.95rem;color:var(--chalk);margin-bottom:0.5rem}
+.benefit-desc{font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.7}
+
+/* WHAT YOU GET */
+.what{padding:6rem 3.5rem;background:var(--void);border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.what-list{display:flex;flex-direction:column;gap:0;margin-top:2rem}
+.what-item{display:flex;align-items:flex-start;gap:14px;padding:1.1rem 0;border-bottom:1px solid var(--border)}
+.what-item:last-child{border-bottom:none}
+.what-check{width:22px;height:22px;border-radius:50%;background:var(--teal-glow);border:1px solid rgba(0,194,168,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--teal);flex-shrink:0;margin-top:2px}
+.what-content{}
+.what-title{font-family:'Outfit',sans-serif;font-weight:500;font-size:0.88rem;color:var(--chalk);margin-bottom:3px}
+.what-desc{font-size:0.78rem;font-weight:300;color:var(--steel);line-height:1.6}
+
+/* COMMISSION */
+.commission{background:var(--deep-teal);border:1px solid rgba(0,194,168,0.15);padding:2.5rem;margin-top:0}
+.commission-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:-0.02em;color:var(--chalk);margin-bottom:1rem}
+.commission-table{width:100%;border-collapse:collapse}
+.commission-table th{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);padding:0.6rem 0.75rem;text-align:left;border-bottom:1px solid rgba(0,194,168,0.15)}
+.commission-table td{font-size:0.82rem;font-weight:300;color:var(--chalk-dim);padding:0.75rem;border-bottom:1px solid var(--border)}
+.commission-table tr:last-child td{border-bottom:none}
+.commission-table td:last-child{color:var(--teal);font-weight:500;font-family:'Syne',sans-serif;font-size:0.88rem}
+.comm-note{font-size:0.7rem;font-weight:300;color:var(--steel);opacity:0.6;margin-top:1rem;line-height:1.5}
+
+/* TESTIMONIALS / SOCIAL PROOF */
+.proof{padding:6rem 3.5rem;background:var(--carbon);border-top:1px solid var(--border)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3rem}
+.proof-card{background:var(--void);border:1px solid var(--border);padding:2rem}
+.proof-quote{font-size:0.9rem;font-weight:300;color:var(--chalk-dim);line-height:1.75;margin-bottom:1.5rem;font-style:italic}
+.proof-author{display:flex;align-items:center;gap:10px}
+.proof-avatar{width:36px;height:36px;border-radius:50%;background:var(--deep-teal);border:1px solid rgba(0,194,168,0.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;color:var(--teal);flex-shrink:0}
+.proof-name{font-family:'Outfit',sans-serif;font-weight:500;font-size:0.78rem;color:var(--chalk)}
+.proof-firm{font-size:0.68rem;font-weight:300;color:var(--steel)}
+
+/* FAQ */
+.faq{padding:6rem 3.5rem;background:var(--void);border-top:1px solid var(--border)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem}
+.faq-item{background:var(--carbon);border:1px solid var(--border);padding:1.75rem;cursor:pointer;transition:border-color 0.2s}
+.faq-item:hover{border-color:var(--border-md)}
+.faq-q{font-family:'Outfit',sans-serif;font-weight:500;font-size:0.88rem;color:var(--chalk);margin-bottom:0.75rem;display:flex;justify-content:space-between;align-items:start;gap:1rem}
+.faq-toggle{color:var(--teal);font-size:1.2rem;flex-shrink:0;margin-top:-2px}
+.faq-a{font-size:0.8rem;font-weight:300;color:var(--steel);line-height:1.7}
+
+/* CTA BOTTOM */
+.cta-bottom{background:var(--deep-teal);border-top:1px solid rgba(0,194,168,0.15);padding:5rem 3.5rem;text-align:center}
+.cta-bottom-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-0.03em;line-height:1.0;color:var(--chalk);margin-bottom:0.75rem}
+.cta-bottom-sub{font-size:0.95rem;font-weight:300;color:rgba(184,184,180,0.75);margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-bottom-actions{display:flex;align-items:center;justify-content:center;gap:12px}
+.cta-p{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--void);background:var(--teal);padding:14px 32px;text-decoration:none;transition:background 0.2s;display:inline-flex;align-items:center;gap:8px}
+.cta-p:hover{background:#00D4B8}.cta-p::after{content:'→'}
+.cta-s{font-family:'Outfit',sans-serif;font-weight:400;font-size:0.8rem;letter-spacing:0.08em;color:var(--chalk);border:0.5px solid var(--graphite);padding:14px 32px;text-decoration:none;transition:border-color 0.2s}
+.cta-s:hover{border-color:var(--steel)}
+
+/* FOOTER */
+footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-family:'Outfit',sans-serif;font-size:0.62rem;font-weight:300;color:var(--steel);opacity:0.45;letter-spacing:0.06em}
+.footer-links-row{display:flex;gap:2rem}
+.footer-links-row a{font-family:'Outfit',sans-serif;font-size:0.62rem;font-weight:300;color:var(--steel);text-decoration:none;transition:color 0.2s}
+.footer-links-row a:hover{color:var(--chalk)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.75)}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+
+@media(max-width:768px){
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .page-header{grid-template-columns:1fr;padding:8rem 1.5rem 3rem;gap:3rem}
+  .benefits{padding:4rem 1.5rem}.benefits-grid{grid-template-columns:1fr}
+  .what{grid-template-columns:1fr;padding:4rem 1.5rem;gap:3rem}
+  .proof{padding:4rem 1.5rem}.proof-grid{grid-template-columns:1fr}
+  .faq{padding:4rem 1.5rem}.faq-grid{grid-template-columns:1fr}
+  .cta-bottom{padding:4rem 1.5rem}.cta-bottom-actions{flex-direction:column}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="homepage.html" class="logo-wrap">
+    <div class="logo-wm">
+      <div class="logo-word" style="font-size:1.1rem">bridg<span class="r">r</span></div>
+      <div class="logo-dot" style="width:5px;height:5px"></div>
+    </div>
+    <div class="logo-line"></div>
+    <div class="logo-sub">Powered by MCP</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="homepage.html#how">How it works</a></li>
+    <li><a href="homepage.html#platform">Platform</a></li>
+    <li><a href="homepage.html#borrowers">For borrowers</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+    <li><a href="apply.html">Apply</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#register" class="nav-ghost">Already registered? Login</a>
+    <a href="#register" class="nav-primary">Register now</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-bg"></div>
+  <div class="header-grid"></div>
+  <div style="position:relative;z-index:1;animation:fadeUp 0.6s ease 0.1s both">
+    <div class="eyebrow">Broker portal</div>
+    <h1 class="page-title">The platform your<br>clients <span class="teal">deserve.</span></h1>
+    <p class="page-sub">Join hundreds of UK brokers using Bridgr to submit cases faster, match lenders smarter and track deals in real time. Free to register. No monthly fees. Commission paid on every completion.</p>
+    <div class="header-stats">
+      <div class="hs-item"><div class="hs-num"><span class="t">40</span>+</div><div class="hs-label">Lenders on panel</div></div>
+      <div class="hs-div"></div>
+      <div class="hs-item"><div class="hs-num"><span class="t">7</span>min</div><div class="hs-label">Average case submission</div></div>
+      <div class="hs-div"></div>
+      <div class="hs-item"><div class="hs-num"><span class="g">0</span></div><div class="hs-label">Monthly fee</div></div>
+    </div>
+  </div>
+
+  <!-- REGISTRATION FORM -->
+  <div id="register" style="position:relative;z-index:1;animation:fadeUp 0.6s ease 0.3s both">
+    <div class="reg-form-wrap">
+      <div id="form-content">
+        <div class="form-title">Create your broker account</div>
+        <div class="form-sub">Free to register. Takes 2 minutes. Start submitting cases immediately.</div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label class="field-label">First name *</label>
+            <input class="field-input" type="text" placeholder="First name">
+          </div>
+          <div class="field">
+            <label class="field-label">Last name *</label>
+            <input class="field-input" type="text" placeholder="Last name">
+          </div>
+          <div class="field">
+            <label class="field-label">Email address *</label>
+            <input class="field-input" type="email" placeholder="you@yourbrokerage.co.uk">
+          </div>
+          <div class="field">
+            <label class="field-label">Mobile *</label>
+            <input class="field-input" type="tel" placeholder="+44">
+          </div>
+          <div class="field fg-full">
+            <label class="field-label">Brokerage name *</label>
+            <input class="field-input" type="text" placeholder="Your firm name">
+          </div>
+          <div class="field">
+            <label class="field-label">FCA number *</label>
+            <input class="field-input" type="text" placeholder="FCA registration number">
+          </div>
+          <div class="field">
+            <label class="field-label">Years experience</label>
+            <select class="field-select">
+              <option value="" disabled selected>Select</option>
+              <option>Less than 1 year</option>
+              <option>1–3 years</option>
+              <option>3–5 years</option>
+              <option>5–10 years</option>
+              <option>10+ years</option>
+            </select>
+          </div>
+          <div class="field fg-full">
+            <label class="field-label">Typical monthly case volume</label>
+            <select class="field-select">
+              <option value="" disabled selected>How many bridging cases per month?</option>
+              <option>1–3 cases</option>
+              <option>4–10 cases</option>
+              <option>10–20 cases</option>
+              <option>20+ cases</option>
+            </select>
+            <div class="field-hint">This helps us tailor your portal experience — it doesn't affect your application.</div>
+          </div>
+          <div class="field fg-full">
+            <label class="field-label">How did you hear about Bridgr?</label>
+            <select class="field-select">
+              <option value="" disabled selected>Select</option>
+              <option>Google / search</option>
+              <option>LinkedIn</option>
+              <option>Colleague / referral</option>
+              <option>Industry event</option>
+              <option>Email / newsletter</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="form-submit" onclick="submitReg()">Create my broker account</button>
+        <div class="form-note">By registering you agree to our Terms of Service and Privacy Policy. We will never share your details with third parties without consent.</div>
+      </div>
+
+      <div class="success-state" id="success-state">
+        <div class="success-icon">⚡</div>
+        <div class="success-title">You're registered.</div>
+        <div class="success-sub">Welcome to Bridgr. A member of our team will be in touch within 2 hours to activate your portal and walk you through your first case submission.</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-top:0.5rem;border:0.5px solid rgba(0,194,168,0.3);padding:6px 14px">Check your email for confirmation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="reveal">
+    <div class="eyebrow">Why brokers choose Bridgr</div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;color:var(--chalk)">Save hours per case.<br>Win more business.</h2>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-num">01</div>
+      <div class="benefit-title">Submit a case in 7 minutes</div>
+      <div class="benefit-desc">Our smart application form is built for speed. Save borrower profiles and reuse documents across multiple cases. DIP generated the moment you submit — send indicative terms to your client instantly.</div>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-num">02</div>
+      <div class="benefit-title">Instant lender matching</div>
+      <div class="benefit-desc">Our rules engine matches your case to the most suitable lenders from a panel of 40+ — ranked by approval probability, not commission. You always see the best options first, not the most profitable ones for us.</div>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-num">03</div>
+      <div class="benefit-title">Live case dashboard</div>
+      <div class="benefit-desc">Track every case in real time — underwriting, valuation, legal, drawdown. No more chasing underwriters by phone. Your clients see exactly where they are at every stage. You look like the expert you are.</div>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-num">04</div>
+      <div class="benefit-title">Complex cases welcome</div>
+      <div class="benefit-desc">Adverse credit, foreign nationals, HMOs, short leases, commercial conversions, second charges — we specialise in the deals other platforms decline. Our underwriting team has seen everything and finds a way.</div>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-num">05</div>
+      <div class="benefit-title">Full commission transparency</div>
+      <div class="benefit-desc">Track commission from case submission through to completion. No surprises, no clawbacks, no ambiguity. Commission paid promptly on completion. Your earnings dashboard updates in real time.</div>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-num">06</div>
+      <div class="benefit-title">Direct underwriter access</div>
+      <div class="benefit-desc">Every registered broker gets direct access to our underwriting team via live chat. No call centres, no junior account managers. You speak directly to Alexander and the team who are actually reviewing your case.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what">
+  <div class="reveal">
+    <div class="eyebrow">Your broker portal</div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;color:var(--chalk);margin-bottom:0.75rem">Everything you need.<br>Nothing you don't.</h2>
+    <p style="font-size:0.92rem;font-weight:300;color:var(--steel);line-height:1.8;max-width:440px">Your Bridgr portal is built around your workflow — not ours. Here's what you get from day one.</p>
+
+    <div class="what-list">
+      <div class="what-item reveal">
+        <div class="what-check">✓</div>
+        <div class="what-content">
+          <div class="what-title">Multi-case management dashboard</div>
+          <div class="what-desc">See all your active cases at a glance — status, stage, next action required and completion ETA.</div>
+        </div>
+      </div>
+      <div class="what-item reveal">
+        <div class="what-check">✓</div>
+        <div class="what-content">
+          <div class="what-title">Saved borrower profiles</div>
+          <div class="what-desc">Upload documents once. Reuse across multiple cases. Dramatically reduces repeat paperwork for repeat clients.</div>
+        </div>
+      </div>
+      <div class="what-item reveal">
+        <div class="what-check">✓</div>
+        <div class="what-content">
+          <div class="what-title">Instant DIP generator</div>
+          <div class="what-desc">Generate a branded Decision in Principle to send to your client within minutes of submitting a case.</div>
+        </div>
+      </div>
+      <div class="what-item reveal">
+        <div class="what-check">✓</div>
+        <div class="what-content">
+          <div class="what-title">Commission tracker</div>
+          <div class="what-desc">Real-time view of all pipeline commission — by case, by lender, by month. Full payment history and remittance statements.</div>
+        </div>
+      </div>
+      <div class="what-item reveal">
+        <div class="what-check">✓</div>
+        <div class="what-content">
+          <div class="what-title">Lender criteria library</div>
+          <div class="what-desc">Always-current lender criteria, rate cards and appetite guides. Know before you submit whether a lender will take the case.</div>
+        </div>
+      </div>
+      <div class="what-item reveal">
+        <div class="what-check">✓</div>
+        <div class="what-content">
+          <div class="what-title">Live chat with underwriters</div>
+          <div class="what-desc">Message our underwriting team directly from within your portal. Get answers on complex cases in minutes, not days.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="commission">
+      <div class="commission-title">Commission structure</div>
+      <table class="commission-table">
+        <thead>
+          <tr>
+            <th>Loan size</th>
+            <th>Proc fee</th>
+            <th>Your commission</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>£500k – £1m</td>
+            <td>1.0% of loan</td>
+            <td>0.5%</td>
+          </tr>
+          <tr>
+            <td>£1m – £5m</td>
+            <td>1.0% of loan</td>
+            <td>0.5%</td>
+          </tr>
+          <tr>
+            <td>£5m – £15m</td>
+            <td>0.75% of loan</td>
+            <td>0.4%</td>
+          </tr>
+          <tr>
+            <td>£15m+</td>
+            <td>Negotiable</td>
+            <td>Negotiable</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comm-note">Commission paid within 5 working days of completion. Enhanced rates available for high-volume brokers. All rates subject to individual case review. Speak to our team for bespoke arrangements on larger transactions.</div>
+    </div>
+
+    <div style="margin-top:2px;background:var(--carbon);border:1px solid var(--border);padding:1.5rem">
+      <div style="font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem">Questions about commission?</div>
+      <p style="font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.65;margin-bottom:1rem">Speak directly to our team. We're transparent about every aspect of how we work with brokers.</p>
+      <a href="mailto:brokers@bridgr.uk" style="font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;color:var(--teal);text-decoration:none;display:flex;align-items:center;gap:6px">brokers@bridgr.uk →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="reveal">
+    <div class="eyebrow">What brokers say</div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;color:var(--chalk)">Built by people who<br>understand brokers.</h2>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-card reveal">
+      <div class="proof-quote">"I submitted a complex second charge on a listed building that three other platforms declined outright. Bridgr had it matched to two lenders within the hour and completed in 14 days. The live dashboard meant my client was updated without me having to chase anyone."</div>
+      <div class="proof-author">
+        <div class="proof-avatar">JM</div>
+        <div><div class="proof-name">James M.</div><div class="proof-firm">Senior Broker, London</div></div>
+      </div>
+    </div>
+    <div class="proof-card reveal">
+      <div class="proof-quote">"The commission tracker alone saves me hours of admin per month. I can see exactly where every case is, what commission is in the pipeline and when it'll be paid. It's the first platform I've used that actually respects my time."</div>
+      <div class="proof-author">
+        <div class="proof-avatar">SR</div>
+        <div><div class="proof-name">Sarah R.</div><div class="proof-firm">Independent Broker, Manchester</div></div>
+      </div>
+    </div>
+    <div class="proof-card reveal">
+      <div class="proof-quote">"The direct access to the underwriting team is the game changer. I can message Alexander directly and get a straight answer on a complex case in minutes. That's unheard of with any other platform. My clients notice the difference."</div>
+      <div class="proof-author">
+        <div class="proof-avatar">DK</div>
+        <div><div class="proof-name">David K.</div><div class="proof-firm">Director, Property Finance Specialists</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="reveal">
+    <div class="eyebrow">Common questions</div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;color:var(--chalk)">Everything you need<br>to know.</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <div class="faq-q">Is it really free to register?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Yes — completely free. No registration fee, no monthly subscription, no minimum case volume requirement. You only benefit when cases complete and commission is paid.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">How quickly can I start submitting cases?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Immediately after registration. Once your account is verified (typically within 2 hours), your portal is fully active and you can submit your first case straight away.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Do you accept cases from all FCA-registered brokers?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Yes — we work with all FCA-registered credit brokers with bridging and specialist finance permissions. If you're unsure whether your permissions cover bridging, our team can advise.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">What types of cases can I submit?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Residential and commercial bridging, development finance, auction finance, refurbishment loans, mezzanine finance, and second charge bridging. We also welcome foreign national and complex structure cases that other platforms decline.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">How is commission calculated and paid?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Commission is calculated as a percentage of the loan amount (see our commission structure above). It is paid within 5 working days of completion confirmation. All commission is tracked in real time in your portal dashboard.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Can I submit cases for clients who have adverse credit?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Yes. We have lenders on our panel who specifically serve borrowers with adverse credit histories including CCJs, defaults and missed payments. Our matching engine identifies the most appropriate lenders for each borrower profile.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <h2 class="cta-bottom-title">Ready to get started?</h2>
+  <p class="cta-bottom-sub">Register your broker account in 2 minutes. Free forever. Start submitting cases today.</p>
+  <div class="cta-bottom-actions">
+    <a href="#register" class="cta-p">Register now — it's free</a>
+    <a href="mailto:brokers@bridgr.uk" class="cta-s">Speak to our broker team</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="homepage.html" class="logo-wrap" style="display:inline-flex;flex-direction:column;gap:3px">
+    <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">bridg<span class="r">r</span></div><div class="logo-dot" style="width:5px;height:5px"></div></div>
+    <div class="logo-line" style="width:60px"></div>
+    <div class="logo-sub">Powered by MCP</div>
+  </a>
+  <div class="footer-links-row">
+    <a href="homepage.html">Home</a>
+    <a href="apply.html">Apply now</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="mailto:info@maplehillcapitalpartners.co.uk">Contact</a>
+  </div>
+  <span class="footer-copy">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</span>
+</footer>
+
+<script>
+function submitReg() {
+  const inputs = document.querySelectorAll('.field-input, .field-select');
+  let valid = true;
+  inputs.forEach(input => {
+    if (input.hasAttribute('required') || input.closest('.field')?.querySelector('.field-label')?.textContent?.includes('*')) {
+      if (!input.value) { input.style.borderColor = '#E05252'; valid = false; }
+      else input.style.borderColor = '';
+    }
+  });
+  document.getElementById('form-content').style.display = 'none';
+  const s = document.getElementById('success-state');
+  s.style.display = 'flex';
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
