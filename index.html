@@ -71,14 +71,6 @@ main {
   margin-bottom: 3rem;
   animation: fadeUp 0.6s ease 0.1s both;
 }
-.logo-mark {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
-  width: 36px;
-  height: 36px;
-}
-.logo-mark span { border-radius: 3px; display: block; }
 .logo-name {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
@@ -290,13 +282,10 @@ footer {
 
 <main>
   <div class="logo">
-    <div class="logo-mark">
-      <span style="background:#00C2A8"></span>
-      <span style="background:#F4F4F2;opacity:0.12"></span>
-      <span style="background:#F4F4F2;opacity:0.06"></span>
-      <span style="background:#C9A96E"></span>
+    <div style="display:flex;align-items:baseline;gap:3px">
+      <div class="logo-name">bridg<span>r</span></div>
+      <div style="width:7px;height:7px;border-radius:50%;background:#C9A96E;flex-shrink:0"></div>
     </div>
-    <div class="logo-name">bridg<span>r</span></div>
     <div class="logo-line"></div>
     <div class="logo-sub">Powered by MCP</div>
   </div>
@@ -352,4 +341,3 @@ function submitEmail() {
 </script>
 </body>
 </html>
- 
