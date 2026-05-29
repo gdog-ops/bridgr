@@ -30,7 +30,6 @@ body {
   flex-direction: column;
 }
 
-/* BG */
 .bg {
   position: fixed;
   inset: 0;
@@ -52,7 +51,6 @@ body {
   z-index: 0;
 }
 
-/* MAIN */
 main {
   flex: 1;
   display: flex;
@@ -65,7 +63,6 @@ main {
   text-align: center;
 }
 
-/* LOGO */
 .logo {
   display: flex;
   flex-direction: column;
@@ -105,7 +102,6 @@ main {
   color: var(--steel);
 }
 
-/* BADGE */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -128,7 +124,6 @@ main {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* HEADLINE */
 h1 {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
@@ -153,52 +148,6 @@ h1 .gold { color: var(--gold); }
   animation: fadeUp 0.6s ease 0.4s both;
 }
 
-/* COUNTDOWN */
-.countdown {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.6s ease 0.5s both;
-}
-.count-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.count-num {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 2.2rem;
-  letter-spacing: -0.04em;
-  color: var(--chalk);
-  background: var(--carbon);
-  border: 1px solid var(--border);
-  width: 72px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-.count-label {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.52rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--steel);
-}
-.count-sep {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--graphite);
-  margin-bottom: 20px;
-}
-
-/* EMAIL FORM */
 .email-form {
   display: flex;
   gap: 0;
@@ -248,7 +197,6 @@ h1 .gold { color: var(--gold); }
   margin-bottom: 3rem;
 }
 
-/* FEATURES STRIP */
 .features-strip {
   display: flex;
   align-items: center;
@@ -270,7 +218,6 @@ h1 .gold { color: var(--gold); }
 }
 .feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
 
-/* SUCCESS STATE */
 .success {
   display: none;
   flex-direction: column;
@@ -291,7 +238,6 @@ h1 .gold { color: var(--gold); }
   color: var(--steel);
 }
 
-/* FOOTER */
 footer {
   position: relative;
   z-index: 1;
@@ -330,8 +276,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .countdown { gap: 0.5rem; }
-  .count-num { width:58px; height:58px; font-size:1.8rem; }
   .email-form { flex-direction: column; }
   .email-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
   .email-btn { padding: 13px; }
@@ -345,7 +289,6 @@ footer {
 <div class="grid"></div>
 
 <main>
-  <!-- LOGO -->
   <div class="logo">
     <div class="logo-mark">
       <span style="background:#00C2A8"></span>
@@ -358,41 +301,15 @@ footer {
     <div class="logo-sub">Powered by MCP</div>
   </div>
 
-  <!-- BADGE -->
   <div class="badge">
     <span class="badge-dot"></span>
     Launching soon
   </div>
 
-  <!-- HEADLINE -->
   <h1>UK bridging finance.<br><span class="teal">Faster.</span> <span class="gold">Smarter.</span></h1>
 
   <p class="sub">The UK's first fully digital bridging finance platform. Apply in 7 minutes. Matched lenders in seconds. Decisions in hours. We're putting the finishing touches on something built to change the market.</p>
 
-  <!-- COUNTDOWN -->
-  <div class="countdown">
-    <div class="count-block">
-      <div class="count-num" id="days">00</div>
-      <div class="count-label">Days</div>
-    </div>
-    <div class="count-sep">:</div>
-    <div class="count-block">
-      <div class="count-num" id="hours">00</div>
-      <div class="count-label">Hours</div>
-    </div>
-    <div class="count-sep">:</div>
-    <div class="count-block">
-      <div class="count-num" id="minutes">00</div>
-      <div class="count-label">Minutes</div>
-    </div>
-    <div class="count-sep">:</div>
-    <div class="count-block">
-      <div class="count-num" id="seconds">00</div>
-      <div class="count-label">Seconds</div>
-    </div>
-  </div>
-
-  <!-- EMAIL FORM -->
   <div id="form-wrap">
     <div class="email-form">
       <input class="email-input" type="email" id="email-input" placeholder="Enter your email for early access">
@@ -407,7 +324,6 @@ footer {
     <div class="success-sub">We'll notify you the moment Bridgr launches. Watch this space.</div>
   </div>
 
-  <!-- FEATURES STRIP -->
   <div class="features-strip">
     <div class="feat-item"><div class="feat-dot"></div>Apply in 7 minutes</div>
     <div class="feat-item"><div class="feat-dot"></div>40+ lenders matched instantly</div>
@@ -418,37 +334,11 @@ footer {
 </main>
 
 <footer>
-  <div class="footer-left">© 2025 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</div>
+  <div class="footer-left">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</div>
   <div class="footer-right">Questions? <a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></div>
 </footer>
 
 <script>
-// COUNTDOWN — set your launch date here
-const launchDate = new Date('2025-09-01T00:00:00').getTime();
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const distance = launchDate - now;
-  if (distance < 0) {
-    document.getElementById('days').textContent = '00';
-    document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
-    return;
-  }
-  const d = Math.floor(distance / (1000*60*60*24));
-  const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  const m = Math.floor((distance%(1000*60*60))/(1000*60));
-  const s = Math.floor((distance%(1000*60))/1000);
-  document.getElementById('days').textContent    = String(d).padStart(2,'0');
-  document.getElementById('hours').textContent   = String(h).padStart(2,'0');
-  document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-  document.getElementById('seconds').textContent = String(s).padStart(2,'0');
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// EMAIL SUBMIT
 function submitEmail() {
   const email = document.getElementById('email-input').value;
   if (!email || !email.includes('@')) {
