@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bridgr — UK Digital Bridging Finance Platform</title>
+<title>Settra — UK Digital Bridging Finance Platform</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -19,9 +19,9 @@ body{background:var(--void);color:var(--chalk);font-family:'DM Sans',sans-serif;
 
 /* LOGO */
 .logo-wrap{display:flex;flex-direction:column;gap:3px;text-decoration:none}
-.logo-wm{display:flex;align-items:baseline;gap:3px}
+.logo-wm{display:flex;align-items:baseline}
 .logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;color:var(--chalk);line-height:1}
-.logo-word .r{color:var(--teal)}
+.logo-word .a{color:var(--teal)}
 .logo-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-bottom:1px}
 .logo-line{width:100%;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
 .logo-sub{font-family:'Outfit',sans-serif;font-weight:300;font-size:0.36rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--steel)}
@@ -118,7 +118,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .how-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.88rem;color:var(--chalk);margin-bottom:0.5rem}
 .how-desc{font-size:0.78rem;font-weight:300;color:var(--steel);line-height:1.65}
 .how-time{display:inline-flex;align-items:center;gap:5px;font-family:'Outfit',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-top:0.85rem}
-.how-time::before{content:'⚡';font-size:10px}
+.how-time::before{content:'<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>';font-size:10px}
 
 /* STATS */
 .stats{background:var(--void);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 3.5rem;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -221,8 +221,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 <nav>
   <a href="index.html" class="logo-wrap">
     <div class="logo-wm">
-      <div class="logo-word" style="font-size:1.1rem">bridg<span class="r">r</span></div>
-      <div class="logo-dot"></div>
+      <div class="logo-word" style="font-size:1.1rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div>
     </div>
     <div class="logo-line"></div>
     <div class="logo-sub">Powered by MCP</div>
@@ -246,7 +245,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
   <div class="hero-left">
     <div class="hero-badge"><span class="badge-dot"></span>UK Digital Bridging Finance Platform</div>
     <h1 class="hero-h1">Bridging finance.<br><span class="teal">Faster.</span><br><span class="gold">Smarter.</span></h1>
-    <p class="hero-sub">Bridgr is the UK's most advanced digital bridging platform — intelligent lender matching, automated KYC, open banking and real underwriting expertise. Apply in 7 minutes. Matched lenders in seconds. Decisions in hours.</p>
+    <p class="hero-sub">Settra is the UK's most advanced digital bridging platform — intelligent lender matching, automated KYC, open banking and real underwriting expertise. Apply in 7 minutes. Matched lenders in seconds. Decisions in hours.</p>
     <div class="hero-ctas">
       <a href="apply.html" class="cta-p">Start your application</a>
       <a href="#how" class="cta-s">See how it works</a>
@@ -265,7 +264,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
     <div class="app-preview">
       <div class="app-bar">
         <div class="app-dots"><span></span><span></span><span></span></div>
-        <div class="app-url">app.bridgr.uk/apply</div>
+        <div class="app-url">app.settra.uk/apply</div>
       </div>
       <div class="app-body">
         <div class="app-ey">Application in progress</div>
@@ -280,7 +279,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
           <div class="app-card"><div class="app-cl">Term</div><div class="app-cv">12mo</div><div class="app-cs">Exit: refinance</div></div>
         </div>
         <div class="app-match">
-          <div><div class="app-mb">⚡ Best match</div><div class="app-mn">Specialist Lender A</div><div class="app-mr">0.79%/mo · 1.5% fee · 5–7 days</div></div>
+          <div><div class="app-mb"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg> Best match</div><div class="app-mn">Specialist Lender A</div><div class="app-mr">0.79%/mo · 1.5% fee · 5–7 days</div></div>
           <div class="app-mp">94%</div>
         </div>
         <div class="app-prog">
@@ -325,16 +324,16 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
     <button class="how-tab" onclick="switchTab('bw',this)">For borrowers</button>
   </div>
   <div class="how-track active" id="track-bk">
-    <div class="how-step reveal"><div class="how-num">01</div><div class="how-icon">🔑</div><div class="how-title">Create broker account</div><div class="how-desc">Set up your free broker portal in 2 minutes. One account, unlimited cases, full commission tracking and client management.</div><div class="how-time">2 minutes</div></div>
-    <div class="how-step reveal"><div class="how-num">02</div><div class="how-icon">📋</div><div class="how-title">Submit a case</div><div class="how-desc">Complete our smart application on behalf of your client. Saves borrower profiles for repeat business. DIP generated instantly.</div><div class="how-time">Under 7 min</div></div>
-    <div class="how-step reveal"><div class="how-num">03</div><div class="how-icon">⚡</div><div class="how-title">Instant lender matching</div><div class="how-desc">Our rules engine matches the case to the most suitable lenders from a panel of 40+. Ranked by approval probability, not commission.</div><div class="how-time">Seconds</div></div>
-    <div class="how-step reveal"><div class="how-num">04</div><div class="how-icon">✅</div><div class="how-title">Track to completion</div><div class="how-desc">Live dashboard shows every step — underwriting, valuation, legal, drawdown. No more chasing. Commission paid on completion.</div><div class="how-time">Full visibility</div></div>
+    <div class="how-step reveal"><div class="how-num">01</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="9" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M11.5 12.5L16 17M13 15l2 2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="how-title">Create broker account</div><div class="how-desc">Set up your free broker portal in 2 minutes. One account, unlimited cases, full commission tracking and client management.</div><div class="how-time">2 minutes</div></div>
+    <div class="how-step reveal"><div class="how-num">02</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="how-title">Submit a case</div><div class="how-desc">Complete our smart application on behalf of your client. Saves borrower profiles for repeat business. DIP generated instantly.</div><div class="how-time">Under 7 min</div></div>
+    <div class="how-step reveal"><div class="how-num">03</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="how-title">Instant lender matching</div><div class="how-desc">Our rules engine matches the case to the most suitable lenders from a panel of 40+. Ranked by approval probability, not commission.</div><div class="how-time">Seconds</div></div>
+    <div class="how-step reveal"><div class="how-num">04</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="how-title">Track to completion</div><div class="how-desc">Live dashboard shows every step — underwriting, valuation, legal, drawdown. No more chasing. Commission paid on completion.</div><div class="how-time">Full visibility</div></div>
   </div>
   <div class="how-track" id="track-bw">
-    <div class="how-step"><div class="how-num">01</div><div class="how-icon">📱</div><div class="how-title">Apply in 7 minutes</div><div class="how-desc">Tell us about your deal — loan type, amount, property and exit strategy. No paperwork, no branch visits. Everything online.</div><div class="how-time">7 minutes</div></div>
-    <div class="how-step"><div class="how-num">02</div><div class="how-icon">🔒</div><div class="how-title">Verify instantly</div><div class="how-desc">ID verification in under 60 seconds. Open banking connects your account instantly. AML checks run automatically.</div><div class="how-time">Under 60 sec</div></div>
-    <div class="how-step"><div class="how-num">03</div><div class="how-icon">🎯</div><div class="how-title">Get matched lenders</div><div class="how-desc">We show the lenders most likely to approve your deal — with their rates, fees and timelines. You choose who to proceed with.</div><div class="how-time">Instant</div></div>
-    <div class="how-step"><div class="how-num">04</div><div class="how-icon">💷</div><div class="how-title">Receive your funds</div><div class="how-desc">Our underwriting team handles everything from formal offer to drawdown. Track every step live. Funds in account from 5 days.</div><div class="how-time">From 5 days</div></div>
+    <div class="how-step"><div class="how-num">01</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5.5" y="2" width="9" height="16" rx="2" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="15.5" r="0.75" fill="#00C2A8"/></svg></div><div class="how-title">Apply in 7 minutes</div><div class="how-desc">Tell us about your deal — loan type, amount, property and exit strategy. No paperwork, no branch visits. Everything online.</div><div class="how-time">7 minutes</div></div>
+    <div class="how-step"><div class="how-num">02</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></div><div class="how-title">Verify instantly</div><div class="how-desc">ID verification in under 60 seconds. Open banking connects your account instantly. AML checks run automatically.</div><div class="how-time">Under 60 sec</div></div>
+    <div class="how-step"><div class="how-num">03</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none" opacity="0.5"/><circle cx="10" cy="10" r="1.5" fill="#00C2A8"/></svg></div><div class="how-title">Get matched lenders</div><div class="how-desc">We show the lenders most likely to approve your deal — with their rates, fees and timelines. You choose who to proceed with.</div><div class="how-time">Instant</div></div>
+    <div class="how-step"><div class="how-num">04</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="10" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M8 10c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M6 10h3" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="how-title">Receive your funds</div><div class="how-desc">Our underwriting team handles everything from formal offer to drawdown. Track every step live. Funds in account from 5 days.</div><div class="how-time">From 5 days</div></div>
   </div>
 </section>
 
@@ -348,12 +347,12 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 <section class="features" id="platform">
   <div class="reveal"><div class="eyebrow">The platform</div><h2 class="section-title">Built differently.<br>By design.</h2></div>
   <div class="features-grid">
-    <div class="feat-card reveal"><div class="feat-icon">⚡</div><div class="feat-title">Instant DIP engine</div><div class="feat-desc">Decision in Principle generated automatically the moment you submit. No waiting for a human to read a PDF. Indicative terms in seconds.</div><div class="feat-tag">Under 5 minutes</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🎯</div><div class="feat-title">Intelligent lender matching</div><div class="feat-desc">Our rules engine assesses 40+ lender criteria — LTV, property type, credit profile, geography — and ranks by approval probability, not commission.</div><div class="feat-tag">40+ lenders</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🔒</div><div class="feat-title">Automated KYC & AML</div><div class="feat-desc">ID verification, PEP screening, sanctions checks and AML compliance handled automatically. Powered by Onfido. Under 60 seconds.</div><div class="feat-tag">60-second verification</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🏦</div><div class="feat-title">Open banking</div><div class="feat-desc">Connect your bank via TrueLayer for instant income verification, source of funds and affordability assessment. No PDFs, no printing.</div><div class="feat-tag">Via TrueLayer</div></div>
-    <div class="feat-card ga reveal"><div class="feat-icon">📊</div><div class="feat-title">Live case tracking</div><div class="feat-desc">Real-time dashboard showing every stage — underwriting, valuation, legal, drawdown. Brokers and borrowers always know exactly where their case stands.</div><div class="feat-tag">Real-time visibility</div></div>
-    <div class="feat-card ga reveal"><div class="feat-icon">👤</div><div class="feat-title">Real underwriting expertise</div><div class="feat-desc">Technology handles the process. Humans handle the complexity. Alexander Saphundshiev and our underwriting team personally review every case within 4 hours.</div><div class="feat-tag">4-hour review</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="feat-title">Instant DIP engine</div><div class="feat-desc">Decision in Principle generated automatically the moment you submit. No waiting for a human to read a PDF. Indicative terms in seconds.</div><div class="feat-tag">Under 5 minutes</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none" opacity="0.5"/><circle cx="10" cy="10" r="1.5" fill="#00C2A8"/></svg></div><div class="feat-title">Intelligent lender matching</div><div class="feat-desc">Our rules engine assesses 40+ lender criteria — LTV, property type, credit profile, geography — and ranks by approval probability, not commission.</div><div class="feat-tag">40+ lenders</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></div><div class="feat-title">Automated KYC & AML</div><div class="feat-desc">ID verification, PEP screening, sanctions checks and AML compliance handled automatically. Powered by Onfido. Under 60 seconds.</div><div class="feat-tag">60-second verification</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17h14M3 9h14M10 3L3 7h14L10 3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M5 9v8M10 9v8M15 9v8" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="feat-title">Open banking</div><div class="feat-desc">Connect your bank via TrueLayer for instant income verification, source of funds and affordability assessment. No PDFs, no printing.</div><div class="feat-tag">Via TrueLayer</div></div>
+    <div class="feat-card ga reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V7M8 17V4M13 17v-6M18 17v-9" stroke="#00C2A8" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="feat-title">Live case tracking</div><div class="feat-desc">Real-time dashboard showing every stage — underwriting, valuation, legal, drawdown. Brokers and borrowers always know exactly where their case stands.</div><div class="feat-tag">Real-time visibility</div></div>
+    <div class="feat-card ga reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#C9A96E" stroke-width="1.2" fill="none"/><path d="M2 18c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="feat-title">Real underwriting expertise</div><div class="feat-desc">Technology handles the process. Humans handle the complexity. Alexander Saphundshiev and our underwriting team personally review every case within 4 hours.</div><div class="feat-tag">4-hour review</div></div>
   </div>
 </section>
 
@@ -391,23 +390,23 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 <section class="trust">
   <div class="reveal"><div class="eyebrow">Security & compliance</div><h2 class="section-title">Built on trust.<br>Backed by <span class="teal">expertise.</span></h2></div>
   <div class="trust-grid">
-    <div class="trust-card reveal"><div class="trust-icon">🔐</div><div class="trust-title">256-bit encryption</div><div class="trust-desc">All data transmitted and stored using bank-grade AES-256 encryption. Your information is never shared without explicit consent.</div></div>
-    <div class="trust-card reveal"><div class="trust-icon">⚖️</div><div class="trust-title">FCA registered</div><div class="trust-desc">Bridgr operates within a fully FCA-compliant framework. Consumer Duty and GDPR compliance built into every process.</div></div>
-    <div class="trust-card reveal"><div class="trust-icon">🧠</div><div class="trust-title">Real underwriters</div><div class="trust-desc">Every case reviewed by a qualified underwriter within 4 hours. Technology handles the process — experienced humans handle the complexity.</div></div>
-    <div class="trust-card reveal"><div class="trust-icon">🏛️</div><div class="trust-title">Institutional backing</div><div class="trust-desc">Bridgr is backed by MCP's institutional investor capital. We have the relationships and capacity to move quickly when you need it.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M10 12v2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="12" r="1" fill="#00C2A8"/></svg></div><div class="trust-title">256-bit encryption</div><div class="trust-desc">All data transmitted and stored using bank-grade AES-256 encryption. Your information is never shared without explicit consent.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M7 17h6" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/><path d="M10 5L4 8l2 4a4 4 0 004 0l2-4-4-3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M10 5l6 3-2 4a4 4 0 01-4 0l2-4-4-3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="trust-title">FCA registered</div><div class="trust-desc">Settra operates within a fully FCA-compliant framework. Consumer Duty and GDPR compliance built into every process.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3C7 3 4 5.5 4 8.5c0 1.5.6 2.8 1.5 3.8V15h9v-2.7C15.4 11.3 16 10 16 8.5 16 5.5 13 3 10 3z" stroke="#C9A96E" stroke-width="1.2" fill="none"/><path d="M7 15v2M13 15v2M7.5 8.5c.5-1 2-1.5 2.5 0" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="trust-title">Real underwriters</div><div class="trust-desc">Every case reviewed by a qualified underwriter within 4 hours. Technology handles the process — experienced humans handle the complexity.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 17h16M2 8h16M10 2L2 6h16L10 2z" stroke="#C9A96E" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M4 8v9M8 8v9M12 8v9M16 8v9" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="trust-title">Institutional backing</div><div class="trust-desc">Settra is backed by MCP's institutional investor capital. We have the relationships and capacity to move quickly when you need it.</div></div>
   </div>
 </section>
 
 <section class="team" id="team">
-  <div class="reveal"><div class="eyebrow">The team</div><h2 class="section-title">Technology built by<br>people who've <span class="teal">done the deals.</span></h2><p class="section-body" style="margin-top:0.75rem;max-width:560px">Bridgr was built by practitioners, not technologists. Every feature exists because we've seen what goes wrong in the traditional process — and we've fixed it.</p></div>
+  <div class="reveal"><div class="eyebrow">The team</div><h2 class="section-title">Technology built by<br>people who've <span class="teal">done the deals.</span></h2><p class="section-body" style="margin-top:0.75rem;max-width:560px">Settra was built by practitioners, not technologists. Every feature exists because we've seen what goes wrong in the traditional process — and we've fixed it.</p></div>
   <div class="team-grid">
     <div class="team-card reveal">
       <div class="team-avatar"><span class="team-initials">GD</span></div>
-      <div><div class="team-name">Gareth Davies</div><div class="team-role">Chief Executive Officer</div><div class="team-rule"></div><p class="team-bio">Gareth leads Bridgr with a career spanning real estate investment, asset management and structured finance across the UK. He has overseen the origination, financing and management of complex transactions across residential, commercial and mixed-use assets. He built Bridgr to solve the inefficiencies he experienced first-hand on both sides of the deal table.</p></div>
+      <div><div class="team-name">Gareth Davies</div><div class="team-role">Chief Executive Officer</div><div class="team-rule"></div><p class="team-bio">Gareth leads Settra with a career spanning real estate investment, asset management and structured finance across the UK. He has overseen the origination, financing and management of complex transactions across residential, commercial and mixed-use assets. He built Settra to solve the inefficiencies he experienced first-hand on both sides of the deal table.</p></div>
     </div>
     <div class="team-card reveal">
       <div class="team-avatar"><span class="team-initials">AS</span></div>
-      <div><div class="team-name">Alexander Saphundshiev</div><div class="team-role">Head of Underwriting</div><div class="team-rule"></div><p class="team-bio">Alexander leads underwriting across Bridgr's platform — personally reviewing cases that matter. His background spans complex lending, development finance and investment underwriting across a broad range of asset classes. He designed the platform's underwriting logic and lender matching criteria from the ground up.</p></div>
+      <div><div class="team-name">Alexander Saphundshiev</div><div class="team-role">Head of Underwriting</div><div class="team-rule"></div><p class="team-bio">Alexander leads underwriting across Settra's platform — personally reviewing cases that matter. His background spans complex lending, development finance and investment underwriting across a broad range of asset classes. He designed the platform's underwriting logic and lender matching criteria from the ground up.</p></div>
     </div>
   </div>
 </section>
@@ -415,7 +414,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 <div class="cta-band">
   <div>
     <h2 class="cta-band-title">Ready to experience<br>bridging done differently?</h2>
-    <p class="cta-band-sub">Whether you're a broker with a complex case or a developer who needs to move fast — Bridgr is built for you. Apply in 7 minutes or register your broker portal today.</p>
+    <p class="cta-band-sub">Whether you're a broker with a complex case or a developer who needs to move fast — Settra is built for you. Apply in 7 minutes or register your broker portal today.</p>
   </div>
   <div class="cta-band-actions">
     <a href="apply.html" class="cta-p" style="width:220px;justify-content:center">Start application</a>
@@ -427,7 +426,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 <footer>
   <div>
     <a href="index.html" class="logo-wrap" style="display:inline-flex;flex-direction:column;gap:3px">
-      <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">bridg<span class="r">r</span></div><div class="logo-dot"></div></div>
+      <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div></div>
       <div class="logo-line" style="width:70px"></div>
       <div class="logo-sub">Powered by MCP</div>
     </a>
@@ -463,8 +462,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
   </div>
 </footer>
 <div class="footer-bottom">
-  <span class="footer-copy">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</span>
-  <span class="footer-reg">Bridgr is a product of Maplehill Capital Partners Ltd. This platform does not constitute financial advice. All applications subject to individual assessment. Your property may be at risk if you do not keep up repayments on a loan secured against it.</span>
+  <span class="footer-copy">© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd.</span>
+  <span class="footer-reg">Settra is a product of Maplehill Capital Partners Ltd. This platform does not constitute financial advice. All applications subject to individual assessment. Your property may be at risk if you do not keep up repayments on a loan secured against it.</span>
 </div>
 
 <script>

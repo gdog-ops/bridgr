@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Settra | Get in Touch | Powered by MCP</title>
+<meta name="description" content="Contact the Settra team. Submit a finance enquiry, register as a broker or speak to our underwriting team. Response within 4 hours.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--void:#08090A;--carbon:#16181C;--graphite:#252830;--border:rgba(255,255,255,0.07);--border-md:rgba(255,255,255,0.12);--steel:#888C99;--chalk:#F4F4F2;--chalk-dim:#B8B8B4;--teal:#00C2A8;--deep-teal:#0B1F1D;--gold:#C9A96E;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--chalk);font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.logo-wrap{display:flex;flex-direction:column;gap:3px;text-decoration:none}
+.logo-wm{display:flex;align-items:baseline}
+.logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;color:var(--chalk);line-height:1}
+.logo-word .a{color:var(--teal)}
+.logo-dot{border-radius:50%;background:var(--gold);flex-shrink:0;margin-bottom:1px}
+.logo-line{width:100%;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.logo-sub{font-family:'Outfit',sans-serif;font-weight:300;font-size:0.36rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--steel)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(8,9,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:0.06em;color:var(--steel);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--chalk)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-ghost{font-family:'Outfit',sans-serif;font-size:0.72rem;color:var(--chalk);border:0.5px solid var(--graphite);padding:8px 18px;text-decoration:none}
+.nav-primary{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--void);background:var(--teal);padding:9px 20px;text-decoration:none}
+.nav-primary:hover{background:#00D4B8}
+
+/* PAGE HEADER */
+.page-header{padding:10rem 3.5rem 5rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.header-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 70% 50%,rgba(0,194,168,0.06) 0%,transparent 70%);pointer-events:none}
+.header-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 70% 50%,black 20%,transparent 80%);pointer-events:none}
+.eyebrow{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--teal)}
+.page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.2rem);letter-spacing:-0.04em;line-height:0.95;color:var(--chalk);margin-bottom:1rem;position:relative;z-index:1}
+.page-title .teal{color:var(--teal)}
+.page-sub{font-size:1rem;font-weight:300;color:var(--steel);line-height:1.8;max-width:560px;position:relative;z-index:1}
+
+/* CONTACT CARDS */
+.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-bottom:1px solid var(--border)}
+.contact-card{background:var(--carbon);border:1px solid var(--border);border-top:none;padding:2.5rem;transition:border-color 0.3s;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.contact-card.teal-card::before{background:var(--teal)}
+.contact-card.gold-card::before{background:var(--gold)}
+.contact-card.steel-card::before{background:var(--steel)}
+.contact-card:hover::before{transform:scaleX(1)}
+.contact-card:hover{border-color:var(--border-md)}
+.card-icon-wrap{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.card-icon-wrap.teal-bg{background:rgba(0,194,168,0.1);border:1px solid rgba(0,194,168,0.2)}
+.card-icon-wrap.gold-bg{background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2)}
+.card-icon-wrap.steel-bg{background:rgba(136,140,153,0.1);border:1px solid rgba(136,140,153,0.15)}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-0.02em;color:var(--chalk);margin-bottom:0.5rem}
+.card-desc{font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.7;margin-bottom:1.5rem}
+.card-detail{display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem}
+.cd-item{display:flex;align-items:center;gap:10px;font-size:0.78rem;font-weight:300;color:var(--chalk-dim)}
+.cd-item a{color:var(--teal);text-decoration:none}
+.cd-dot{width:3px;height:3px;border-radius:50%;flex-shrink:0}
+.cd-dot.teal{background:var(--teal)}.cd-dot.gold{background:var(--gold)}
+.card-response{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;padding:5px 12px;border-radius:3px;display:inline-block}
+.card-response.teal-resp{color:var(--teal);background:rgba(0,194,168,0.08);border:0.5px solid rgba(0,194,168,0.2)}
+.card-response.gold-resp{color:var(--gold);background:rgba(201,169,110,0.08);border:0.5px solid rgba(201,169,110,0.2)}
+.card-response.steel-resp{color:var(--steel);background:rgba(136,140,153,0.08);border:0.5px solid rgba(136,140,153,0.2)}
+
+/* MAIN CONTENT */
+.main-content{display:grid;grid-template-columns:1fr 440px;gap:0;border-bottom:1px solid var(--border)}
+.enquiry-section{padding:5rem 3.5rem;border-right:1px solid var(--border)}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.6rem,2.8vw,2.2rem);letter-spacing:-0.03em;color:var(--chalk);margin-bottom:0.5rem}
+.section-sub{font-size:0.88rem;font-weight:300;color:var(--steel);line-height:1.7;margin-bottom:2.5rem}
+
+.form-tabs{display:flex;gap:2px;background:var(--graphite);padding:3px;border-radius:6px;width:fit-content;margin-bottom:2rem}
+.form-tab{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.06em;padding:8px 18px;border-radius:4px;border:none;cursor:pointer;color:var(--steel);background:transparent;transition:background 0.2s,color 0.2s}
+.form-tab.active{background:var(--teal);color:var(--void)}
+.form-panel{display:none}.form-panel.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fg-full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:5px}
+.field-label{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel)}
+.field-input,.field-select,.field-textarea{background:rgba(255,255,255,0.04);border:1px solid var(--border-md);color:var(--chalk);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:300;padding:11px 14px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;width:100%}
+.field-input:focus,.field-select:focus,.field-textarea:focus{border-color:var(--teal);background:rgba(0,194,168,0.03)}
+.field-input::placeholder,.field-textarea::placeholder{color:var(--graphite)}
+.field-select option{background:var(--carbon);color:var(--chalk)}
+.field-textarea{resize:vertical;min-height:100px;line-height:1.6}
+.form-submit{width:100%;background:var(--teal);color:var(--void);font-family:'Outfit',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;padding:14px;border:none;cursor:pointer;margin-top:4px;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.form-submit:hover{background:#00D4B8}.form-submit::after{content:'→'}
+.form-note{font-size:0.68rem;color:var(--steel);opacity:0.5;text-align:center;margin-top:10px}
+.success-state{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:3rem 1rem}
+.success-icon-wrap{width:56px;height:56px;border-radius:50%;background:rgba(0,194,168,0.1);border:1px solid rgba(0,194,168,0.3);display:flex;align-items:center;justify-content:center}
+.success-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-0.02em;color:var(--teal)}
+.success-sub{font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.7;max-width:300px}
+
+/* SIDEBAR */
+.contact-sidebar{padding:4rem 2.5rem;background:var(--carbon);display:flex;flex-direction:column;gap:2rem}
+.sidebar-block{border-bottom:1px solid var(--border);padding-bottom:2rem}
+.sidebar-block:last-child{border-bottom:none;padding-bottom:0}
+.sidebar-title{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.sidebar-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem}
+.sidebar-item:last-child{margin-bottom:0}
+.sidebar-item-icon{width:32px;height:32px;border-radius:6px;background:var(--void);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sidebar-item-body{}
+.sidebar-label{font-family:'Outfit',sans-serif;font-size:0.55rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);opacity:0.6;margin-bottom:2px;display:block}
+.sidebar-val{font-size:0.85rem;font-weight:300;color:var(--chalk-dim);line-height:1.4}
+.sidebar-val a{color:var(--teal);text-decoration:none}
+
+.team-mini{display:flex;flex-direction:column;gap:8px}
+.team-mini-card{display:flex;align-items:center;gap:12px;padding:0.85rem;background:var(--void);border:1px solid var(--border)}
+.tmc-avatar{width:40px;height:40px;border-radius:3px;background:var(--deep-teal);border:1px solid rgba(0,194,168,0.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.68rem;color:var(--teal);flex-shrink:0}
+.tmc-name{font-family:'Outfit',sans-serif;font-weight:500;font-size:0.82rem;color:var(--chalk)}
+.tmc-role{font-size:0.68rem;font-weight:300;color:var(--steel)}
+
+.response-list{display:flex;flex-direction:column}
+.response-item{display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid var(--border)}
+.response-item:last-child{border-bottom:none}
+.response-type{font-size:0.78rem;font-weight:300;color:var(--chalk-dim)}
+.response-time{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:600;color:var(--teal)}
+
+/* QUICK LINKS */
+.links-section{padding:4rem 3.5rem;background:var(--void);border-bottom:1px solid var(--border)}
+.links-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2rem}
+.link-card{background:var(--carbon);border:1px solid var(--border);padding:1.5rem;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:border-color 0.3s}
+.link-card:hover{border-color:rgba(0,194,168,0.25)}
+.link-icon-wrap{width:36px;height:36px;border-radius:6px;background:var(--graphite);display:flex;align-items:center;justify-content:center}
+.link-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.82rem;color:var(--chalk)}
+.link-desc{font-size:0.72rem;font-weight:300;color:var(--steel);line-height:1.5;flex:1}
+.link-arrow{display:flex;align-items:center;gap:4px;font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-top:auto}
+
+footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);opacity:0.45}
+.footer-links-row{display:flex;gap:2rem}
+.footer-links-row a{font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);text-decoration:none}
+.footer-links-row a:hover{color:var(--chalk)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .page-header{padding:8rem 1.5rem 3rem}
+  .contact-cards{grid-template-columns:1fr}
+  .main-content{grid-template-columns:1fr}
+  .enquiry-section{padding:3rem 1.5rem;border-right:none}
+  .contact-sidebar{padding:3rem 1.5rem}
+  .links-section{padding:3rem 1.5rem}.links-grid{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="homepage.html" class="logo-wrap">
+    <div class="logo-wm"><div class="logo-word" style="font-size:1.1rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div></div>
+    <div class="logo-line"></div><div class="logo-sub">Powered by MCP</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="homepage.html#how">How it works</a></li>
+    <li><a href="homepage.html#platform">Platform</a></li>
+    <li><a href="brokers.html">Brokers</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="brokers.html" class="nav-ghost">Broker portal</a>
+    <a href="apply.html" class="nav-primary">Apply now</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="header-bg"></div><div class="header-grid"></div>
+  <div style="position:relative;z-index:1;animation:fadeUp 0.6s ease 0.1s both">
+    <div class="eyebrow">Contact</div>
+    <h1 class="page-title">Let's talk about<br>your <span class="teal">deal.</span></h1>
+    <p class="page-sub">Whether you're a borrower with a finance requirement, a broker with a complex case or an investor looking to work with MCP — we respond to every enquiry within 4 hours during business hours.</p>
+  </div>
+</div>
+
+<div class="contact-cards">
+  <!-- FINANCE -->
+  <div class="contact-card teal-card reveal">
+    <div class="card-icon-wrap teal-bg">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="4" width="16" height="12" rx="2" stroke="#00C2A8" stroke-width="1.2" fill="none"/>
+        <path d="M2 8h16" stroke="#00C2A8" stroke-width="1.2"/>
+        <path d="M6 12h3M13 12h1" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="card-title">Finance enquiry</div>
+    <div class="card-desc">Submit a bridging or development finance enquiry. Tell us about your deal and we'll return matched lenders with indicative terms.</div>
+    <div class="card-detail">
+      <div class="cd-item"><div class="cd-dot teal"></div>Residential &amp; commercial bridging</div>
+      <div class="cd-item"><div class="cd-dot teal"></div>Development &amp; auction finance</div>
+      <div class="cd-item"><div class="cd-dot teal"></div>Mezzanine &amp; stretched senior</div>
+      <div class="cd-item"><div class="cd-dot teal"></div>£500k to £30m+</div>
+    </div>
+    <span class="card-response teal-resp">Response within 4 hours</span>
+  </div>
+
+  <!-- BROKER -->
+  <div class="contact-card gold-card reveal">
+    <div class="card-icon-wrap gold-bg">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="7" cy="6" r="3" stroke="#C9A96E" stroke-width="1.2" fill="none"/>
+        <path d="M1 17c0-3.314 2.686-6 6-6" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="14" cy="12" r="4" stroke="#C9A96E" stroke-width="1.2" fill="none"/>
+        <path d="M14 10v2l1.5 1.5" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="card-title">Broker enquiry</div>
+    <div class="card-desc">Register as a broker or discuss a specific case. We work directly with all FCA-registered credit brokers with bridging permissions.</div>
+    <div class="card-detail">
+      <div class="cd-item"><div class="cd-dot gold"></div>New broker registration</div>
+      <div class="cd-item"><div class="cd-dot gold"></div>Case pre-approval query</div>
+      <div class="cd-item"><div class="cd-dot gold"></div>Commission &amp; panel questions</div>
+      <div class="cd-item"><div class="cd-dot gold"></div>Complex case discussion</div>
+    </div>
+    <span class="card-response gold-resp">Response within 2 hours</span>
+  </div>
+
+  <!-- INVESTOR / PRESS -->
+  <div class="contact-card steel-card reveal">
+    <div class="card-icon-wrap steel-bg">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" stroke="#888C99" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="card-title">Investor &amp; press</div>
+    <div class="card-desc">Institutional investors, family offices, press enquiries and partnership opportunities for Maplehill Capital Partners and Settra.</div>
+    <div class="card-detail">
+      <div class="cd-item"><div class="cd-dot teal"></div>Investor relations</div>
+      <div class="cd-item"><div class="cd-dot teal"></div>Media &amp; press enquiries</div>
+      <div class="cd-item"><div class="cd-dot teal"></div>Partnership opportunities</div>
+      <div class="cd-item"><div class="cd-dot teal"></div>Strategic introductions</div>
+    </div>
+    <span class="card-response steel-resp">Response same day</span>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="enquiry-section">
+    <div class="eyebrow reveal">Send an enquiry</div>
+    <h2 class="section-title reveal">Tell us about your deal.</h2>
+    <p class="section-sub reveal">Fill in the form and a member of our team will respond within 4 hours during business hours. For urgent matters, call us directly.</p>
+
+    <div class="form-tabs">
+      <button class="form-tab active" onclick="switchForm('finance',this)">Finance enquiry</button>
+      <button class="form-tab" onclick="switchForm('broker',this)">Broker enquiry</button>
+      <button class="form-tab" onclick="switchForm('general',this)">General</button>
+    </div>
+
+    <!-- FINANCE -->
+    <div class="form-panel active" id="form-finance">
+      <div id="finance-content">
+        <div class="form-grid">
+          <div class="field"><label class="field-label">First name</label><input class="field-input" type="text" placeholder="First name"></div>
+          <div class="field"><label class="field-label">Last name</label><input class="field-input" type="text" placeholder="Last name"></div>
+          <div class="field"><label class="field-label">Email</label><input class="field-input" type="email" placeholder="you@company.com"></div>
+          <div class="field"><label class="field-label">Phone</label><input class="field-input" type="tel" placeholder="+44"></div>
+          <div class="field"><label class="field-label">Finance type</label>
+            <select class="field-select">
+              <option value="" disabled selected>Select type</option>
+              <option>Residential bridging</option><option>Commercial bridging</option>
+              <option>Development finance</option><option>Auction finance</option>
+              <option>Refurbishment loan</option><option>Mezzanine finance</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label class="field-label">Loan size</label>
+            <select class="field-select">
+              <option value="" disabled selected>Select range</option>
+              <option>£500k – £1m</option><option>£1m – £5m</option>
+              <option>£5m – £15m</option><option>£15m – £30m</option><option>£30m+</option>
+            </select>
+          </div>
+          <div class="field fg-full"><label class="field-label">Deal overview</label><textarea class="field-textarea" placeholder="Property type, location, loan amount, exit strategy and timescale…"></textarea></div>
+        </div>
+        <button class="form-submit" onclick="submitForm('finance-content','finance-success')">Send finance enquiry</button>
+        <div class="form-note">All enquiries are treated as strictly confidential. We do not share your information with third parties.</div>
+      </div>
+      <div class="success-state" id="finance-success">
+        <div class="success-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#00C2A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="success-title">Enquiry received.</div>
+        <div class="success-sub">Our underwriting team will review your enquiry and respond within 4 business hours. Reference: MCP-<span id="ref-num"></span></div>
+      </div>
+    </div>
+
+    <!-- BROKER -->
+    <div class="form-panel" id="form-broker">
+      <div id="broker-content">
+        <div class="form-grid">
+          <div class="field"><label class="field-label">Your name</label><input class="field-input" type="text" placeholder="Full name"></div>
+          <div class="field"><label class="field-label">Email</label><input class="field-input" type="email" placeholder="you@brokerage.co.uk"></div>
+          <div class="field"><label class="field-label">Brokerage name</label><input class="field-input" type="text" placeholder="Your firm name"></div>
+          <div class="field"><label class="field-label">FCA number</label><input class="field-input" type="text" placeholder="FCA registration number"></div>
+          <div class="field fg-full"><label class="field-label">Nature of enquiry</label>
+            <select class="field-select">
+              <option value="" disabled selected>Select</option>
+              <option>Register as a new broker</option><option>Pre-approval query on a case</option>
+              <option>Commission query</option><option>Lender panel question</option>
+              <option>Complex case discussion</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field fg-full"><label class="field-label">Message</label><textarea class="field-textarea" placeholder="Tell us about your query or the case you'd like to discuss…"></textarea></div>
+        </div>
+        <button class="form-submit" onclick="submitForm('broker-content','broker-success')">Send broker enquiry</button>
+        <div class="form-note">Broker enquiries reviewed within 2 hours. All information treated as confidential.</div>
+      </div>
+      <div class="success-state" id="broker-success">
+        <div class="success-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#00C2A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="success-title">Enquiry received.</div>
+        <div class="success-sub">Our broker team will respond within 2 business hours. To register immediately, visit our broker portal.</div>
+      </div>
+    </div>
+
+    <!-- GENERAL -->
+    <div class="form-panel" id="form-general">
+      <div id="general-content">
+        <div class="form-grid">
+          <div class="field"><label class="field-label">Name</label><input class="field-input" type="text" placeholder="Your name"></div>
+          <div class="field"><label class="field-label">Email</label><input class="field-input" type="email" placeholder="your@email.com"></div>
+          <div class="field"><label class="field-label">Company</label><input class="field-input" type="text" placeholder="Organisation name"></div>
+          <div class="field"><label class="field-label">Subject</label>
+            <select class="field-select">
+              <option value="" disabled selected>Select</option>
+              <option>Investor relations</option><option>Press / media</option>
+              <option>Partnership opportunity</option><option>Technology / integration</option>
+              <option>General enquiry</option>
+            </select>
+          </div>
+          <div class="field fg-full"><label class="field-label">Message</label><textarea class="field-textarea" placeholder="How can we help?"></textarea></div>
+        </div>
+        <button class="form-submit" onclick="submitForm('general-content','general-success')">Send message</button>
+        <div class="form-note">We aim to respond to all enquiries within one business day.</div>
+      </div>
+      <div class="success-state" id="general-success">
+        <div class="success-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#00C2A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="success-title">Message sent.</div>
+        <div class="success-sub">Thank you for getting in touch. We'll respond within one business day.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="contact-sidebar">
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Contact details</div>
+      <div class="sidebar-item">
+        <div class="sidebar-item-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3a1 1 0 011-1h2.09a1 1 0 01.95.68l.9 2.69a1 1 0 01-.22 1L5.5 7.5a8 8 0 004 4l1.13-1.22a1 1 0 011-.22l2.69.9a1 1 0 01.68.95V13a1 1 0 01-1 1A11 11 0 012 3z" stroke="#888C99" stroke-width="1" fill="none"/></svg>
+        </div>
+        <div class="sidebar-item-body"><span class="sidebar-label">Phone</span><span class="sidebar-val"><a href="tel:+442089695833">0208 969 5833</a></span></div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-item-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="#888C99" stroke-width="1" fill="none"/><path d="M1 4l6 4 6-4" stroke="#888C99" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <div class="sidebar-item-body"><span class="sidebar-label">Finance enquiries</span><span class="sidebar-val"><a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></span></div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-item-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="#C9A96E" stroke-width="1" fill="none"/><path d="M1 4l6 4 6-4" stroke="#C9A96E" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <div class="sidebar-item-body"><span class="sidebar-label">Broker enquiries</span><span class="sidebar-val"><a href="mailto:brokers@settra.uk">brokers@settra.uk</a></span></div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-item-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#888C99" stroke-width="1" fill="none"/><path d="M7 4v3l2 2" stroke="#888C99" stroke-width="1" stroke-linecap="round"/></svg>
+        </div>
+        <div class="sidebar-item-body"><span class="sidebar-label">Office hours</span><span class="sidebar-val">Monday – Friday, 8:00am – 6:00pm</span></div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-item-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5c0 3.25 4 7 4 7s4-3.75 4-7c0-2.21-1.79-4-4-4z" stroke="#888C99" stroke-width="1" fill="none"/><circle cx="7" cy="5.5" r="1.5" stroke="#888C99" stroke-width="1" fill="none"/></svg>
+        </div>
+        <div class="sidebar-item-body"><span class="sidebar-label">Office</span><span class="sidebar-val">35 Berkeley Street, Mayfair<br>London W1J 5BF</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">Response times</div>
+      <div class="response-list">
+        <div class="response-item"><span class="response-type">Finance enquiries</span><span class="response-time">Within 4 hrs</span></div>
+        <div class="response-item"><span class="response-type">Broker enquiries</span><span class="response-time">Within 2 hrs</span></div>
+        <div class="response-item"><span class="response-type">Urgent / auction</span><span class="response-time">Same day</span></div>
+        <div class="response-item"><span class="response-type">General enquiries</span><span class="response-time">Next business day</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-title">The team</div>
+      <div class="team-mini">
+        <div class="team-mini-card">
+          <div class="tmc-avatar">GD</div>
+          <div><div class="tmc-name">Gareth Davies</div><div class="tmc-role">CEO — Investment &amp; strategy</div></div>
+        </div>
+        <div class="team-mini-card">
+          <div class="tmc-avatar">AS</div>
+          <div><div class="tmc-name">Alexander Saphundshiev</div><div class="tmc-role">Head of Underwriting</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="links-section">
+  <div class="eyebrow reveal">Explore Settra</div>
+  <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-0.03em;color:var(--chalk)" class="reveal">Not sure where to start?</h2>
+  <div class="links-grid">
+    <a href="apply.html" class="link-card reveal">
+      <div class="link-icon-wrap">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="link-title">Apply now</div>
+      <div class="link-desc">Start your 7-minute application. Same-day DIP, 40+ lenders matched instantly.</div>
+      <div class="link-arrow">Apply <span>→</span></div>
+    </a>
+    <a href="calculator.html" class="link-card reveal">
+      <div class="link-icon-wrap">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M5 5h2M9 5h2M5 8h2M9 8h2M5 11h2M9 11h2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="link-title">Calculator</div>
+      <div class="link-desc">Estimate your loan costs — rates, fees, LTV and total repayable.</div>
+      <div class="link-arrow">Calculate <span>→</span></div>
+    </a>
+    <a href="brokers.html" class="link-card reveal">
+      <div class="link-icon-wrap">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="2.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M1 14c0-2.76 2.24-5 5-5M10 9l4 4M10 13l4-4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="link-title">Broker portal</div>
+      <div class="link-desc">Register as a broker. Free portal, unlimited cases, commission tracking.</div>
+      <div class="link-arrow">Register <span>→</span></div>
+    </a>
+    <a href="homepage.html#platform" class="link-card reveal">
+      <div class="link-icon-wrap">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="#00C2A8" stroke-width="1.2" fill="none"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="#00C2A8" stroke-width="1.2" fill="none"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="#00C2A8" stroke-width="1.2" fill="none"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="#C9A96E" stroke-width="1.2" fill="none"/></svg>
+      </div>
+      <div class="link-title">Platform</div>
+      <div class="link-desc">Learn how Settra works — KYC, lender matching, live case tracking.</div>
+      <div class="link-arrow">Explore <span>→</span></div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="homepage.html" class="logo-wrap" style="display:inline-flex;flex-direction:column;gap:3px">
+    <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div></div>
+    <div class="logo-line" style="width:60px"></div><div class="logo-sub">Powered by MCP</div>
+  </a>
+  <div class="footer-links-row">
+    <a href="homepage.html">Home</a>
+    <a href="apply.html">Apply</a>
+    <a href="brokers.html">Brokers</a>
+    <a href="calculator.html">Calculator</a>
+  </div>
+  <span class="footer-copy">© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd.</span>
+</footer>
+
+<script>
+function switchForm(tab, btn) {
+  document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('form-' + tab).classList.add('active');
+}
+function submitForm(contentId, successId) {
+  document.getElementById(contentId).style.display = 'none';
+  const s = document.getElementById(successId);
+  s.style.display = 'flex';
+  const ref = document.getElementById('ref-num');
+  if (ref) ref.textContent = Math.floor(10000 + Math.random() * 90000);
+}
+const obs = new IntersectionObserver(e => {
+  e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
