@@ -3,435 +3,478 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Settra — The Future of UK Bridging Finance</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Settra — UK Digital Bridging Finance Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void:     #08090A;
-  --carbon:   #16181C;
-  --graphite: #252830;
-  --steel:    #888C99;
-  --chalk:    #F4F4F2;
-  --teal:     #00C2A8;
-  --deep-teal:#0B1F1D;
-  --gold:     #C9A96E;
-  --border:   rgba(255,255,255,0.07);
+  --void:#08090A;--carbon:#16181C;--graphite:#252830;
+  --border:rgba(255,255,255,0.07);--border-md:rgba(255,255,255,0.12);
+  --steel:#888C99;--chalk:#F4F4F2;--chalk-dim:#B8B8B4;
+  --teal:#00C2A8;--teal-glow:rgba(0,194,168,0.12);
+  --deep-teal:#0B1F1D;--gold:#C9A96E;--gold-dim:#8A7045;
 }
-*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-html, body { height:100%; }
-body {
-  background: var(--void);
-  color: var(--chalk);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.bg {
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(0,194,168,0.07) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,169,110,0.05) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
-}
-.grid {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem 3rem;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--chalk);font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* LOGO */
-.logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.6s ease 0.1s both;
-}
-.logo-mark {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
-  width: 36px;
-  height: 36px;
-}
-.logo-mark span { border-radius: 3px; display: block; }
-.logo-name {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.6rem;
-  letter-spacing: -0.03em;
-  color: var(--chalk);
-  line-height: 1;
-}
-.logo-name span { color: var(--teal); }
-.logo-line {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-.logo-sub {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  font-size: 0.5rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--steel);
-}
+.logo-wrap{display:flex;flex-direction:column;gap:3px;text-decoration:none}
+.logo-wm{display:flex;align-items:baseline}
+.logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;color:var(--chalk);line-height:1}
+.logo-word .a{color:var(--teal)}
+.logo-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-bottom:1px}
+.logo-line{width:100%;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.logo-sub{font-family:'Outfit',sans-serif;font-weight:300;font-size:0.36rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--steel)}
 
-/* BADGE */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--teal);
-  border: 0.5px solid rgba(0,194,168,0.3);
-  padding: 6px 16px;
-  margin-bottom: 1.75rem;
-  animation: fadeUp 0.6s ease 0.2s both;
-}
-.badge-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  animation: pulse 2s ease-in-out infinite;
-}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(8,9,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;letter-spacing:0.06em;color:var(--steel);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--chalk)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-ghost{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:400;letter-spacing:0.08em;color:var(--chalk);border:0.5px solid var(--graphite);padding:8px 18px;text-decoration:none;transition:border-color 0.2s}
+.nav-ghost:hover{border-color:var(--steel)}
+.nav-primary{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--void);background:var(--teal);padding:9px 20px;text-decoration:none;transition:background 0.2s}
+.nav-primary:hover{background:#00D4B8}
 
-/* HEADLINE */
-h1 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.4rem, 6.5vw, 5rem);
-  letter-spacing: -0.04em;
-  line-height: 0.97;
-  color: var(--chalk);
-  margin-bottom: 1.5rem;
-  max-width: 750px;
-  animation: fadeUp 0.6s ease 0.3s both;
-}
-h1 .teal { color: var(--teal); }
-h1 .gold { color: var(--gold); }
+/* HERO */
+.hero{min-height:100vh;padding:68px 3.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 75% 35%,rgba(0,194,168,0.07) 0%,transparent 65%),radial-gradient(ellipse 35% 45% at 15% 75%,rgba(201,169,110,0.04) 0%,transparent 65%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 90% at 60% 40%,black 20%,transparent 80%);pointer-events:none}
+.hero-left{position:relative;z-index:1;padding:4rem 0}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);border:0.5px solid rgba(0,194,168,0.3);padding:6px 14px;margin-bottom:2rem;animation:fadeUp 0.6s ease 0.1s both}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
+.hero-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,5.5vw,4.8rem);letter-spacing:-0.04em;line-height:0.95;color:var(--chalk);margin-bottom:1.5rem;animation:fadeUp 0.6s ease 0.2s both}
+.hero-h1 .teal{color:var(--teal)}.hero-h1 .gold{color:var(--gold)}
+.hero-sub{font-size:1rem;font-weight:300;color:var(--steel);line-height:1.75;max-width:480px;margin-bottom:2.5rem;animation:fadeUp 0.6s ease 0.3s both}
+.hero-ctas{display:flex;align-items:center;gap:12px;margin-bottom:3rem;animation:fadeUp 0.6s ease 0.4s both}
+.cta-p{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--void);background:var(--teal);padding:14px 28px;text-decoration:none;transition:background 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:8px}
+.cta-p:hover{background:#00D4B8;transform:translateY(-1px)}.cta-p::after{content:'→'}
+.cta-s{font-family:'Outfit',sans-serif;font-weight:400;font-size:0.8rem;letter-spacing:0.08em;color:var(--chalk);border:0.5px solid var(--graphite);padding:14px 28px;text-decoration:none;transition:border-color 0.2s}
+.cta-s:hover{border-color:var(--steel)}
+.hero-proof{display:flex;align-items:center;gap:2rem;animation:fadeUp 0.6s ease 0.5s both}
+.proof-item{display:flex;flex-direction:column;gap:2px}
+.proof-num{font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-0.03em;color:var(--chalk);line-height:1}
+.proof-num .t{color:var(--teal)}.proof-num .g{color:var(--gold)}
+.proof-label{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--steel)}
+.proof-div{width:1px;height:36px;background:var(--border-md)}
+.hero-right{position:relative;z-index:1;padding:4rem 0;animation:fadeUp 0.6s ease 0.3s both}
+.app-preview{background:var(--carbon);border:1px solid var(--border-md);border-radius:12px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+.app-bar{background:var(--void);border-bottom:1px solid var(--border);padding:0.85rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.app-dots{display:flex;gap:5px}.app-dots span{width:8px;height:8px;border-radius:50%;background:var(--graphite)}
+.app-url{flex:1;background:var(--graphite);border-radius:4px;padding:4px 10px;font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel)}
+.app-body{padding:1.5rem}
+.app-ey{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+.app-step{display:flex;align-items:center;gap:10px;margin-bottom:0.65rem}
+.app-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.app-slabel{font-family:'Outfit',sans-serif;font-size:0.65rem;font-weight:400;color:var(--steel)}
+.app-slabel.active{color:var(--chalk);font-weight:500}
+.app-check{margin-left:auto;font-size:10px;color:var(--teal)}
+.app-div{height:1px;background:var(--border);margin:1rem 0}
+.app-cards{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.app-card{background:var(--void);border:1px solid var(--border);border-radius:6px;padding:0.85rem}
+.app-cl{font-family:'Outfit',sans-serif;font-size:0.52rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);opacity:0.7;margin-bottom:3px}
+.app-cv{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-0.03em;color:var(--chalk)}
+.app-cs{font-size:0.62rem;color:var(--teal);margin-top:2px;font-family:'Outfit',sans-serif}
+.app-match{background:rgba(0,194,168,0.06);border:1px solid rgba(0,194,168,0.2);border-radius:6px;padding:0.85rem 1rem;display:flex;justify-content:space-between;align-items:center}
+.app-mb{font-family:'Outfit',sans-serif;font-size:0.48rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);background:rgba(0,194,168,0.12);padding:2px 7px;border-radius:3px;margin-bottom:4px;display:inline-block}
+.app-mn{font-family:'Outfit',sans-serif;font-size:0.75rem;font-weight:500;color:var(--chalk)}
+.app-mr{font-size:0.62rem;color:var(--steel)}
+.app-mp{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:var(--teal)}
+.app-prog{margin-top:0.85rem}
+.app-pr{display:flex;justify-content:space-between;margin-bottom:4px}
+.app-pl{font-family:'Outfit',sans-serif;font-size:0.52rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--steel)}
+.app-pp{font-family:'Syne',sans-serif;font-size:0.6rem;font-weight:700;color:var(--teal)}
+.app-pt{height:4px;background:var(--graphite);border-radius:2px;overflow:hidden}
+.app-pf{height:100%;width:57%;background:var(--teal);border-radius:2px}
 
-.sub {
-  font-size: 1.05rem;
-  font-weight: 300;
-  color: var(--steel);
-  line-height: 1.8;
-  max-width: 520px;
-  margin: 0 auto 1rem;
-  animation: fadeUp 0.6s ease 0.4s both;
-}
+/* TICKER */
+.ticker{background:var(--deep-teal);border-top:1px solid rgba(0,194,168,0.12);border-bottom:1px solid rgba(0,194,168,0.12);height:42px;overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 35s linear infinite}
+.ticker-item{display:flex;align-items:center;gap:1.5rem;padding:0 2rem;font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal)}
+.ticker-sep{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
-/* AUDIENCE PILLS */
-.audience-pills {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  max-width: 560px;
-  width: 100%;
-  margin: 0 auto 2.5rem;
-  animation: fadeUp 0.6s ease 0.45s both;
-  border: 1px solid var(--border);
-}
-.pill-item {
-  flex: 1;
-  padding: 0.85rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  border-right: 1px solid var(--border);
-  background: rgba(255,255,255,0.02);
-  transition: background 0.2s;
-}
-.pill-item:last-child { border-right: none; }
-.pill-item:hover { background: rgba(255,255,255,0.04); }
-.pill-who {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.52rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--teal);
-}
-.pill-item:nth-child(2) .pill-who { color: var(--gold); }
-.pill-item:nth-child(3) .pill-who { color: #A78BFA; }
-.pill-what {
-  font-size: 0.75rem;
-  font-weight: 300;
-  color: var(--chalk-dim, #B8B8B4);
-  line-height: 1.4;
-}
+/* SHARED */
+.eyebrow{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--teal)}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-0.03em;line-height:1.0;color:var(--chalk);margin-bottom:1rem}
+.section-title .teal{color:var(--teal)}.section-title .gold{color:var(--gold)}
+.section-body{font-size:0.95rem;font-weight:300;color:var(--steel);line-height:1.8}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-/* EMAIL FORM */
-.email-form {
-  display: flex;
-  gap: 0;
-  max-width: 460px;
-  width: 100%;
-  margin: 0 auto 0.85rem;
-  animation: fadeUp 0.6s ease 0.55s both;
-}
-.email-input {
-  flex: 1;
-  background: var(--carbon);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-right: none;
-  color: var(--chalk);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 300;
-  padding: 13px 18px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.email-input:focus { border-color: var(--teal); }
-.email-input::placeholder { color: var(--graphite); }
-.email-btn {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--void);
-  background: var(--teal);
-  border: none;
-  padding: 13px 24px;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.email-btn:hover { background: #00D4B8; }
+/* HOW */
+.how{padding:7rem 3.5rem;background:var(--carbon);border-top:1px solid var(--border)}
+.how-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3rem}
+.how-tabs{display:flex;gap:2px;background:var(--graphite);padding:3px;border-radius:6px;width:fit-content;margin-bottom:2.5rem}
+.how-tab{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.06em;padding:8px 20px;border-radius:4px;border:none;cursor:pointer;transition:background 0.2s,color 0.2s;color:var(--steel);background:transparent}
+.how-tab.active{background:var(--teal);color:var(--void)}
+.how-track{display:none}.how-track.active{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.how-step{background:var(--void);border:1px solid var(--border);padding:2rem;position:relative;transition:border-color 0.3s}
+.how-step:hover{border-color:rgba(0,194,168,0.25)}
+.how-step:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--graphite);font-size:14px;z-index:1}
+.how-num{font-family:'Syne',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.04em;color:var(--graphite);line-height:1;margin-bottom:1rem}
+.how-icon{font-size:1.4rem;margin-bottom:0.75rem}
+.how-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.88rem;color:var(--chalk);margin-bottom:0.5rem}
+.how-desc{font-size:0.78rem;font-weight:300;color:var(--steel);line-height:1.65}
+.how-time{display:inline-flex;align-items:center;gap:5px;font-family:'Outfit',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-top:0.85rem}
+.how-time::before{content:'<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>';font-size:10px}
 
-.form-note {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 300;
-  color: var(--steel);
-  opacity: 0.5;
-  animation: fadeUp 0.6s ease 0.6s both;
-  margin-bottom: 2.5rem;
-}
+/* STATS */
+.stats{background:var(--void);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 3.5rem;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-block{padding:0 2rem;border-right:1px solid var(--border)}.stat-block:first-child{padding-left:0}.stat-block:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2.8rem;letter-spacing:-0.04em;line-height:1;color:var(--chalk);margin-bottom:4px}
+.stat-num .t{color:var(--teal)}.stat-num .g{color:var(--gold)}
+.stat-label{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:300;letter-spacing:0.18em;text-transform:uppercase;color:var(--steel)}
 
-/* DIVIDER */
-.divider {
-  width: 40px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--graphite), transparent);
-  margin: 0 auto 2.5rem;
-  animation: fadeUp 0.6s ease 0.65s both;
-}
+/* FEATURES */
+.features{padding:7rem 3.5rem;background:var(--void)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem}
+.feat-card{background:var(--carbon);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;transition:border-color 0.3s}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.feat-card:hover::before{transform:scaleX(1)}.feat-card:hover{border-color:var(--border-md)}
+.feat-card.ga::before{background:var(--gold)}
+.feat-icon{width:40px;height:40px;border-radius:8px;background:var(--teal-glow);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.25rem}
+.feat-card.ga .feat-icon{background:rgba(201,169,110,0.1)}
+.feat-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.95rem;color:var(--chalk);margin-bottom:0.5rem}
+.feat-desc{font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.7}
+.feat-tag{display:inline-block;font-family:'Outfit',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);border:0.5px solid rgba(0,194,168,0.25);padding:3px 8px;border-radius:3px;margin-top:1rem}
+.feat-card.ga .feat-tag{color:var(--gold);border-color:rgba(201,169,110,0.25)}
 
-/* FEATURES STRIP */
-.features-strip {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 0;
-  animation: fadeUp 0.6s ease 0.7s both;
-}
-.feat-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: var(--steel);
-  letter-spacing: 0.04em;
-}
-.feat-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+/* DUAL */
+.dual{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.dual-panel{padding:6rem 3.5rem}
+.dual-panel.bk{background:var(--deep-teal);border-right:1px solid rgba(0,194,168,0.12)}
+.dual-panel.bw{background:var(--carbon)}
+.dual-list{list-style:none;display:flex;flex-direction:column;margin:2rem 0}
+.dual-list li{display:flex;align-items:flex-start;gap:12px;padding:0.9rem 0;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:300;color:var(--chalk-dim);line-height:1.5}
+.dual-list li:last-child{border-bottom:none}
+.di{color:var(--teal);font-size:12px;flex-shrink:0;margin-top:3px}
+.dual-panel.bw .di{color:var(--gold)}
+.dcta{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--void);background:var(--teal);padding:13px 26px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s}
+.dcta:hover{background:#00D4B8}.dcta::after{content:'→'}
+.dcta.g{background:var(--gold)}.dcta.g:hover{background:#D4B47A}
 
-/* SUCCESS */
-.success {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  animation: fadeUp 0.4s ease both;
-}
-.success-icon { font-size: 2rem; }
-.success-text {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: var(--teal);
-}
-.success-sub {
-  font-size: 0.78rem;
-  font-weight: 300;
-  color: var(--steel);
-}
+/* TRUST */
+.trust{padding:6rem 3.5rem;background:var(--carbon);border-top:1px solid var(--border)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:3rem}
+.trust-card{background:var(--void);border:1px solid var(--border);padding:1.75rem}
+.trust-icon{font-size:1.5rem;margin-bottom:0.85rem}
+.trust-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:0.85rem;color:var(--chalk);margin-bottom:0.4rem}
+.trust-desc{font-size:0.78rem;font-weight:300;color:var(--steel);line-height:1.65}
+
+/* TEAM */
+.team{padding:7rem 3.5rem;background:var(--void);border-top:1px solid var(--border)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3.5rem}
+.team-card{background:var(--carbon);border:1px solid var(--border);padding:2.5rem;display:grid;grid-template-columns:68px 1fr;gap:1.5rem;align-items:start;transition:border-color 0.3s}
+.team-card:hover{border-color:var(--border-md)}
+.team-avatar{width:68px;height:68px;border-radius:4px;background:var(--deep-teal);border:1px solid rgba(0,194,168,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.team-initials{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--teal)}
+.team-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-0.02em;color:var(--chalk);margin-bottom:3px}
+.team-role{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:0.85rem}
+.team-rule{width:24px;height:1px;background:var(--gold);margin-bottom:0.85rem}
+.team-bio{font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.75}
+
+/* CTA BAND */
+.cta-band{background:var(--deep-teal);border-top:1px solid rgba(0,194,168,0.15);border-bottom:1px solid rgba(0,194,168,0.15);padding:5rem 3.5rem;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+.cta-band-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;line-height:1.05;color:var(--chalk);margin-bottom:0.75rem}
+.cta-band-sub{font-size:0.92rem;font-weight:300;color:rgba(184,184,180,0.75);max-width:520px;line-height:1.7}
+.cta-band-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
 
 /* FOOTER */
-footer {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem 2rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.footer-left {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 300;
-  color: var(--steel);
-  opacity: 0.4;
-  letter-spacing: 0.06em;
-}
-.footer-right {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 300;
-  color: var(--steel);
-  opacity: 0.4;
-}
-.footer-right a { color: var(--teal); text-decoration: none; opacity: 1; }
+footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5rem;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:3rem}
+.footer-tagline{font-size:0.8rem;font-weight:300;color:var(--steel);margin-top:1.25rem;line-height:1.65}
+.footer-col-title{font-family:'Outfit',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.footer-links a{font-size:0.82rem;font-weight:300;color:var(--steel);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--chalk)}
+.fci{display:flex;flex-direction:column;gap:2px;margin-bottom:0.85rem}
+.fcl{font-family:'Outfit',sans-serif;font-size:0.52rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);opacity:0.55}
+.fcv{font-size:0.82rem;font-weight:300;color:var(--chalk-dim)}
+.fcv a{color:var(--teal);text-decoration:none}
+.footer-bottom{background:var(--void);border-top:1px solid var(--border);padding:1.25rem 3.5rem;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:300;color:var(--steel);opacity:0.45;letter-spacing:0.06em}
+.footer-reg{font-family:'Outfit',sans-serif;font-size:0.56rem;color:var(--steel);opacity:0.35;max-width:500px;text-align:right;line-height:1.5}
 
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(16px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes pulse {
-  0%,100% { opacity:1; transform:scale(1); }
-  50% { opacity:0.4; transform:scale(0.75); }
-}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.75)}}
 
-@media (max-width: 600px) {
-  .audience-pills { flex-direction: column; }
-  .pill-item { border-right: none; border-bottom: 1px solid var(--border); }
-  .pill-item:last-child { border-bottom: none; }
-  .email-form { flex-direction: column; }
-  .email-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
-  .email-btn { padding: 13px; }
-  footer { justify-content: center; text-align: center; }
-  .features-strip { gap: 1rem; }
+@media(max-width:768px){
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:68px 1.5rem 3rem}.hero-right{display:none}
+  .how{padding:4rem 1.5rem}.how-header{grid-template-columns:1fr}
+  .how-track.active{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr;padding:3rem 1.5rem;gap:2rem}.stat-block{border-right:none;padding:0}
+  .features{padding:4rem 1.5rem}.features-grid{grid-template-columns:1fr}
+  .dual{grid-template-columns:1fr}.dual-panel{padding:4rem 1.5rem}
+  .trust{padding:4rem 1.5rem}.trust-grid{grid-template-columns:1fr 1fr}
+  .team{padding:4rem 1.5rem}.team-grid{grid-template-columns:1fr}.team-card{grid-template-columns:1fr}
+  .cta-band{grid-template-columns:1fr;padding:4rem 1.5rem}.cta-band-actions{align-items:flex-start}
+  footer{grid-template-columns:1fr;padding:3rem 1.5rem}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 1.5rem}.footer-reg{text-align:center}
 }
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
-<div class="grid"></div>
-
-<main>
-  <!-- LOGO -->
-  <div class="logo">
-    <div class="logo-mark">
-      <span style="background:#00C2A8"></span>
-      <span style="background:#F4F4F2;opacity:0.12"></span>
-      <span style="background:#F4F4F2;opacity:0.06"></span>
-      <span style="background:#C9A96E"></span>
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <div class="logo-wm">
+      <div class="logo-word" style="font-size:1.1rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div>
     </div>
-    <div class="logo-name">settr<span>a</span><span style="color:var(--gold)">.</span></div>
     <div class="logo-line"></div>
     <div class="logo-sub">Powered by MCP</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="brokers.html">Brokers</a></li>
+    <li><a href="#borrowers">Borrowers</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="nav-ghost">Broker login</a>
+    <a href="apply.html" class="nav-primary">Apply now</a>
   </div>
+</nav>
 
-  <!-- BADGE -->
-  <div class="badge">
-    <span class="badge-dot"></span>
-    Something new is coming
-  </div>
-
-  <!-- HEADLINE -->
-  <h1>Bridging finance has<br>a problem.<br><span class="teal">We're fixing it.</span></h1>
-
-  <p class="sub">Settra is reimagining UK property finance from the ground up — faster decisions, smarter technology, and access to an asset class that was never meant for everyone. <span style="color:var(--gold)">Until now.</span></p>
-
-  <!-- AUDIENCE PILLS -->
-  <div class="audience-pills">
-    <div class="pill-item">
-      <div class="pill-who">Borrowers</div>
-      <div class="pill-what">From application to funded. In days, not weeks.</div>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span>UK Digital Bridging Finance Platform</div>
+    <h1 class="hero-h1">Bridging finance.<br><span class="teal">Faster.</span><br><span class="gold">Smarter.</span></h1>
+    <p class="hero-sub">Settra is the UK's most advanced digital bridging platform — intelligent lender matching, automated KYC, open banking and real underwriting expertise. Apply in 7 minutes. Matched lenders in seconds. Decisions in hours.</p>
+    <div class="hero-ctas">
+      <a href="apply.html" class="cta-p">Start your application</a>
+      <a href="#how" class="cta-s">See how it works</a>
     </div>
-    <div class="pill-item">
-      <div class="pill-who">Brokers</div>
-      <div class="pill-what">One platform. Every lender. Zero friction.</div>
+    <div class="hero-proof">
+      <div class="proof-item"><div class="proof-num">7<span class="t">min</span></div><div class="proof-label">To apply</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-item"><div class="proof-num">&lt;4<span class="t">hr</span></div><div class="proof-label">Underwriting</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-item"><div class="proof-num">40<span class="t">+</span></div><div class="proof-label">Lenders matched</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-item"><div class="proof-num">5<span class="g">day</span></div><div class="proof-label">Fastest completion</div></div>
     </div>
-    <div class="pill-item">
-      <div class="pill-who">Investors</div>
-      <div class="pill-what">UK property debt returns. Reimagined for you.</div>
+  </div>
+  <div class="hero-right">
+    <div class="app-preview">
+      <div class="app-bar">
+        <div class="app-dots"><span></span><span></span><span></span></div>
+        <div class="app-url">app.settra.uk/apply</div>
+      </div>
+      <div class="app-body">
+        <div class="app-ey">Application in progress</div>
+        <div class="app-step"><div class="app-dot" style="background:var(--teal)"></div><div class="app-slabel active">Loan requirements</div><div class="app-check">✓</div></div>
+        <div class="app-step"><div class="app-dot" style="background:var(--teal)"></div><div class="app-slabel active">Property details</div><div class="app-check">✓</div></div>
+        <div class="app-step"><div class="app-dot" style="background:var(--teal);opacity:0.4"></div><div class="app-slabel active">Identity verification</div><div class="app-check" style="color:var(--steel)">→</div></div>
+        <div class="app-step"><div class="app-dot" style="background:var(--graphite)"></div><div class="app-slabel">Lender matching</div></div>
+        <div class="app-step"><div class="app-dot" style="background:var(--graphite)"></div><div class="app-slabel">Decision in principle</div></div>
+        <div class="app-div"></div>
+        <div class="app-cards">
+          <div class="app-card"><div class="app-cl">Loan amount</div><div class="app-cv">£2.4m</div><div class="app-cs">Residential bridging</div></div>
+          <div class="app-card"><div class="app-cl">Term</div><div class="app-cv">12mo</div><div class="app-cs">Exit: refinance</div></div>
+        </div>
+        <div class="app-match">
+          <div><div class="app-mb"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg> Best match</div><div class="app-mn">Specialist Lender A</div><div class="app-mr">0.79%/mo · 1.5% fee · 5–7 days</div></div>
+          <div class="app-mp">94%</div>
+        </div>
+        <div class="app-prog">
+          <div class="app-pr"><span class="app-pl">Progress</span><span class="app-pp">57%</span></div>
+          <div class="app-pt"><div class="app-pf"></div></div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- EMAIL FORM -->
-  <div id="form-wrap">
-    <div class="email-form">
-      <input class="email-input" type="email" id="email-input" placeholder="Enter your email — be first to know">
-      <button class="email-btn" onclick="submitEmail()">Get early access</button>
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span>Residential Bridging</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Commercial Bridging</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Development Finance</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Auction Finance</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Refurbishment Loans</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Mezzanine Finance</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Foreign Nationals</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Same-Day DIP</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>40+ Lenders</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Residential Bridging</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Commercial Bridging</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Development Finance</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Auction Finance</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Refurbishment Loans</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Mezzanine Finance</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Foreign Nationals</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>Same-Day DIP</span><div class="ticker-sep"></div></div>
+    <div class="ticker-item"><span>40+ Lenders</span><div class="ticker-sep"></div></div>
+  </div>
+</div>
+
+<section class="how" id="how">
+  <div class="how-header">
+    <div class="reveal"><div class="eyebrow">How it works</div><h2 class="section-title">From application<br>to <span class="teal">drawdown.</span></h2></div>
+    <p class="section-body reveal">The fastest end-to-end bridging experience in the UK. No PDFs, no email chains, no chasing. Every step tracked in real time.</p>
+  </div>
+  <div class="how-tabs">
+    <button class="how-tab active" onclick="switchTab('bk',this)">For brokers</button>
+    <button class="how-tab" onclick="switchTab('bw',this)">For borrowers</button>
+  </div>
+  <div class="how-track active" id="track-bk">
+    <div class="how-step reveal"><div class="how-num">01</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="9" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M11.5 12.5L16 17M13 15l2 2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="how-title">Create broker account</div><div class="how-desc">Set up your free broker portal in 2 minutes. One account, unlimited cases, full commission tracking and client management.</div><div class="how-time">2 minutes</div></div>
+    <div class="how-step reveal"><div class="how-num">02</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="2" width="12" height="16" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 7h6M7 10h6M7 13h4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="how-title">Submit a case</div><div class="how-desc">Complete our smart application on behalf of your client. Saves borrower profiles for repeat business. DIP generated instantly.</div><div class="how-time">Under 7 min</div></div>
+    <div class="how-step reveal"><div class="how-num">03</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="how-title">Instant lender matching</div><div class="how-desc">Our rules engine matches the case to the most suitable lenders from a panel of 40+. Ranked by approval probability, not commission.</div><div class="how-time">Seconds</div></div>
+    <div class="how-step reveal"><div class="how-num">04</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="how-title">Track to completion</div><div class="how-desc">Live dashboard shows every step — underwriting, valuation, legal, drawdown. No more chasing. Commission paid on completion.</div><div class="how-time">Full visibility</div></div>
+  </div>
+  <div class="how-track" id="track-bw">
+    <div class="how-step"><div class="how-num">01</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5.5" y="2" width="9" height="16" rx="2" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="15.5" r="0.75" fill="#00C2A8"/></svg></div><div class="how-title">Apply in 7 minutes</div><div class="how-desc">Tell us about your deal — loan type, amount, property and exit strategy. No paperwork, no branch visits. Everything online.</div><div class="how-time">7 minutes</div></div>
+    <div class="how-step"><div class="how-num">02</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></div><div class="how-title">Verify instantly</div><div class="how-desc">ID verification in under 60 seconds. Open banking connects your account instantly. AML checks run automatically.</div><div class="how-time">Under 60 sec</div></div>
+    <div class="how-step"><div class="how-num">03</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none" opacity="0.5"/><circle cx="10" cy="10" r="1.5" fill="#00C2A8"/></svg></div><div class="how-title">Get matched lenders</div><div class="how-desc">We show the lenders most likely to approve your deal — with their rates, fees and timelines. You choose who to proceed with.</div><div class="how-time">Instant</div></div>
+    <div class="how-step"><div class="how-num">04</div><div class="how-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="10" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M8 10c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M6 10h3" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="how-title">Receive your funds</div><div class="how-desc">Our underwriting team handles everything from formal offer to drawdown. Track every step live. Funds in account from 5 days.</div><div class="how-time">From 5 days</div></div>
+  </div>
+</section>
+
+<div class="stats reveal">
+  <div class="stat-block"><div class="stat-num">£<span class="t">500</span>m+</div><div class="stat-label">Transactions managed</div></div>
+  <div class="stat-block"><div class="stat-num"><span class="t">40</span>+</div><div class="stat-label">Lender panel</div></div>
+  <div class="stat-block"><div class="stat-num"><span class="g">100</span>+</div><div class="stat-label">Years combined experience</div></div>
+  <div class="stat-block"><div class="stat-num"><span class="t">5</span>day</div><div class="stat-label">Fastest completion</div></div>
+</div>
+
+<section class="features" id="platform">
+  <div class="reveal"><div class="eyebrow">The platform</div><h2 class="section-title">Built differently.<br>By design.</h2></div>
+  <div class="features-grid">
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="feat-title">Instant DIP engine</div><div class="feat-desc">Decision in Principle generated automatically the moment you submit. No waiting for a human to read a PDF. Indicative terms in seconds.</div><div class="feat-tag">Under 5 minutes</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none" opacity="0.5"/><circle cx="10" cy="10" r="1.5" fill="#00C2A8"/></svg></div><div class="feat-title">Intelligent lender matching</div><div class="feat-desc">Our rules engine assesses 40+ lender criteria — LTV, property type, credit profile, geography — and ranks by approval probability, not commission.</div><div class="feat-tag">40+ lenders</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></div><div class="feat-title">Automated KYC & AML</div><div class="feat-desc">ID verification, PEP screening, sanctions checks and AML compliance handled automatically. Powered by Onfido. Under 60 seconds.</div><div class="feat-tag">60-second verification</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17h14M3 9h14M10 3L3 7h14L10 3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M5 9v8M10 9v8M15 9v8" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="feat-title">Open banking</div><div class="feat-desc">Connect your bank via TrueLayer for instant income verification, source of funds and affordability assessment. No PDFs, no printing.</div><div class="feat-tag">Via TrueLayer</div></div>
+    <div class="feat-card ga reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V7M8 17V4M13 17v-6M18 17v-9" stroke="#00C2A8" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="feat-title">Live case tracking</div><div class="feat-desc">Real-time dashboard showing every stage — underwriting, valuation, legal, drawdown. Brokers and borrowers always know exactly where their case stands.</div><div class="feat-tag">Real-time visibility</div></div>
+    <div class="feat-card ga reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#C9A96E" stroke-width="1.2" fill="none"/><path d="M2 18c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="feat-title">Real underwriting expertise</div><div class="feat-desc">Technology handles the process. Humans handle the complexity. Alexander Saphundshiev and our underwriting team personally review every case within 4 hours.</div><div class="feat-tag">4-hour review</div></div>
+  </div>
+</section>
+
+<div class="dual" id="brokers">
+  <div class="dual-panel bk">
+    <div class="eyebrow reveal">For brokers</div>
+    <h2 class="section-title reveal" style="font-size:clamp(1.6rem,2.8vw,2.2rem)">The platform<br>brokers switch to<br>and <span class="teal">stay on.</span></h2>
+    <ul class="dual-list reveal">
+      <li><span class="di">✓</span>Free broker portal — unlimited cases</li>
+      <li><span class="di">✓</span>Saved borrower profiles — reusable documents</li>
+      <li><span class="di">✓</span>Instant DIP generation — send terms in minutes</li>
+      <li><span class="di">✓</span>Commission tracking — full transparency</li>
+      <li><span class="di">✓</span>Live case dashboard — no more chasing</li>
+      <li><span class="di">✓</span>Direct access to MCP underwriting team</li>
+      <li><span class="di">✓</span>Complex and declined cases welcome</li>
+    </ul>
+    <a href="#" class="dcta reveal">Register as a broker</a>
+  </div>
+  <div class="dual-panel bw" id="borrowers">
+    <div class="eyebrow reveal" style="color:var(--gold)">For borrowers</div>
+    <h2 class="section-title reveal" style="font-size:clamp(1.6rem,2.8vw,2.2rem)">Bridging finance<br>without the<br><span class="gold">paperwork.</span></h2>
+    <ul class="dual-list reveal">
+      <li><span class="di">✓</span>Apply in 7 minutes — from any device</li>
+      <li><span class="di">✓</span>No credit check at application stage</li>
+      <li><span class="di">✓</span>Matched to lenders most likely to approve</li>
+      <li><span class="di">✓</span>Residential, commercial, development, auction</li>
+      <li><span class="di">✓</span>Foreign nationals and complex structures welcome</li>
+      <li><span class="di">✓</span>£500k to £30m+ — same-day DIP</li>
+      <li><span class="di">✓</span>Funds in account from 5 working days</li>
+    </ul>
+    <a href="apply.html" class="dcta g reveal">Start your application</a>
+  </div>
+</div>
+
+<section class="trust">
+  <div class="reveal"><div class="eyebrow">Security & compliance</div><h2 class="section-title">Built on trust.<br>Backed by <span class="teal">expertise.</span></h2></div>
+  <div class="trust-grid">
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M10 12v2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="12" r="1" fill="#00C2A8"/></svg></div><div class="trust-title">256-bit encryption</div><div class="trust-desc">All data transmitted and stored using bank-grade AES-256 encryption. Your information is never shared without explicit consent.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M7 17h6" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/><path d="M10 5L4 8l2 4a4 4 0 004 0l2-4-4-3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M10 5l6 3-2 4a4 4 0 01-4 0l2-4-4-3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="trust-title">FCA registered</div><div class="trust-desc">Settra operates within a fully FCA-compliant framework. Consumer Duty and GDPR compliance built into every process.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3C7 3 4 5.5 4 8.5c0 1.5.6 2.8 1.5 3.8V15h9v-2.7C15.4 11.3 16 10 16 8.5 16 5.5 13 3 10 3z" stroke="#C9A96E" stroke-width="1.2" fill="none"/><path d="M7 15v2M13 15v2M7.5 8.5c.5-1 2-1.5 2.5 0" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="trust-title">Real underwriters</div><div class="trust-desc">Every case reviewed by a qualified underwriter within 4 hours. Technology handles the process — experienced humans handle the complexity.</div></div>
+    <div class="trust-card reveal"><div class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 17h16M2 8h16M10 2L2 6h16L10 2z" stroke="#C9A96E" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M4 8v9M8 8v9M12 8v9M16 8v9" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="trust-title">Institutional backing</div><div class="trust-desc">Settra is backed by MCP's institutional investor capital. We have the relationships and capacity to move quickly when you need it.</div></div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="reveal"><div class="eyebrow">The team</div><h2 class="section-title">Technology built by<br>people who've <span class="teal">done the deals.</span></h2><p class="section-body" style="margin-top:0.75rem;max-width:560px">Settra was built by practitioners, not technologists. Every feature exists because we've seen what goes wrong in the traditional process — and we've fixed it.</p></div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar"><span class="team-initials">GD</span></div>
+      <div><div class="team-name">Gareth Davies</div><div class="team-role">Chief Executive Officer</div><div class="team-rule"></div><p class="team-bio">Gareth leads Settra with a career spanning real estate investment, asset management and structured finance across the UK. He has overseen the origination, financing and management of complex transactions across residential, commercial and mixed-use assets. He built Settra to solve the inefficiencies he experienced first-hand on both sides of the deal table.</p></div>
     </div>
-    <div class="form-note">No spam. Early access, launch updates and investor news only.</div>
+    <div class="team-card reveal">
+      <div class="team-avatar"><span class="team-initials">AS</span></div>
+      <div><div class="team-name">Alexander Saphundshiev</div><div class="team-role">Head of Underwriting</div><div class="team-rule"></div><p class="team-bio">Alexander leads underwriting across Settra's platform — personally reviewing cases that matter. His background spans complex lending, development finance and investment underwriting across a broad range of asset classes. He designed the platform's underwriting logic and lender matching criteria from the ground up.</p></div>
+    </div>
   </div>
+</section>
 
-  <div class="success" id="success-state">
-    <div class="success-icon">⚡</div>
-    <div class="success-text">You're on the list.</div>
-    <div class="success-sub">We'll be in touch. You won't want to miss what's coming.</div>
+<div class="cta-band">
+  <div>
+    <h2 class="cta-band-title">Ready to experience<br>bridging done differently?</h2>
+    <p class="cta-band-sub">Whether you're a broker with a complex case or a developer who needs to move fast — Settra is built for you. Apply in 7 minutes or register your broker portal today.</p>
   </div>
-
-  <div class="divider"></div>
-
-  <!-- FEATURES STRIP -->
-  <div class="features-strip">
-    <div class="feat-item"><div class="feat-dot"></div>Apply in 7 minutes</div>
-    <div class="feat-item"><div class="feat-dot"></div>40+ lenders matched instantly</div>
-    <div class="feat-item"><div class="feat-dot"></div>Same-day DIP</div>
-    <div class="feat-item"><div class="feat-dot"></div>Real underwriting expertise</div>
-    <div class="feat-item"><div class="feat-dot" style="background:var(--gold)"></div>Built for what's next</div>
+  <div class="cta-band-actions">
+    <a href="apply.html" class="cta-p" style="width:220px;justify-content:center">Start application</a>
+    <a href="#" class="cta-s" style="width:220px;text-align:center">Register as broker</a>
+    <div style="font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);text-align:center;margin-top:4px">No credit check · No commitment · Free to apply</div>
   </div>
-</main>
+</div>
 
 <footer>
-  <div class="footer-left">© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd.</div>
-  <div class="footer-right">Questions? <a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></div>
+  <div>
+    <a href="index.html" class="logo-wrap" style="display:inline-flex;flex-direction:column;gap:3px">
+      <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div></div>
+      <div class="logo-line" style="width:70px"></div>
+      <div class="logo-sub">Powered by MCP</div>
+    </a>
+    <p class="footer-tagline">The UK's digital bridging finance platform. Fast, transparent, intelligent.</p>
+  </div>
+  <div>
+    <div class="footer-col-title">Platform</div>
+    <ul class="footer-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#platform">Platform features</a></li>
+      <li><a href="#brokers">For brokers</a></li>
+      <li><a href="#borrowers">For borrowers</a></li>
+      <li><a href="calculator.html">Bridging calculator</a></li>
+      <li><a href="apply.html">Apply now</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Finance types</div>
+    <ul class="footer-links">
+      <li><a href="#">Residential bridging</a></li>
+      <li><a href="#">Commercial bridging</a></li>
+      <li><a href="#">Development finance</a></li>
+      <li><a href="#">Auction finance</a></li>
+      <li><a href="#">Refurbishment loans</a></li>
+      <li><a href="#">Mezzanine finance</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Contact</div>
+    <div class="fci"><span class="fcl">Phone</span><span class="fcv"><a href="tel:+442089695833">0208 969 5833</a></span></div>
+    <div class="fci"><span class="fcl">Email</span><span class="fcv"><a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></span></div>
+    <div class="fci"><span class="fcl">Office</span><span class="fcv">35 Berkeley Street, London W1J 5BF</span></div>
+  </div>
 </footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd.</span>
+  <span class="footer-reg">Settra is a product of Maplehill Capital Partners Ltd. This platform does not constitute financial advice. All applications subject to individual assessment. Your property may be at risk if you do not keep up repayments on a loan secured against it.</span>
+</div>
 
 <script>
-function submitEmail() {
-  const email = document.getElementById('email-input').value;
-  if (!email || !email.includes('@')) {
-    document.getElementById('email-input').style.borderColor = '#E05252';
-    return;
-  }
-  document.getElementById('form-wrap').style.display = 'none';
-  const s = document.getElementById('success-state');
-  s.style.display = 'flex';
+function switchTab(track,btn){
+  document.querySelectorAll('.how-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.how-track').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('track-'+track).classList.add('active');
 }
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>

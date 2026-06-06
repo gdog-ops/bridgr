@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settra — The Future of UK Bridging Finance</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:     #08090A;
+  --carbon:   #16181C;
+  --graphite: #252830;
+  --steel:    #888C99;
+  --chalk:    #F4F4F2;
+  --teal:     #00C2A8;
+  --deep-teal:#0B1F1D;
+  --gold:     #C9A96E;
+  --border:   rgba(255,255,255,0.07);
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; }
+body {
+  background: var(--void);
+  color: var(--chalk);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(0,194,168,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,169,110,0.05) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem 3rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.logo-mark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+}
+.logo-mark span { border-radius: 3px; display: block; }
+.logo-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+  color: var(--chalk);
+  line-height: 1;
+}
+.logo-name span { color: var(--teal); }
+.logo-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.logo-sub {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* BADGE */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 0.5px solid rgba(0,194,168,0.3);
+  padding: 6px 16px;
+  margin-bottom: 1.75rem;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* HEADLINE */
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6.5vw, 5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.97;
+  color: var(--chalk);
+  margin-bottom: 1.5rem;
+  max-width: 750px;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+h1 .teal { color: var(--teal); }
+h1 .gold { color: var(--gold); }
+
+.sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--steel);
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto 1rem;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+
+/* AUDIENCE PILLS */
+.audience-pills {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.6s ease 0.45s both;
+  border: 1px solid var(--border);
+}
+.pill-item {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  transition: background 0.2s;
+}
+.pill-item:last-child { border-right: none; }
+.pill-item:hover { background: rgba(255,255,255,0.04); }
+.pill-who {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.pill-item:nth-child(2) .pill-who { color: var(--gold); }
+.pill-item:nth-child(3) .pill-who { color: #A78BFA; }
+.pill-what {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--chalk-dim, #B8B8B4);
+  line-height: 1.4;
+}
+
+/* EMAIL FORM */
+.email-form {
+  display: flex;
+  gap: 0;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto 0.85rem;
+  animation: fadeUp 0.6s ease 0.55s both;
+}
+.email-input {
+  flex: 1;
+  background: var(--carbon);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-right: none;
+  color: var(--chalk);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 13px 18px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-input:focus { border-color: var(--teal); }
+.email-input::placeholder { color: var(--graphite); }
+.email-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--teal);
+  border: none;
+  padding: 13px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.email-btn:hover { background: #00D4B8; }
+
+.form-note {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--steel);
+  opacity: 0.5;
+  animation: fadeUp 0.6s ease 0.6s both;
+  margin-bottom: 2.5rem;
+}
+
+/* DIVIDER */
+.divider {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--graphite), transparent);
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.6s ease 0.65s both;
+}
+
+/* FEATURES STRIP */
+.features-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0;
+  animation: fadeUp 0.6s ease 0.7s both;
+}
+.feat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+}
+.feat-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+/* SUCCESS */
+.success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeUp 0.4s ease both;
+}
+.success-icon { font-size: 2rem; }
+.success-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--teal);
+}
+.success-sub {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--steel);
+}
+
+/* FOOTER */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.footer-left {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  color: var(--steel);
+  opacity: 0.4;
+  letter-spacing: 0.06em;
+}
+.footer-right {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  color: var(--steel);
+  opacity: 0.4;
+}
+.footer-right a { color: var(--teal); text-decoration: none; opacity: 1; }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.4; transform:scale(0.75); }
+}
+
+@media (max-width: 600px) {
+  .audience-pills { flex-direction: column; }
+  .pill-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .pill-item:last-child { border-bottom: none; }
+  .email-form { flex-direction: column; }
+  .email-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+  .email-btn { padding: 13px; }
+  footer { justify-content: center; text-align: center; }
+  .features-strip { gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+
+<main>
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="logo-mark">
+      <span style="background:#00C2A8"></span>
+      <span style="background:#F4F4F2;opacity:0.12"></span>
+      <span style="background:#F4F4F2;opacity:0.06"></span>
+      <span style="background:#C9A96E"></span>
+    </div>
+    <div class="logo-name">settr<span>a</span><span style="color:var(--gold)">.</span></div>
+    <div class="logo-line"></div>
+    <div class="logo-sub">Powered by MCP</div>
+  </div>
+
+  <!-- BADGE -->
+  <div class="badge">
+    <span class="badge-dot"></span>
+    Something new is coming
+  </div>
+
+  <!-- HEADLINE -->
+  <h1>Bridging finance has<br>a problem.<br><span class="teal">We're fixing it.</span></h1>
+
+  <p class="sub">Settra is reimagining UK property finance from the ground up — faster decisions, smarter technology, and access to an asset class that was never meant for everyone. <span style="color:var(--gold)">Until now.</span></p>
+
+  <!-- AUDIENCE PILLS -->
+  <div class="audience-pills">
+    <div class="pill-item">
+      <div class="pill-who">Borrowers</div>
+      <div class="pill-what">From application to funded. In days, not weeks.</div>
+    </div>
+    <div class="pill-item">
+      <div class="pill-who">Brokers</div>
+      <div class="pill-what">One platform. Every lender. Zero friction.</div>
+    </div>
+    <div class="pill-item">
+      <div class="pill-who">Investors</div>
+      <div class="pill-what">UK property debt returns. Reimagined for you.</div>
+    </div>
+  </div>
+
+  <!-- EMAIL FORM -->
+  <div id="form-wrap">
+    <div class="email-form">
+      <input class="email-input" type="email" id="email-input" placeholder="Enter your email — be first to know">
+      <button class="email-btn" onclick="submitEmail()">Get early access</button>
+    </div>
+    <div class="form-note">No spam. Early access, launch updates and investor news only.</div>
+  </div>
+
+  <div class="success" id="success-state">
+    <div class="success-icon">⚡</div>
+    <div class="success-text">You're on the list.</div>
+    <div class="success-sub">We'll be in touch. You won't want to miss what's coming.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES STRIP -->
+  <div class="features-strip">
+    <div class="feat-item"><div class="feat-dot"></div>Apply in 7 minutes</div>
+    <div class="feat-item"><div class="feat-dot"></div>40+ lenders matched instantly</div>
+    <div class="feat-item"><div class="feat-dot"></div>Same-day DIP</div>
+    <div class="feat-item"><div class="feat-dot"></div>Real underwriting expertise</div>
+    <div class="feat-item"><div class="feat-dot" style="background:var(--gold)"></div>Built for what's next</div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-left">© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd.</div>
+  <div class="footer-right">Questions? <a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></div>
+</footer>
+
+<script>
+function submitEmail() {
+  const email = document.getElementById('email-input').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('email-input').style.borderColor = '#E05252';
+    return;
+  }
+  document.getElementById('form-wrap').style.display = 'none';
+  const s = document.getElementById('success-state');
+  s.style.display = 'flex';
+}
+</script>
+</body>
+</html>
