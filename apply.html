@@ -1450,13 +1450,16 @@ function selectType(el) {
 const UK_PC = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i;
 const MAX_PROPS = 10;
 const OCC_OPTIONS = [
-  ['no', 'No — nobody lives there or intends to'],
-  ['current', 'Yes — I (or an applicant) currently live there'],
-  ['intend', 'Yes — I (or an applicant) intend to live there'],
-  ['family', 'Yes — a family member lives or intends to live there'],
-  ['unsure', 'Not sure']
+  ['self', 'I live here'],
+  ['family', 'A family member lives here'],
+  ['tenant', 'A tenant — the property is rented out'],
+  ['vacant', 'Nobody — the property is vacant'],
+  ['other', 'Other / not sure']
 ];
+const OCC_FOLLOW = [['yes', 'Yes'], ['no', 'No'], ['unsure', 'Not sure']];
+const OCC_NEEDS_FOLLOW = ['tenant', 'vacant', 'other'];
 const occState = {};
+const occFollow = {};
 let propSeq = 0;
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -1591,7 +1594,7 @@ function removeProperty(id) {
   if (propIds().length <= 1) return;
   const el = $('prop-' + id);
   if (el) el.remove();
-  delete occState[id];
+  delete occState[id]; delete occFollow[id];
   renumberProps();
 }
 function renumberProps() {
@@ -1606,24 +1609,41 @@ function properties() {
   return propIds().map((id, i) => ({
     id, n: i + 1, addr: addrRead('p' + id), type: $('p' + id + '-type').value,
     value: moneyVal('p' + id + '-value'), mortgage: moneyVal('p' + id + '-mortgage'), price: moneyVal('p' + id + '-price'),
-    occ: occState[id] || ''
+    occ: occState[id] || '', follow: occFollow[id] || ''
   }));
 }
 
 /* occupancy and regulatory indicators (an indicator only, never a determination) */
+function followLabel(v) { const o = OCC_FOLLOW.find(x => x[0] === v); return o ? o[1] : ''; }
+function occSummary(p) {
+  const l = occLabel(p.occ); if (!l) return '';
+  return OCC_NEEDS_FOLLOW.indexOf(p.occ) >= 0 ? l + ' (will you or a family member live there during the loan: ' + (followLabel(p.follow) || 'not answered').toLowerCase() + ')' : l;
+}
 function occLabel(v) { const o = OCC_OPTIONS.find(x => x[0] === v); return o ? o[1] : ''; }
 function renderOccupancy() {
   const props = properties();
   $('occ-list').innerHTML = props.map(p => {
     const opts = '<option value="" disabled' + (p.occ ? '' : ' selected') + '>Select an answer</option>' +
       OCC_OPTIONS.map(o => '<option value="' + o[0] + '"' + (p.occ === o[0] ? ' selected' : '') + '>' + esc(o[1]) + '</option>').join('');
+    const fopts = '<option value="" disabled' + (p.follow ? '' : ' selected') + '>Select an answer</option>' +
+      OCC_FOLLOW.map(o => '<option value="' + o[0] + '"' + (p.follow === o[0] ? ' selected' : '') + '>' + o[1] + '</option>').join('');
     return '<div class="occ-row"><div class="field"><div class="field-label">Property ' + p.n + ' <span class="field-required">*</span></div>' +
       '<div class="occ-addr">' + esc(addrText(p.addr) || 'Address not yet entered') + '</div>' +
-      '<select class="field-select" id="occ-' + p.id + '" aria-label="Occupancy of property ' + p.n + '" onchange="occChanged(' + p.id + ',this)">' + opts + '</select></div></div>';
+      '<select class="field-select" id="occ-' + p.id + '" aria-label="Who lives at property ' + p.n + '" onchange="occChanged(' + p.id + ',this)">' + opts + '</select>' +
+      '<div class="occ-follow" id="occf-wrap-' + p.id + '"' + (OCC_NEEDS_FOLLOW.indexOf(p.occ) >= 0 ? '' : ' hidden') + '>' +
+      '<div class="field-label" style="margin-top:0.9rem">Will you or a family member live at this property during the loan? <span class="field-required">*</span></div>' +
+      '<select class="field-select" id="occf-' + p.id + '" aria-label="Will you or a family member live at property ' + p.n + ' during the loan" onchange="followChanged(' + p.id + ',this)">' + fopts + '</select></div></div></div>';
   }).join('');
   updateIndicators();
 }
-function occChanged(id, el) { occState[id] = el.value; clearErr(el); updateIndicators(); }
+function occChanged(id, el) {
+  occState[id] = el.value; clearErr(el);
+  const need = OCC_NEEDS_FOLLOW.indexOf(el.value) >= 0, w = $('occf-wrap-' + id);
+  if (w) w.hidden = !need;
+  if (!need) { delete occFollow[id]; const f = $('occf-' + id); if (f) { f.value = ''; clearErr(f); } }
+  updateIndicators();
+}
+function followChanged(id, el) { occFollow[id] = el.value; clearErr(el); updateIndicators(); }
 function addrMatch(a, b) {
   if (!a.pc || !b.pc || normText(a.pc) !== normText(b.pc)) return '';
   return (a.l1 && b.l1 && normText(a.l1) === normText(b.l1)) ? 'full' : 'postcode';
@@ -1632,11 +1652,18 @@ function indicators() {
   const props = properties(), apps = applicants();
   const review = [], notes = [];
   props.forEach(p => {
-    if (p.occ && p.occ !== 'no') review.push('Property ' + p.n + ': ' + occLabel(p.occ).replace(/^Yes — /, '').replace(/^No — /, '') + '.');
+    if (p.occ === 'self') review.push('Property ' + p.n + ': you live there.');
+    else if (p.occ === 'family') review.push('Property ' + p.n + ': a family member lives there.');
+    else if (p.occ === 'other') review.push('Property ' + p.n + ': occupancy is unclear or other, so our team will need to confirm it.');
+    if (OCC_NEEDS_FOLLOW.indexOf(p.occ) >= 0) {
+      if (p.follow === 'yes') review.push('Property ' + p.n + ': you or a family member expect to live there during the loan.');
+      else if (p.follow === 'unsure') review.push('Property ' + p.n + ': it is not yet clear whether you or a family member will live there during the loan.');
+      else if (p.follow === 'no' && p.occ !== 'other') notes.push('Property ' + p.n + ': ' + (p.occ === 'tenant' ? 'let to a tenant' : 'vacant') + ', with no planned occupation by you or a family member. This does not on its own mean the lending is unregulated; our team will confirm.');
+    }
     apps.forEach((a, i) => {
       const who = a.name || ('applicant ' + (i + 1));
       const m = addrMatch(p.addr, a.addr);
-      if (m === 'full') notes.push('Property ' + p.n + ' appears to share an address with the home address of ' + who + '.' + (p.occ === 'no' ? ' You answered that nobody lives there, so please check the address.' : ''));
+      if (m === 'full') notes.push('Property ' + p.n + ' appears to share an address with the home address of ' + who + '.' + (p.occ === 'tenant' || p.occ === 'vacant' ? ' You answered that it is ' + (p.occ === 'tenant' ? 'let to a tenant' : 'vacant') + ', so please check the address.' : ''));
       else if (m === 'postcode') notes.push('Property ' + p.n + ' shares a postcode with the home address of ' + who + '.');
     });
   });
@@ -1676,7 +1703,7 @@ function renderReview() {
     totalV += p.value; totalM += p.mortgage;
     h += '<div class="rev-block"><h3>Security property ' + p.n + '</h3>' + row('Address', addrText(p.addr) || '—') + row('Type', p.type || '—') +
       row('Estimated value', p.value ? gbp(p.value) : '—') + row('Existing borrowing', gbp(p.mortgage)) + (p.price ? row('Purchase price', gbp(p.price)) : '') +
-      row('Occupancy', occLabel(p.occ) || '—') + '</div>';
+      row('Who lives here', occSummary(p) || '—') + '</div>';
   });
   const loan = amountValue();
   h += '<div class="rev-block"><h3>Indicative position</h3>' + row('Total estimated value', gbp(totalV)) + row('Total existing borrowing', gbp(totalM)) +
@@ -1721,7 +1748,10 @@ function validateStep(n) {
     first = document.querySelector('#panel-3 .has-error input, #panel-3 .has-error select') || first;
   }
   if (n === 4) {
-    properties().forEach(p => { if (!p.occ) { const el = $('occ-' + p.id); setErr(el, 'Please answer for this property.'); first = first || el; } });
+    properties().forEach(p => {
+      if (!p.occ) { const el = $('occ-' + p.id); setErr(el, 'Please answer for this property.'); first = first || el; }
+      else if (OCC_NEEDS_FOLLOW.indexOf(p.occ) >= 0 && !p.follow) { const el = $('occf-' + p.id); setErr(el, 'Please answer for this property.'); first = first || el; }
+    });
   }
   if (first) { first.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); first.focus({ preventScroll: true }); return false; }
   return true;
