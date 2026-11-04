@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bridging Loan Calculator — Settra</title>
+<title>Bridging Loan Calculator — Bridgr</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -572,6 +572,20 @@ input[type=range]::-moz-range-thumb {
 
 @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 .fade-up { opacity:0; animation: fadeUp 0.6s ease forwards; }
+/* responsive: added for narrow screens (the page had no breakpoints) */
+@media (max-width:900px){
+  nav{padding:0 1.25rem}.nav-links{display:none}
+  .page-header{grid-template-columns:1fr;gap:1.5rem;padding:7rem 1.25rem 2.5rem}
+  .calc-wrap{grid-template-columns:1fr}
+  .calc-inputs,.calc-results{padding-left:1.25rem;padding-right:1.25rem;min-width:0}
+  .info-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  .input-row,.summary-cards,.info-grid{grid-template-columns:1fr}
+  .segment.cols-3{grid-template-columns:1fr}
+  .footer-strip{flex-direction:column;gap:0.5rem;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -586,19 +600,18 @@ input[type=range]::-moz-range-thumb {
       <span style="background:#C9A96E"></span>
     </div>
     <div class="nav-wordmark">
-      <div class="nav-name">MAPLEHILL</div>
+      <div class="nav-name">BRIDGR</div>
       <div class="nav-line"></div>
-      <div class="nav-sub">Capital Partners</div>
+      <div class="nav-sub">Powered by MCP</div>
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#services">Services</a></li>
-    <li><a href="index.html#bridging">Finance</a></li>
-    <li><a href="index.html#track-record">Track Record</a></li>
-    <li><a href="index.html#team">Team</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html#how">How it works</a></li>
+    <li><a href="brokers.html">Brokers</a></li>
+    <li><a href="apply.html">Apply</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="index.html#bridging" class="nav-cta">Speak to us</a>
+  <a href="contact.html" class="nav-cta">Speak to us</a>
 </nav>
 
 <!-- PAGE HEADER -->
@@ -610,7 +623,7 @@ input[type=range]::-moz-range-thumb {
     <div class="disclaimer-pill">Indicative estimates only — not a formal quote</div>
   </div>
   <p class="page-desc fade-up" style="animation-delay:0.3s">
-    Use this calculator to estimate your total bridging loan costs based on current UK market rates. Adjust loan amount, term, interest rate and fee structure to model your deal. All figures are indicative — speak to our team for a bespoke quote within 4 hours.
+    Use this calculator to estimate your total bridging loan costs based on the rates and fees you enter. Adjust loan amount, term, interest rate and fee structure to model your deal. All figures are indicative, and the slider range is a calculator setting, not a lender criterion — speak to our team for a bespoke quote.
   </p>
 </div>
 
@@ -830,8 +843,8 @@ input[type=range]::-moz-range-thumb {
     <!-- CTA -->
     <div class="calc-cta">
       <div class="calc-cta-title">Ready to discuss your deal?</div>
-      <div class="calc-cta-body">These are indicative figures. Our team will give you a bespoke quote — typically within 4 hours — tailored to your asset, exit strategy and borrower profile.</div>
-      <a href="index.html#bridging" class="btn-teal">Submit a finance enquiry →</a>
+      <div class="calc-cta-body">These are indicative figures. Our team can give you a bespoke quote tailored to your asset, exit strategy and borrower profile.</div>
+      <a href="contact.html" class="btn-teal">Submit a finance enquiry →</a>
     </div>
 
     <div class="calc-disclaimer">
@@ -868,7 +881,7 @@ input[type=range]::-moz-range-thumb {
 
 <!-- FOOTER STRIP -->
 <div class="footer-strip">
-  <p>© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd. Calculator figures are indicative estimates only.</p>
+  <p>© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd. Calculator figures are indicative estimates only.</p>
   <a href="index.html">← Back to main site</a>
 </div>
 

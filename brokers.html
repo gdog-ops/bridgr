@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Broker Registration — Settra</title>
+<title>Broker Registration — Bridgr</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -161,7 +161,12 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
   .cta-bottom{padding:4rem 1.5rem}.cta-bottom-actions{flex-direction:column}
   footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
 }
+@media (max-width:480px){.reg-form-wrap{padding:1.25rem}.form-grid{grid-template-columns:1fr}.page-header{padding-left:1rem;padding-right:1rem}}
+@media (max-width:768px){.what>*{min-width:0}.what-list,.what-item,.commission{min-width:0}.commission-table{width:100%}}
+@media (max-width:480px){.what{padding-left:1rem;padding-right:1rem}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="demo-notice.css">
 </head>
 <body>
 
@@ -169,7 +174,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
 <nav>
   <a href="index.html" class="logo-wrap">
     <div class="logo-wm">
-      <div class="logo-word" style="font-size:1.1rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div>
+      <div class="logo-word" style="font-size:1.1rem">bridg<span class="a">r</span><span style="color:var(--gold)">.</span></div>
     </div>
     <div class="logo-line"></div>
     <div class="logo-sub">Powered by MCP</div>
@@ -182,8 +187,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
     <li><a href="apply.html">Apply</a></li>
   </ul>
   <div class="nav-actions">
-    <a href="#register" class="nav-ghost">Already registered? Login</a>
-    <a href="#register" class="nav-primary">Register now</a>
+        <a href="#register" class="nav-primary">Register now</a>
   </div>
 </nav>
 
@@ -194,22 +198,15 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
   <div style="position:relative;z-index:1;animation:fadeUp 0.6s ease 0.1s both">
     <div class="eyebrow">Broker portal</div>
     <h1 class="page-title">The platform your<br>clients <span class="teal">deserve.</span></h1>
-    <p class="page-sub">Join hundreds of UK brokers using Settra to submit cases faster, match lenders smarter and track deals in real time. Free to register. No monthly fees. Commission paid on every completion.</p>
-    <div class="header-stats">
-      <div class="hs-item"><div class="hs-num"><span class="t">40</span>+</div><div class="hs-label">Lenders on panel</div></div>
-      <div class="hs-div"></div>
-      <div class="hs-item"><div class="hs-num"><span class="t">7</span>min</div><div class="hs-label">Average case submission</div></div>
-      <div class="hs-div"></div>
-      <div class="hs-item"><div class="hs-num"><span class="g">0</span></div><div class="hs-label">Monthly fee</div></div>
-    </div>
-  </div>
-
-  <!-- REGISTRATION FORM -->
+    <p class="page-sub">Register your interest as a broker with Bridgr. Online case submission is planned. In the meantime, speak to our team about working together and commercial terms.</p>
+</div>
+<!-- REGISTRATION FORM -->
   <div id="register" style="position:relative;z-index:1;animation:fadeUp 0.6s ease 0.3s both">
     <div class="reg-form-wrap">
       <div id="form-content">
-        <div class="form-title">Create your broker account</div>
-        <div class="form-sub">Free to register. Takes 2 minutes. Start submitting cases immediately.</div>
+        <div class="demo-notice" data-demo-notice role="note"><strong>Demonstration</strong><span>This registration form is a demonstration. Nothing you enter is sent or stored, and no account is created.</span></div>
+<div class="form-title">Register your interest</div>
+        <div class="form-sub">Tell us about your firm and we will be in touch.</div>
 
         <div class="form-grid">
           <div class="field">
@@ -233,7 +230,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
             <input class="field-input" type="text" placeholder="Your firm name">
           </div>
           <div class="field">
-            <label class="field-label">FCA number *</label>
+            <label class="field-label">FCA number (if applicable)</label>
             <input class="field-input" type="text" placeholder="FCA registration number">
           </div>
           <div class="field">
@@ -256,10 +253,10 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
               <option>10–20 cases</option>
               <option>20+ cases</option>
             </select>
-            <div class="field-hint">This helps us tailor your portal experience — it doesn't affect your application.</div>
+            <div class="field-hint">This helps us tailor our service — it doesn't affect your application.</div>
           </div>
           <div class="field fg-full">
-            <label class="field-label">How did you hear about Settra?</label>
+            <label class="field-label">How did you hear about Bridgr?</label>
             <select class="field-select">
               <option value="" disabled selected>Select</option>
               <option>Google / search</option>
@@ -272,15 +269,15 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
           </div>
         </div>
 
-        <button class="form-submit" onclick="submitReg()">Create my broker account</button>
-        <div class="form-note">By registering you agree to our Terms of Service and Privacy Policy. We will never share your details with third parties without consent.</div>
+        <button class="form-submit" onclick="submitReg()">Register interest (demonstration)</button>
+        <div class="form-note">This is a demonstration form. No data is collected.</div>
       </div>
 
       <div class="success-state" id="success-state">
         <div class="success-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div>
-        <div class="success-title">You're registered.</div>
-        <div class="success-sub">Welcome to Settra. A member of our team will be in touch within 2 hours to activate your portal and walk you through your first case submission.</div>
-        <div style="font-family:'Outfit',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-top:0.5rem;border:0.5px solid rgba(0,194,168,0.3);padding:6px 14px">Check your email for confirmation</div>
+        <div class="success-title">Demonstration only.</div>
+        <div class="success-sub">Nothing has been submitted, sent or stored, and no account has been created.</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-top:0.5rem;border:0.5px solid rgba(0,194,168,0.3);padding:6px 14px">No email has been sent</div>
       </div>
     </div>
   </div>
@@ -289,39 +286,39 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
 <!-- BENEFITS -->
 <section class="benefits">
   <div class="reveal">
-    <div class="eyebrow">Why brokers choose Settra</div>
-    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;color:var(--chalk)">Save hours per case.<br>Win more business.</h2>
+    <div class="eyebrow">Why brokers choose Bridgr</div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;color:var(--chalk)">Less paperwork.<br>More business.</h2>
   </div>
   <div class="benefits-grid">
     <div class="benefit-card reveal">
       <div class="benefit-num">01</div>
-      <div class="benefit-title">Submit a case in 7 minutes</div>
-      <div class="benefit-desc">Our smart application form is built for speed. Save borrower profiles and reuse documents across multiple cases. DIP generated the moment you submit — send indicative terms to your client instantly.</div>
+      <div class="benefit-title">Online case submission (planned)</div>
+      <div class="benefit-desc">Our online application is designed to be quick to complete and avoid repeat paperwork.</div>
     </div>
     <div class="benefit-card reveal">
       <div class="benefit-num">02</div>
-      <div class="benefit-title">Instant lender matching</div>
-      <div class="benefit-desc">Our rules engine matches your case to the most suitable lenders from a panel of 40+ — ranked by approval probability, not commission. You always see the best options first, not the most profitable ones for us.</div>
+      <div class="benefit-title">Lender matching</div>
+      <div class="benefit-desc">Our team identifies lenders whose criteria may suit your case and talks you through the options.</div>
     </div>
     <div class="benefit-card reveal">
       <div class="benefit-num">03</div>
-      <div class="benefit-title">Live case dashboard</div>
-      <div class="benefit-desc">Track every case in real time — underwriting, valuation, legal, drawdown. No more chasing underwriters by phone. Your clients see exactly where they are at every stage. You look like the expert you are.</div>
+      <div class="benefit-title">Case updates</div>
+      <div class="benefit-desc">We keep you informed through underwriting, valuation, legal work and drawdown, so you spend less time chasing.</div>
     </div>
     <div class="benefit-card reveal">
       <div class="benefit-num">04</div>
       <div class="benefit-title">Complex cases welcome</div>
-      <div class="benefit-desc">Adverse credit, foreign nationals, HMOs, short leases, commercial conversions, second charges — we specialise in the deals other platforms decline. Our underwriting team has seen everything and finds a way.</div>
+      <div class="benefit-desc">Adverse credit, foreign nationals, HMOs, short leases, commercial conversions and second charges can all be considered. Our underwriting team is experienced in complex deals.</div>
     </div>
     <div class="benefit-card reveal">
       <div class="benefit-num">05</div>
-      <div class="benefit-title">Full commission transparency</div>
-      <div class="benefit-desc">Track commission from case submission through to completion. No surprises, no clawbacks, no ambiguity. Commission paid promptly on completion. Your earnings dashboard updates in real time.</div>
+      <div class="benefit-title">Commission terms</div>
+      <div class="benefit-desc">Commission arrangements are agreed with our team and confirmed in writing before cases are submitted.</div>
     </div>
     <div class="benefit-card reveal">
       <div class="benefit-num">06</div>
       <div class="benefit-title">Direct underwriter access</div>
-      <div class="benefit-desc">Every registered broker gets direct access to our underwriting team via live chat. No call centres, no junior account managers. You speak directly to Alexander and the team who are actually reviewing your case.</div>
+      <div class="benefit-desc">Registered brokers will have direct access to the underwriting team reviewing their case.</div>
     </div>
   </div>
 </section>
@@ -331,49 +328,49 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
   <div class="reveal">
     <div class="eyebrow">Your broker portal</div>
     <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;color:var(--chalk);margin-bottom:0.75rem">Everything you need.<br>Nothing you don't.</h2>
-    <p style="font-size:0.92rem;font-weight:300;color:var(--steel);line-height:1.8;max-width:440px">Your Settra portal is built around your workflow — not ours. Here's what you get from day one.</p>
+    <p style="font-size:0.92rem;font-weight:300;color:var(--steel);line-height:1.8;max-width:440px">What we are building for brokers.</p>
 
     <div class="what-list">
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
           <div class="what-title">Multi-case management dashboard</div>
-          <div class="what-desc">See all your active cases at a glance — status, stage, next action required and completion ETA.</div>
+          <div class="what-desc">See your cases at a glance — status, stage and next action.</div>
         </div>
       </div>
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
           <div class="what-title">Saved borrower profiles</div>
-          <div class="what-desc">Upload documents once. Reuse across multiple cases. Dramatically reduces repeat paperwork for repeat clients.</div>
+          <div class="what-desc">Upload documents once and reuse them across cases.</div>
         </div>
       </div>
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
-          <div class="what-title">Instant DIP generator</div>
-          <div class="what-desc">Generate a branded Decision in Principle to send to your client within minutes of submitting a case.</div>
+          <div class="what-title">Decision in Principle support</div>
+          <div class="what-desc">Support in obtaining a Decision in Principle for your client.</div>
         </div>
       </div>
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
-          <div class="what-title">Commission tracker</div>
-          <div class="what-desc">Real-time view of all pipeline commission — by case, by lender, by month. Full payment history and remittance statements.</div>
+          <div class="what-title">Case pipeline</div>
+          <div class="what-desc">A view of pipeline cases and their status.</div>
         </div>
       </div>
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
           <div class="what-title">Lender criteria library</div>
-          <div class="what-desc">Always-current lender criteria, rate cards and appetite guides. Know before you submit whether a lender will take the case.</div>
+          <div class="what-desc">Lender criteria and appetite guidance, so you know before you submit whether a case is likely to suit.</div>
         </div>
       </div>
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
-          <div class="what-title">Live chat with underwriters</div>
-          <div class="what-desc">Message our underwriting team directly from within your portal. Get answers on complex cases in minutes, not days.</div>
+          <div class="what-title">Underwriter access</div>
+          <div class="what-desc">Speak to our underwriting team directly about complex cases.</div>
         </div>
       </div>
     </div>
@@ -381,76 +378,15 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
 
   <div class="reveal">
     <div class="commission">
-      <div class="commission-title">Commission structure</div>
-      <table class="commission-table">
-        <thead>
-          <tr>
-            <th>Loan size</th>
-            <th>Proc fee</th>
-            <th>Your commission</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>£500k – £1m</td>
-            <td>1.0% of loan</td>
-            <td>0.5%</td>
-          </tr>
-          <tr>
-            <td>£1m – £5m</td>
-            <td>1.0% of loan</td>
-            <td>0.5%</td>
-          </tr>
-          <tr>
-            <td>£5m – £15m</td>
-            <td>0.75% of loan</td>
-            <td>0.4%</td>
-          </tr>
-          <tr>
-            <td>£15m+</td>
-            <td>Negotiable</td>
-            <td>Negotiable</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="comm-note">Commission paid within 5 working days of completion. Enhanced rates available for high-volume brokers. All rates subject to individual case review. Speak to our team for bespoke arrangements on larger transactions.</div>
+      <div class="commission-title">Commission</div>
+      <p class="comm-note" style="margin:0">Commission terms are not published online. They are agreed individually and confirmed in writing before cases are submitted.</p>
+      
     </div>
 
     <div style="margin-top:2px;background:var(--carbon);border:1px solid var(--border);padding:1.5rem">
       <div style="font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem">Questions about commission?</div>
       <p style="font-size:0.82rem;font-weight:300;color:var(--steel);line-height:1.65;margin-bottom:1rem">Speak directly to our team. We're transparent about every aspect of how we work with brokers.</p>
-      <a href="mailto:brokers@settra.co.uk" style="font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;color:var(--teal);text-decoration:none;display:flex;align-items:center;gap:6px">brokers@settra.co.uk →</a>
-    </div>
-  </div>
-</section>
-
-<!-- SOCIAL PROOF -->
-<section class="proof">
-  <div class="reveal">
-    <div class="eyebrow">What brokers say</div>
-    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;color:var(--chalk)">Built by people who<br>understand brokers.</h2>
-  </div>
-  <div class="proof-grid">
-    <div class="proof-card reveal">
-      <div class="proof-quote">"I submitted a complex second charge on a listed building that three other platforms declined outright. Settra had it matched to two lenders within the hour and completed in 14 days. The live dashboard meant my client was updated without me having to chase anyone."</div>
-      <div class="proof-author">
-        <div class="proof-avatar">JM</div>
-        <div><div class="proof-name">James M.</div><div class="proof-firm">Senior Broker, London</div></div>
-      </div>
-    </div>
-    <div class="proof-card reveal">
-      <div class="proof-quote">"The commission tracker alone saves me hours of admin per month. I can see exactly where every case is, what commission is in the pipeline and when it'll be paid. It's the first platform I've used that actually respects my time."</div>
-      <div class="proof-author">
-        <div class="proof-avatar">SR</div>
-        <div><div class="proof-name">Sarah R.</div><div class="proof-firm">Independent Broker, Manchester</div></div>
-      </div>
-    </div>
-    <div class="proof-card reveal">
-      <div class="proof-quote">"The direct access to the underwriting team is the game changer. I can message Alexander directly and get a straight answer on a complex case in minutes. That's unheard of with any other platform. My clients notice the difference."</div>
-      <div class="proof-author">
-        <div class="proof-avatar">DK</div>
-        <div><div class="proof-name">David K.</div><div class="proof-firm">Director, Property Finance Specialists</div></div>
-      </div>
+      <a href="mailto:info@maplehillcapitalpartners.co.uk" style="font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;color:var(--teal);text-decoration:none;display:flex;align-items:center;gap:6px">info@maplehillcapitalpartners.co.uk →</a>
     </div>
   </div>
 </section>
@@ -463,28 +399,28 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
   </div>
   <div class="faq-grid">
     <div class="faq-item reveal">
-      <div class="faq-q">Is it really free to register?<span class="faq-toggle">+</span></div>
-      <div class="faq-a">Yes — completely free. No registration fee, no monthly subscription, no minimum case volume requirement. You only benefit when cases complete and commission is paid.</div>
+      <div class="faq-q">Is there a cost to register?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">Commercial terms, including any fees and commission, will be confirmed in writing by our team before you submit cases.</div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">How quickly can I start submitting cases?<span class="faq-toggle">+</span></div>
-      <div class="faq-a">Immediately after registration. Once your account is verified (typically within 2 hours), your portal is fully active and you can submit your first case straight away.</div>
+      <div class="faq-a">Broker registration is a demonstration at this stage. In the live service we will explain how accounts are set up.</div>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q">Do you accept cases from all FCA-registered brokers?<span class="faq-toggle">+</span></div>
-      <div class="faq-a">Yes — we work with all FCA-registered credit brokers with bridging and specialist finance permissions. If you're unsure whether your permissions cover bridging, our team can advise.</div>
+      <div class="faq-q">Which brokers can submit cases?<span class="faq-toggle">+</span></div>
+      <div class="faq-a">We will confirm broker eligibility and any regulatory requirements before accepting cases. Contact our team if you are unsure.</div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">What types of cases can I submit?<span class="faq-toggle">+</span></div>
-      <div class="faq-a">Residential and commercial bridging, development finance, auction finance, refurbishment loans, mezzanine finance, and second charge bridging. We also welcome foreign national and complex structure cases that other platforms decline.</div>
+      <div class="faq-a">Residential and commercial bridging, development finance, auction finance, refurbishment loans, mezzanine finance, and second charge bridging. We also welcome foreign national and complex structure cases.</div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">How is commission calculated and paid?<span class="faq-toggle">+</span></div>
-      <div class="faq-a">Commission is calculated as a percentage of the loan amount (see our commission structure above). It is paid within 5 working days of completion confirmation. All commission is tracked in real time in your portal dashboard.</div>
+      <div class="faq-a">Commission arrangements are agreed with each broker and confirmed in writing. Please contact our team to discuss.</div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">Can I submit cases for clients who have adverse credit?<span class="faq-toggle">+</span></div>
-      <div class="faq-a">Yes. We have lenders on our panel who specifically serve borrowers with adverse credit histories including CCJs, defaults and missed payments. Our matching engine identifies the most appropriate lenders for each borrower profile.</div>
+      <div class="faq-a">Yes. Some specialist lenders serve borrowers with adverse credit histories, including CCJs, defaults and missed payments. Our team will identify suitable lenders for each borrower profile.</div>
     </div>
   </div>
 </section>
@@ -492,27 +428,27 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
 <!-- CTA BOTTOM -->
 <div class="cta-bottom">
   <h2 class="cta-bottom-title">Ready to get started?</h2>
-  <p class="cta-bottom-sub">Register your broker account in 2 minutes. Free forever. Start submitting cases today.</p>
+  <p class="cta-bottom-sub">Register your interest as a broker.</p>
   <div class="cta-bottom-actions">
-    <a href="#register" class="cta-p">Register now — it's free</a>
-    <a href="mailto:brokers@settra.co.uk" class="cta-s">Speak to our broker team</a>
+    <a href="#register" class="cta-p">Register interest</a>
+    <a href="mailto:info@maplehillcapitalpartners.co.uk" class="cta-s">Speak to our broker team</a>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <a href="index.html" class="logo-wrap" style="display:inline-flex;flex-direction:column;gap:3px">
-    <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">settr<span class="a">a</span><span style="color:var(--gold)">.</span></div></div>
+    <div class="logo-wm"><div class="logo-word" style="font-size:0.95rem">bridg<span class="a">r</span><span style="color:var(--gold)">.</span></div></div>
     <div class="logo-line" style="width:60px"></div>
     <div class="logo-sub">Powered by MCP</div>
   </a>
   <div class="footer-links-row">
     <a href="index.html">Home</a>
-    <a href="apply.html">Apply now</a>
+    <a href="apply.html">Try demo application</a>
     <a href="calculator.html">Calculator</a>
     <a href="mailto:info@maplehillcapitalpartners.co.uk">Contact</a>
   </div>
-  <span class="footer-copy">© 2026 Settra. Powered by MCP — Maplehill Capital Partners Ltd.</span>
+  <span class="footer-copy">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</span>
 </footer>
 
 <script>
@@ -525,6 +461,7 @@ function submitReg() {
       else input.style.borderColor = '';
     }
   });
+  if (!valid) return;
   document.getElementById('form-content').style.display = 'none';
   const s = document.getElementById('success-state');
   s.style.display = 'flex';

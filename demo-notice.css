@@ -1,0 +1,6 @@
+/* Demonstration notice: shown on every page that contains a form which does not yet submit anywhere. */
+.demo-notice{display:flex;align-items:flex-start;gap:10px;margin:0 0 1.25rem;padding:0.8rem 1rem;border:1px solid var(--gold,#C9A96E);border-radius:6px;background:rgba(201,169,110,0.08);color:var(--chalk,#F4F4F2);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:400;line-height:1.5}
+.demo-notice strong{font-weight:600;color:var(--gold,#C9A96E);letter-spacing:0.08em;text-transform:uppercase;font-size:0.68rem;white-space:nowrap}
+.demo-result{margin-top:1rem;padding:0.8rem 1rem;border:1px solid var(--gold,#C9A96E);border-radius:6px;background:rgba(201,169,110,0.08);color:var(--chalk,#F4F4F2);font-family:'Outfit',sans-serif;font-size:0.82rem;line-height:1.5}
+button[disabled].ob-btn{opacity:0.5;cursor:not-allowed}
+@media (prefers-reduced-motion:reduce){.demo-notice,.demo-result{transition:none;animation:none}}
