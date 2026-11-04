@@ -145,6 +145,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="demo-notice.css">
+<link rel="stylesheet" href="concierge.css">
 </head>
 <body>
 
@@ -161,6 +162,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   </ul>
   <div class="nav-actions">
     <a href="brokers.html" class="nav-ghost">Broker portal</a>
+    <a href="contact.html" class="nav-uw" data-uw>Call an Underwriter</a>
     <a href="apply.html" class="nav-primary">Start your enquiry</a>
   </div>
 </nav>
@@ -171,6 +173,12 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
     <div class="eyebrow">Contact</div>
     <h1 class="page-title">Let's talk about<br>your <span class="teal">deal.</span></h1>
     <p class="page-sub">Whether you're a borrower with a finance requirement, a broker with a complex case or an investor looking to work with MCP — get in touch and we will come back to you.</p>
+    <div id="underwriter" style="margin-top:1.6rem;display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+      <a href="contact.html" class="nav-primary" data-uw style="padding:14px 28px">Call an Underwriter</a>
+      <span data-phone><a class="bx-phone" href="tel:+442089695833">0208 969 5833</a></span>
+      <a href="contact.html" class="bx-textlink" data-callback>Request a callback (demonstration)</a>
+    </div>
+    <p class="bx-sub">Speak directly to a bridging finance specialist. We do not promise immediate availability or fixed response times. The callback option is a demonstration only.</p>
   </div>
 </div>
 
@@ -208,7 +216,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
     <div class="card-desc">Register as a broker or discuss a specific case. We work with brokers on bridging and specialist finance cases.</div>
     <div class="card-detail">
       <div class="cd-item"><div class="cd-dot gold"></div>New broker registration</div>
-      <div class="cd-item"><div class="cd-dot gold"></div>Case pre-approval query</div>
+      <div class="cd-item"><div class="cd-dot gold"></div>Query on a case</div>
       <div class="cd-item"><div class="cd-dot gold"></div>Commission &amp; panel questions</div>
       <div class="cd-item"><div class="cd-dot gold"></div>Complex case discussion</div>
     </div>
@@ -293,7 +301,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
           <div class="field fg-full"><label class="field-label">Nature of enquiry</label>
             <select class="field-select">
               <option value="" disabled selected>Select</option>
-              <option>Register as a new broker</option><option>Pre-approval query on a case</option>
+              <option>Register as a new broker</option><option>Query on a case</option>
               <option>Commission query</option><option>Lender panel question</option>
               <option>Complex case discussion</option><option>Other</option>
             </select>
@@ -351,7 +359,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
         <div class="sidebar-item-icon">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3a1 1 0 011-1h2.09a1 1 0 01.95.68l.9 2.69a1 1 0 01-.22 1L5.5 7.5a8 8 0 004 4l1.13-1.22a1 1 0 011-.22l2.69.9a1 1 0 01.68.95V13a1 1 0 01-1 1A11 11 0 012 3z" stroke="#888C99" stroke-width="1" fill="none"/></svg>
         </div>
-        <div class="sidebar-item-body"><span class="sidebar-label">Phone</span><span class="sidebar-val"><a href="tel:+442089695833">0208 969 5833</a></span></div>
+        <div class="sidebar-item-body"><span class="sidebar-label">Phone</span><span class="sidebar-val"><a href="tel:+442089695833" data-phone-link>0208 969 5833</a></span></div>
       </div>
       <div class="sidebar-item">
         <div class="sidebar-item-icon">
@@ -425,6 +433,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
     <a href="apply.html">Apply</a>
     <a href="brokers.html">Brokers</a>
     <a href="calculator.html">Calculator</a>
+    <a href="contact.html" data-uw>Call an Underwriter</a>
   </div>
   <span class="footer-copy">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</span>
 </footer>
@@ -446,5 +455,6 @@ const obs = new IntersectionObserver(e => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<script src="concierge.js" defer></script>
 </body>
 </html>

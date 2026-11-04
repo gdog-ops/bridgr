@@ -96,6 +96,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
 @media (max-width:600px){.footer-links{flex-wrap:wrap;justify-content:center;gap:0.75rem 1.25rem}.footer-copy{display:block;overflow-wrap:anywhere}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="concierge.css">
 </head>
 <body>
 <nav>
@@ -111,6 +112,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   </ul>
   <div class="nav-actions">
     <a href="brokers.html" class="nav-ghost">Broker portal</a>
+    <a href="contact.html" class="nav-uw" data-uw>Call an Underwriter</a>
     <a href="apply.html" class="nav-primary">Start your enquiry</a>
   </div>
 </nav>
@@ -119,11 +121,11 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   <div class="hero-bg"></div><div class="hero-grid"></div>
   <div class="hero-left">
     <div class="badge"><span class="badge-dot"></span>Residential Bridging Finance</div>
-    <h1 class="page-h1">Residential bridging loans.<br><span class="accent">Fast decisions.</span></h1>
+    <h1 class="page-h1">Residential bridging loans.<br><span class="accent">Expert support.</span></h1>
     <p class="hero-sub">Whether you're breaking a property chain, buying before you sell, releasing equity or securing a time-sensitive purchase — Bridgr helps match you to the right residential bridging lender from our lender relationships. Start a demonstration enquiry; in the live service our team will review your case.</p>
     <div class="cta-row">
       <a href="apply.html" class="cta-p">Start your enquiry</a>
-      <a href="calculator.html" class="cta-s">Calculate costs</a>
+      <a href="contact.html" class="cta-s" data-uw>Call an Underwriter</a>
     </div>
   </div>
   <div style="position:relative;z-index:1">
@@ -147,7 +149,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
           <div class="spec-val">Case by case</div>
         </div>
         <div class="spec">
-          <div class="spec-label">DIP</div>
+          <div class="spec-label">Early review</div>
           <div class="spec-val">Case dependent</div>
         </div>
         <div class="spec">
@@ -203,7 +205,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   <h2 class="section-title reveal">From application to drawdown.</h2>
   <div class="process-steps">
     <div class="pstep reveal"><div class="pstep-num">01</div><div class="pstep-title">Start a short online enquiry</div><div class="pstep-desc">Tell us about your finance requirement, the security property and the borrower. No paperwork at this stage.</div><div class="pstep-time">Step 1</div></div>
-    <div class="pstep reveal"><div class="pstep-num">02</div><div class="pstep-title">Lender matching</div><div class="pstep-desc">We review your case and identify lenders whose criteria may suit it.</div><div class="pstep-time">Step 2</div></div>
+    <div class="pstep reveal"><div class="pstep-num">02</div><div class="pstep-title">Lender options</div><div class="pstep-desc">We review your case and identify lenders whose criteria may suit it.</div><div class="pstep-time">Step 2</div></div>
     <div class="pstep reveal"><div class="pstep-num">03</div><div class="pstep-title">Underwriting review</div><div class="pstep-desc">Our team reviews each case. Complex cases are welcome.</div><div class="pstep-time">Step 3</div></div>
     <div class="pstep reveal"><div class="pstep-num">04</div><div class="pstep-title">Drawdown</div><div class="pstep-desc">Formal offer, legal work and valuation. Timing depends on the lender and the case.</div><div class="pstep-time">Step 4</div></div>
   </div>
@@ -215,7 +217,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   <div class="faq-grid">
         <div class="faq-item">
           <div class="faq-q">How quickly can I get a residential bridging loan?<span class="faq-tog">+</span></div>
-          <div class="faq-a">Once your application is submitted and documents verified, a Decision in Principle can be sought from suitable lenders. Timing for formal offers and completion depends on the lender and the case.</div>
+          <div class="faq-a">Timing depends on the lender and the case. Once an enquiry has been reviewed and the documents checked, lender options can be explored. Any decision, offer and completion date is set by the lender and the case.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">What LTV is available on residential bridging?<span class="faq-tog">+</span></div>
@@ -238,7 +240,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   </div>
   <div class="cta-bottom-actions">
     <a href="apply.html" class="cta-p" style="width:220px;justify-content:center">Start your enquiry</a>
-    <a href="brokers.html" class="cta-s" style="width:220px;text-align:center">Register as broker</a>
+    <a href="contact.html" class="cta-s" style="width:220px;text-align:center" data-uw>Call an Underwriter</a>
     <div style="font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);text-align:center;margin-top:4px">Indicative terms only · Subject to underwriting</div>
   </div>
 </div>
@@ -255,6 +257,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
     <a href="development-finance.html">Development</a>
     <a href="refurbishment-loans.html">Refurbishment</a>
     <a href="mezzanine-finance.html">Mezzanine</a>
+    <a href="contact.html" data-uw>Call an Underwriter</a>
   </div>
   <span class="footer-copy">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</span>
 </footer>
@@ -263,5 +266,6 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+<script src="concierge.js" defer></script>
 </body>
 </html>

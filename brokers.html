@@ -167,6 +167,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="demo-notice.css">
+<link rel="stylesheet" href="concierge.css">
 </head>
 <body>
 
@@ -187,7 +188,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
     <li><a href="apply.html">Apply</a></li>
   </ul>
   <div class="nav-actions">
-        <a href="#register" class="nav-primary">Register now</a>
+        <a href="contact.html" class="nav-uw" data-uw>Call an Underwriter</a>
+    <a href="#register" class="nav-primary">Register now</a>
   </div>
 </nav>
 
@@ -297,7 +299,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
     </div>
     <div class="benefit-card reveal">
       <div class="benefit-num">02</div>
-      <div class="benefit-title">Lender matching</div>
+      <div class="benefit-title">Lender options</div>
       <div class="benefit-desc">Our team identifies lenders whose criteria may suit your case and talks you through the options.</div>
     </div>
     <div class="benefit-card reveal">
@@ -348,8 +350,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
       <div class="what-item reveal">
         <div class="what-check">✓</div>
         <div class="what-content">
-          <div class="what-title">Decision in Principle support</div>
-          <div class="what-desc">Support in obtaining a Decision in Principle for your client.</div>
+          <div class="what-title">Case support (planned)</div>
+          <div class="what-desc">Bridgr aims to help prepare cases for lender review. Lending decisions are made by the lender.</div>
         </div>
       </div>
       <div class="what-item reveal">
@@ -431,7 +433,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3rem 
   <p class="cta-bottom-sub">Register your interest as a broker.</p>
   <div class="cta-bottom-actions">
     <a href="#register" class="cta-p">Register interest</a>
-    <a href="mailto:info@maplehillcapitalpartners.co.uk" class="cta-s">Speak to our broker team</a>
+    <a href="contact.html" class="cta-s" data-uw>Call an Underwriter</a>
+    <a href="contact.html" class="bx-textlink" data-callback>Request a callback (demonstration)</a>
   </div>
 </div>
 
@@ -472,5 +475,6 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<script src="concierge.js" defer></script>
 </body>
 </html>

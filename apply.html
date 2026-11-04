@@ -926,10 +926,15 @@ a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
 @media (max-width:600px){.addr-lookup{flex-wrap:wrap}.addr-btn{width:100%}.rev-row{flex-direction:column;gap:0}.rev-row b{text-align:left}}
 
 /* responsive: added for narrow screens (the page had no breakpoints) */
-.m-home{display:none}
+.m-bar{display:none}
+.sidebar-uw{padding:0 1.75rem 1.25rem;font-family:'Outfit',sans-serif;font-size:0.72rem;color:var(--steel);line-height:1.5}
+.sidebar-uw a{display:inline-block;color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:3px;margin-bottom:4px;font-size:0.8rem}
+.sidebar-uw span{display:block}
 @media (max-width:900px){
   .sidebar{display:none}
-  .m-home{display:flex;align-items:center;gap:10px;padding:0.9rem 1.25rem 0;text-decoration:none;color:var(--chalk);min-height:44px}
+  .m-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0.9rem 1.25rem 0}
+  .m-home{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--chalk);min-height:44px}
+  .m-uw{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:600;color:var(--teal);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
   .m-home .logo-mark{margin-bottom:0}
   .m-home .logo-name{font-size:1rem}
   .main{margin-left:0}
@@ -951,6 +956,7 @@ a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
 .main>.demo-notice{margin:1rem 3rem 0}
 </style>
 <link rel="stylesheet" href="demo-notice.css">
+<link rel="stylesheet" href="concierge.css">
 </head>
 <body>
 
@@ -1013,6 +1019,11 @@ a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
       </div>
     </nav>
 
+    <div class="sidebar-uw">
+      <a href="contact.html" data-uw>Call an Underwriter</a>
+      <span>Speak directly to a bridging finance specialist.</span>
+    </div>
+
     <div class="sidebar-trust">
       <div class="trust-item">
         <span class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></span>
@@ -1031,10 +1042,13 @@ a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
 
   <!-- ── MAIN ── -->
   <div class="main">
+    <div class="m-bar">
     <a href="index.html" class="m-home" aria-label="Bridgr — back to the homepage">
       <span class="logo-mark" aria-hidden="true"><span style="background:#00C2A8"></span><span style="background:#F4F4F2;opacity:0.12"></span><span style="background:#F4F4F2;opacity:0.06"></span><span style="background:#C9A96E"></span></span>
       <span class="logo-name">BRIDGR</span>
     </a>
+    <a href="contact.html" class="m-uw" data-uw>Call an Underwriter</a>
+    </div>
 
     <div class="demo-notice" data-demo-notice role="note"><strong>Demonstration</strong><span>This enquiry form is a demonstration. Nothing you enter is sent, stored or assessed, and no enquiry is made. The postcode lookup returns example addresses only.</span></div>
 
@@ -1779,5 +1793,6 @@ function toggleBroker(el) {
 initEnquiry();
 updateUI();
 </script>
+<script src="concierge.js" defer data-widget="off"></script>
 </body>
 </html>

@@ -218,6 +218,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="concierge.css">
 </head>
 <body>
 
@@ -236,6 +237,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
     <li><a href="#borrowers">Borrowers</a></li>
   </ul>
   <div class="nav-actions">
+    <a href="contact.html" class="nav-uw" data-uw>Call an Underwriter</a>
     <a href="apply.html" class="nav-primary">Start your enquiry</a>
   </div>
 </nav>
@@ -245,12 +247,13 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
   <div class="hero-grid"></div>
   <div class="hero-left">
     <div class="hero-badge"><span class="badge-dot"></span>UK Bridging Finance — in development</div>
-    <h1 class="hero-h1">Bridging finance.<br><span class="teal">Faster.</span><br><span class="gold">Smarter.</span></h1>
-    <p class="hero-sub">Bridgr is a UK bridging finance service for borrowers and brokers, currently in development. The application and broker pages are demonstrations: nothing is submitted or stored yet.</p>
+    <h1 class="hero-h1">Bridging finance,<br><span class="teal">made simple.</span></h1>
+    <p class="hero-sub">Get started online in minutes. Speak to a real expert whenever you want.<br><span style="font-size:0.82rem">Bridgr is currently in development: the enquiry and broker pages are demonstrations, and nothing is submitted or stored yet.</span></p>
     <div class="hero-ctas">
       <a href="apply.html" class="cta-p">Start your enquiry</a>
-      <a href="#how" class="cta-s">See how it works</a>
+      <a href="contact.html" class="cta-s" data-uw>Call an Underwriter</a>
     </div>
+    <p class="bx-sub" style="margin-top:-1.5rem;margin-bottom:1.5rem">Speak directly to a bridging finance specialist: <a href="tel:+442089695833" data-phone-link style="color:var(--teal)">0208 969 5833</a></p>
   </div>
   <div class="hero-right">
     <div class="app-preview">
@@ -324,8 +327,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 <section class="features" id="platform">
   <div class="reveal"><div class="eyebrow">The platform</div><h2 class="section-title">Built for<br>bridging finance.</h2></div>
   <div class="features-grid">
-    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="feat-title">Decision in Principle</div><div class="feat-desc">In future, submit your deal online and we will work towards an indicative Decision in Principle from suitable lenders.</div><div class="feat-tag">Planned</div></div>
-    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none" opacity="0.5"/><circle cx="10" cy="10" r="1.5" fill="#00C2A8"/></svg></div><div class="feat-title">Lender matching</div><div class="feat-desc">We consider LTV, property type, borrower profile and geography when identifying lenders whose criteria may suit your case.</div><div class="feat-tag">Specialist lenders</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div><div class="feat-title">Lender options</div><div class="feat-desc">In future, submitting a case online may help identify potentially suitable lenders. Lender decisions are separate and are made by the lender.</div><div class="feat-tag">Planned</div></div>
+    <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none" opacity="0.5"/><circle cx="10" cy="10" r="1.5" fill="#00C2A8"/></svg></div><div class="feat-title">How we look at your case</div><div class="feat-desc">We consider LTV, property type, borrower profile and geography when identifying lenders whose criteria may suit your case.</div><div class="feat-tag">Specialist lenders</div></div>
     <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></div><div class="feat-title">Identity & AML checks</div><div class="feat-desc">Identity verification, PEP and sanctions screening and anti-money-laundering checks will apply to every live case.</div><div class="feat-tag">Planned</div></div>
     <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17h14M3 9h14M10 3L3 7h14L10 3z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M5 9v8M10 9v8M15 9v8" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="feat-title">Source of funds</div><div class="feat-desc">We will ask for evidence of source of funds and affordability so the case can be assessed properly.</div><div class="feat-tag">Evidence required</div></div>
     <div class="feat-card ga reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V7M8 17V4M13 17v-6M18 17v-9" stroke="#00C2A8" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="feat-title">Case updates</div><div class="feat-desc">We keep brokers and borrowers informed at each stage — underwriting, valuation, legal and drawdown.</div><div class="feat-tag">Clear communication</div></div>
@@ -340,7 +343,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
     <ul class="dual-list reveal">
       <li><span class="di">✓</span>Online case submission (planned)</li>
       <li><span class="di">✓</span>Reusable borrower information (planned)</li>
-      <li><span class="di">✓</span>Decision in Principle support (planned)</li>
+      <li><span class="di">✓</span>Case support (planned)</li>
       <li><span class="di">✓</span>Commission terms agreed in writing</li>
       <li><span class="di">✓</span>Case updates (planned)</li>
       <li><span class="di">✓</span>Direct access to the MCP underwriting team</li>
@@ -381,8 +384,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
   </div>
   <div class="cta-band-actions">
     <a href="apply.html" class="cta-p" style="width:220px;justify-content:center">Start your enquiry</a>
-    <a href="brokers.html" class="cta-s" style="width:220px;text-align:center">Register as broker</a>
-    <div style="font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);text-align:center;margin-top:4px">No commitment to apply</div>
+    <a href="contact.html" class="cta-s" style="width:220px;text-align:center" data-uw>Call an Underwriter</a>
+    <div style="font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);text-align:center;margin-top:4px">No commitment to apply · <a href="brokers.html" style="color:var(--teal)">Register as a broker</a></div>
   </div>
 </div>
 
@@ -404,6 +407,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
       <li><a href="#borrowers">For borrowers</a></li>
       <li><a href="calculator.html">Bridging calculator</a></li>
       <li><a href="apply.html">Start your enquiry</a></li>
+      <li><a href="contact.html" data-uw>Call an Underwriter</a></li>
+      <li><a href="contact.html" data-callback>Request a callback (demonstration)</a></li>
     </ul>
   </div>
   <div>
@@ -419,7 +424,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
   </div>
   <div>
     <div class="footer-col-title">Contact</div>
-    <div class="fci"><span class="fcl">Phone</span><span class="fcv"><a href="tel:+442089695833">0208 969 5833</a></span></div>
+    <div class="fci"><span class="fcl">Phone</span><span class="fcv"><a href="tel:+442089695833" data-phone-link>0208 969 5833</a></span></div>
     <div class="fci"><span class="fcl">Email</span><span class="fcv"><a href="mailto:info@maplehillcapitalpartners.co.uk">info@maplehillcapitalpartners.co.uk</a></span></div>
     <div class="fci"><span class="fcl">Office</span><span class="fcv">35 Berkeley Street, London W1J 5BF</span></div>
   </div>
@@ -439,5 +444,6 @@ function switchTab(track,btn){
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+<script src="concierge.js" defer></script>
 </body>
 </html>

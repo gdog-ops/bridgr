@@ -96,6 +96,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
 @media (max-width:600px){.footer-links{flex-wrap:wrap;justify-content:center;gap:0.75rem 1.25rem}.footer-copy{display:block;overflow-wrap:anywhere}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="concierge.css">
 </head>
 <body>
 <nav>
@@ -111,6 +112,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   </ul>
   <div class="nav-actions">
     <a href="brokers.html" class="nav-ghost">Broker portal</a>
+    <a href="contact.html" class="nav-uw" data-uw>Call an Underwriter</a>
     <a href="apply.html" class="nav-primary">Start your enquiry</a>
   </div>
 </nav>
@@ -123,7 +125,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
     <p class="hero-sub">When you exchange at auction, the clock starts immediately. Auction terms typically give the buyer 28 days to complete, so timing matters. Bridgr is designed for exactly this situation: a clear application, specialist auction lenders and an underwriting team who understand the deadline.</p>
     <div class="cta-row">
       <a href="apply.html" class="cta-p">Start your enquiry</a>
-      <a href="calculator.html" class="cta-s">Calculate costs</a>
+      <a href="contact.html" class="cta-s" data-uw>Call an Underwriter</a>
     </div>
   </div>
   <div style="position:relative;z-index:1">
@@ -147,7 +149,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
           <div class="spec-val">Case by case</div>
         </div>
         <div class="spec">
-          <div class="spec-label">DIP</div>
+          <div class="spec-label">Early review</div>
           <div class="spec-val">Case dependent</div>
         </div>
         <div class="spec">
@@ -179,7 +181,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
         <div class="uc-card">
           <div class="uc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="9" r="4.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M11.5 12.5L16 17M13 15l2 2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
           <div class="uc-title">Pre-auction preparation</div>
-          <div class="uc-desc">Apply before auction day so your DIP is already in place. Walk into the room with funding certainty and bid with confidence.</div>
+          <div class="uc-desc">Get in touch well before auction day so finance options can be explored early. Funding is not agreed until the relevant lender has made its decision, so do not bid assuming it is.</div>
         </div>
         <div class="uc-card">
           <div class="uc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 17V8l6-5 6 5v9" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><rect x="7.5" y="12" width="5" height="5" stroke="#00C2A8" stroke-width="1.2" fill="none"/></svg></div>
@@ -203,7 +205,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   <h2 class="section-title reveal">From application to drawdown.</h2>
   <div class="process-steps">
     <div class="pstep reveal"><div class="pstep-num">01</div><div class="pstep-title">Start a short online enquiry</div><div class="pstep-desc">Tell us about your finance requirement, the security property and the borrower. No paperwork at this stage.</div><div class="pstep-time">Step 1</div></div>
-    <div class="pstep reveal"><div class="pstep-num">02</div><div class="pstep-title">Lender matching</div><div class="pstep-desc">We review your case and identify lenders whose criteria may suit it.</div><div class="pstep-time">Step 2</div></div>
+    <div class="pstep reveal"><div class="pstep-num">02</div><div class="pstep-title">Lender options</div><div class="pstep-desc">We review your case and identify lenders whose criteria may suit it.</div><div class="pstep-time">Step 2</div></div>
     <div class="pstep reveal"><div class="pstep-num">03</div><div class="pstep-title">Underwriting review</div><div class="pstep-desc">Our team reviews each case. Complex cases are welcome.</div><div class="pstep-time">Step 3</div></div>
     <div class="pstep reveal"><div class="pstep-num">04</div><div class="pstep-title">Drawdown</div><div class="pstep-desc">Formal offer, legal work and valuation. Timing depends on the lender and the case.</div><div class="pstep-time">Step 4</div></div>
   </div>
@@ -215,11 +217,11 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   <div class="faq-grid">
         <div class="faq-item">
           <div class="faq-q">How quickly can auction finance be arranged?<span class="faq-tog">+</span></div>
-          <div class="faq-a">Timing depends on the lender and the case. Apply before the auction so a Decision in Principle can be sought early, leaving as much of the standard 28-day deadline as possible for legal work and completion.</div>
+          <div class="faq-a">Timing depends on the lender and the case. Speak to us before the auction so finance options can be explored early, leaving as much of the standard 28-day deadline as possible for legal work and completion. Funding is not agreed until the relevant lender has made its decision.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Should I apply before or after the auction?<span class="faq-tog">+</span></div>
-          <div class="faq-a">Ideally before. Apply in advance and have your DIP in place before you bid. This gives you certainty, speeds up completion, and means you can act on the day without delay.</div>
+          <div class="faq-q">Should I get in touch before or after the auction?<span class="faq-tog">+</span></div>
+          <div class="faq-a">Ideally before. Speak to us in advance so options can be explored early, but do not bid on the assumption that funding is agreed. Any decision is made by the lender, and is subject to the case.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">What if the property is unmortgageable?<span class="faq-tog">+</span></div>
@@ -238,7 +240,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
   </div>
   <div class="cta-bottom-actions">
     <a href="apply.html" class="cta-p" style="width:220px;justify-content:center">Start your enquiry</a>
-    <a href="brokers.html" class="cta-s" style="width:220px;text-align:center">Register as broker</a>
+    <a href="contact.html" class="cta-s" style="width:220px;text-align:center" data-uw>Call an Underwriter</a>
     <div style="font-family:'Outfit',sans-serif;font-size:0.62rem;color:var(--steel);text-align:center;margin-top:4px">Indicative terms only · Subject to underwriting</div>
   </div>
 </div>
@@ -255,6 +257,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
     <a href="development-finance.html">Development</a>
     <a href="refurbishment-loans.html">Refurbishment</a>
     <a href="mezzanine-finance.html">Mezzanine</a>
+    <a href="contact.html" data-uw>Call an Underwriter</a>
   </div>
   <span class="footer-copy">© 2026 Bridgr. Powered by MCP — Maplehill Capital Partners Ltd.</span>
 </footer>
@@ -263,5 +266,6 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:2.5re
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+<script src="concierge.js" defer></script>
 </body>
 </html>
