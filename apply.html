@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bridging Application (Demonstration) — Bridgr</title>
+<title>Bridging Enquiry (Demonstration) — Bridgr</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -883,6 +883,47 @@ body {
   padding: 4px 10px;
   border-radius: 3px;
 }
+
+/* ── BR-004 enquiry components ── */
+.block-title{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin:0 0 0.75rem}
+.addr-lookup{display:flex;gap:8px;margin-bottom:6px}
+.addr-lookup .field-input{flex:1;min-width:0}
+.addr-btn,.btn-add{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);background:transparent;border:1px solid rgba(0,194,168,0.4);border-radius:6px;padding:0 16px;min-height:44px;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+.addr-btn:hover,.btn-add:hover{background:rgba(0,194,168,0.08);border-color:var(--teal)}
+.btn-add{width:100%;margin-top:1rem;border-style:dashed}
+.btn-add[disabled]{opacity:0.4;cursor:not-allowed}
+.btn-link{background:none;border:0;color:var(--steel);font-family:'Outfit',sans-serif;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;padding:6px 0;min-height:32px;text-decoration:underline}
+.btn-link:hover{color:#E05252}
+.addr-results{display:flex;flex-direction:column;gap:4px;margin:6px 0 10px}
+.addr-results[hidden]{display:none}
+.addr-result{text-align:left;background:var(--carbon);border:1px solid var(--border-md);color:var(--chalk);font-family:'DM Sans',sans-serif;font-size:0.85rem;padding:10px 14px;border-radius:6px;cursor:pointer;min-height:44px}
+.addr-result:hover,.addr-result:focus{border-color:var(--teal)}
+.addr-result small{color:var(--gold);margin-left:6px}
+.addr-msg{font-size:0.75rem;color:var(--steel);padding:4px 2px}
+.addr-fields{margin-top:0.75rem}
+.prop-card{background:var(--carbon);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.25rem 1.5rem;margin-bottom:1rem}
+.prop-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem}
+.prop-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--chalk)}
+.money{position:relative}
+.money>span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--teal);opacity:0.8;pointer-events:none}
+.money>.field-input{padding-left:30px}
+.check-row{display:flex;gap:10px;align-items:flex-start;font-size:0.85rem;color:var(--chalk);cursor:pointer;line-height:1.5}
+.check-row input{margin-top:4px;accent-color:var(--teal);width:18px;height:18px;flex-shrink:0}
+.has-error>.field-input,.has-error>.field-select,.has-error>.money>.field-input{border-color:#E05252}
+.field-error{font-size:0.72rem;color:#E05252;line-height:1.4}
+.occ-row{background:var(--carbon);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.25rem;margin-bottom:0.75rem}
+.occ-addr{font-size:0.8rem;color:var(--steel);margin-bottom:0.6rem;overflow-wrap:anywhere}
+.indicator-box{margin-top:1.25rem;border:1px solid var(--border-md);border-radius:8px;padding:1rem 1.25rem;font-size:0.82rem;font-weight:300;line-height:1.6;color:var(--chalk-dim)}
+.indicator-box.review{border-color:var(--gold);background:rgba(201,169,110,0.08)}
+.indicator-box strong{color:var(--chalk);font-weight:500;display:block;margin-bottom:4px}
+.indicator-box ul{margin:6px 0 6px 1.1rem;padding:0}
+.indicator-box .fine{font-size:0.72rem;color:var(--steel);margin-top:6px}
+.rev-block{background:var(--carbon);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.25rem;margin-bottom:0.75rem}
+.rev-block h3{font-family:'Outfit',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin:0 0 0.6rem}
+.rev-row{display:flex;justify-content:space-between;gap:1rem;font-size:0.85rem;padding:3px 0;color:var(--chalk-dim)}
+.rev-row b{font-weight:400;color:var(--chalk);text-align:right;overflow-wrap:anywhere}
+@media (max-width:600px){.addr-lookup{flex-wrap:wrap}.addr-btn{width:100%}.rev-row{flex-direction:column;gap:0}.rev-row b{text-align:left}}
+
 /* responsive: added for narrow screens (the page had no breakpoints) */
 @media (max-width:900px){
   .sidebar{display:none}
@@ -925,58 +966,44 @@ body {
     </div>
 
     <div class="sidebar-intro">
-      <div class="sidebar-intro-title">Bridging application</div>
-      <div class="sidebar-intro-body">Tell us about your deal. In the live service, our underwriting team will review your application.</div>
+      <div class="sidebar-intro-title">Bridging enquiry</div>
+      <div class="sidebar-intro-body">A short enquiry, not a full lender application. In the live service, our team would review it and tell you what else is needed.</div>
     </div>
 
     <nav class="steps-nav" id="steps-nav">
       <div class="step-item" onclick="goTo(1)">
         <div class="step-circle" id="sc-1">1</div>
         <div class="step-info">
-          <div class="step-label">Loan requirements</div>
-          <div class="step-sublabel">Amount, type & term</div>
+          <div class="step-label">Finance requirements</div>
+          <div class="step-sublabel">Amount, purpose & term</div>
         </div>
       </div>
       <div class="step-item" onclick="goTo(2)">
         <div class="step-circle" id="sc-2">2</div>
         <div class="step-info">
-          <div class="step-label">Property details</div>
-          <div class="step-sublabel">Asset & security</div>
+          <div class="step-label">About you</div>
+          <div class="step-sublabel">Applicants & addresses</div>
         </div>
       </div>
       <div class="step-item" onclick="goTo(3)">
         <div class="step-circle" id="sc-3">3</div>
         <div class="step-info">
-          <div class="step-label">About you</div>
-          <div class="step-sublabel">Borrower profile</div>
+          <div class="step-label">Security properties</div>
+          <div class="step-sublabel">Properties & borrowing</div>
         </div>
       </div>
       <div class="step-item" onclick="goTo(4)">
         <div class="step-circle" id="sc-4">4</div>
         <div class="step-info">
-          <div class="step-label">Identity verification</div>
-          <div class="step-sublabel">KYC & AML</div>
+          <div class="step-label">Occupancy</div>
+          <div class="step-sublabel">Living arrangements</div>
         </div>
       </div>
       <div class="step-item" onclick="goTo(5)">
         <div class="step-circle" id="sc-5">5</div>
         <div class="step-info">
-          <div class="step-label">Financial profile</div>
-          <div class="step-sublabel">Source of funds</div>
-        </div>
-      </div>
-      <div class="step-item" onclick="goTo(6)">
-        <div class="step-circle" id="sc-6">6</div>
-        <div class="step-info">
-          <div class="step-label">Matched lenders</div>
-          <div class="step-sublabel">Lender matching</div>
-        </div>
-      </div>
-      <div class="step-item" onclick="goTo(7)">
-        <div class="step-circle" id="sc-7">7</div>
-        <div class="step-info">
-          <div class="step-label">Decision in principle</div>
-          <div class="step-sublabel">Your indicative terms</div>
+          <div class="step-label">Review</div>
+          <div class="step-sublabel">Check your enquiry</div>
         </div>
       </div>
     </nav>
@@ -988,11 +1015,11 @@ body {
       </div>
       <div class="trust-item">
         <span class="trust-icon">✓</span>
-        <span class="trust-text">Identity and AML checks apply to every live application.</span>
+        <span class="trust-text">Identity and AML checks apply to every live case.</span>
       </div>
       <div class="trust-item">
         <span class="trust-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></span>
-        <span class="trust-text">Every live application is reviewed by an underwriter.</span>
+        <span class="trust-text">Every live enquiry is reviewed by an underwriter.</span>
       </div>
     </div>
   </aside>
@@ -1000,16 +1027,16 @@ body {
   <!-- ── MAIN ── -->
   <div class="main">
 
-    <div class="demo-notice" data-demo-notice role="note"><strong>Demonstration</strong><span>This application form is a demonstration. Nothing you enter is sent, stored or assessed, and no application is made.</span></div>
+    <div class="demo-notice" data-demo-notice role="note"><strong>Demonstration</strong><span>This enquiry form is a demonstration. Nothing you enter is sent, stored or assessed, and no enquiry is made. The postcode lookup returns example addresses only.</span></div>
 
 <!-- Top bar -->
     <div class="topbar">
       <div class="topbar-progress">
         <span class="progress-label">Progress</span>
         <div class="progress-track">
-          <div class="progress-fill" id="progress-fill" style="width:14%"></div>
+          <div class="progress-fill" id="progress-fill" style="width:20%"></div>
         </div>
-        <span class="progress-pct" id="progress-pct">14%</span>
+        <span class="progress-pct" id="progress-pct">20%</span>
       </div>
       <div class="topbar-time">
         <div class="topbar-time-dot"></div>
@@ -1019,9 +1046,9 @@ body {
 
     <!-- ─────────────── STEP 1: LOAN REQUIREMENTS ─────────────── -->
     <div class="step-panel active" id="panel-1">
-      <div class="panel-eyebrow">Step 1 of 7</div>
+      <div class="panel-eyebrow">Step 1 of 5</div>
       <h1 class="panel-title">What do you<br><em>need?</em></h1>
-      <p class="panel-sub">Tell us about the finance you're looking for. This helps us identify lenders whose criteria may suit your deal.</p>
+      <p class="panel-sub">Tell us about the finance you're looking for. This is a short initial enquiry.</p>
 
       <div class="form-grid" style="margin-bottom:1.5rem">
         <div class="field span-2">
@@ -1061,10 +1088,21 @@ body {
             style="margin-bottom:6px">
           <div class="field-hint" id="loan-amount-msg" role="status">Type an amount or use the slider. Indicative amount only. Lender criteria vary and are not yet confirmed.</div>
         </div>
+        <div class="field">
+          <div class="field-label">Purpose of the loan <span class="field-required">*</span></div>
+          <select class="field-select" id="f-purpose" onchange="clearErr(this)">
+            <option value="" disabled selected>Select purpose</option>
+            <option>Purchase</option>
+            <option>Refinance</option>
+            <option>Capital raising</option>
+            <option>Refurbishment</option>
+            <option>Other</option>
+          </select>
+        </div>
 
         <div class="field">
-          <div class="field-label">Loan term <span class="field-required">*</span></div>
-          <select class="field-select">
+          <div class="field-label">Approximate term <span class="field-required">*</span></div>
+          <select class="field-select" id="f-term">
             <option>1–3 months</option>
             <option>3–6 months</option>
             <option selected>6–12 months</option>
@@ -1073,10 +1111,21 @@ body {
             <option>24–36 months</option>
           </select>
         </div>
+        <div class="field">
+          <div class="field-label">When are funds needed? <span class="field-required">*</span></div>
+          <select class="field-select" id="f-when" onchange="clearErr(this)">
+            <option value="" disabled selected>Select timing</option>
+            <option>As soon as possible</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>1–3 months</option>
+            <option>Flexible</option>
+          </select>
+        </div>
 
         <div class="field">
           <div class="field-label">Charge type <span class="field-required">*</span></div>
-          <select class="field-select">
+          <select class="field-select" id="f-charge">
             <option selected>First charge</option>
             <option>Second charge</option>
             <option>Not sure</option>
@@ -1085,8 +1134,8 @@ body {
 
         <div class="field span-2">
           <div class="field-label">Exit strategy <span class="field-required">*</span></div>
-          <select class="field-select">
-            <option disabled selected>How do you plan to repay?</option>
+          <select class="field-select" id="f-exit" onchange="clearErr(this)">
+            <option value="" disabled selected>How do you plan to repay?</option>
             <option>Sale of the property</option>
             <option>Refinance to mortgage</option>
             <option>Refinance to development finance</option>
@@ -1094,7 +1143,7 @@ body {
             <option>Business cash flow / income</option>
             <option>Other</option>
           </select>
-          <div class="field-hint">Your exit strategy is one of the most important factors lenders assess.</div>
+          <div class="field-hint">How you plan to repay the loan is one of the first things lenders consider.</div>
         </div>
       </div>
 
@@ -1104,129 +1153,33 @@ body {
       </div>
     </div>
 
-    <!-- ─────────────── STEP 2: PROPERTY DETAILS ─────────────── -->
+        <!-- ─────────────── STEP 2: ABOUT YOU ─────────────── -->
     <div class="step-panel" id="panel-2">
-      <div class="panel-eyebrow">Step 2 of 7</div>
-      <h1 class="panel-title">Tell us about<br>the <em>property.</em></h1>
-      <p class="panel-sub">We need details of the security asset. The more detail you provide, the faster our matching engine can identify suitable lenders.</p>
-
-      <div class="form-grid form-grid-2">
-        <div class="field span-2">
-          <div class="field-label">Property address <span class="field-required">*</span></div>
-          <input class="field-input" type="text" placeholder="Start typing an address…">
-        </div>
-
-        <div class="field">
-          <div class="field-label">Property type <span class="field-required">*</span></div>
-          <select class="field-select">
-            <option disabled selected>Select type</option>
-            <option>Detached house</option>
-            <option>Semi-detached house</option>
-            <option>Terraced house</option>
-            <option>Flat / apartment</option>
-            <option>HMO</option>
-            <option>Office</option>
-            <option>Retail unit</option>
-            <option>Industrial / warehouse</option>
-            <option>Mixed-use</option>
-            <option>Land with planning</option>
-            <option>Land without planning</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <div class="field-label">Current condition</div>
-          <select class="field-select">
-            <option disabled selected>Select condition</option>
-            <option>Standard — habitable</option>
-            <option>Light refurbishment needed</option>
-            <option>Heavy refurbishment needed</option>
-            <option>Uninhabitable / derelict</option>
-            <option>New build / shell</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <div class="field-label">Estimated property value <span class="field-required">*</span></div>
-          <input class="field-input" type="text" placeholder="e.g. £2,500,000">
-        </div>
-
-        <div class="field">
-          <div class="field-label">Purchase price (if buying)</div>
-          <input class="field-input" type="text" placeholder="e.g. £2,200,000">
-        </div>
-
-        <div class="field span-2">
-          <div class="field-label">Is this an auction purchase?</div>
-          <div class="toggle-row">
-            <div class="toggle-label-wrap">
-              <span class="toggle-label">Auction purchase</span>
-              <span class="toggle-sub">Auction terms usually set a 28-day completion deadline</span>
-            </div>
-            <label class="toggle">
-              <input type="checkbox">
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field span-2">
-          <div class="field-label">Is the property listed or in a conservation area?</div>
-          <div class="toggle-row">
-            <div class="toggle-label-wrap">
-              <span class="toggle-label">Listed building / conservation area</span>
-              <span class="toggle-sub">This may affect lender appetite — we'll match you accordingly</span>
-            </div>
-            <label class="toggle">
-              <input type="checkbox">
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field span-2">
-          <div class="field-label">Brief property description</div>
-          <textarea class="field-textarea" placeholder="Anything relevant about the property, its current use, planned works or unusual features…"></textarea>
-        </div>
-      </div>
-
-      <div class="info-box">
-        <span class="info-box-icon">ℹ</span>
-        <span class="info-box-text">Property details help us identify suitable lenders. This form is a demonstration and does not send or store your answers.</span>
-      </div>
-    </div>
-
-    <!-- ─────────────── STEP 3: ABOUT YOU ─────────────── -->
-    <div class="step-panel" id="panel-3">
-      <div class="panel-eyebrow">Step 3 of 7</div>
+      <div class="panel-eyebrow">Step 2 of 5</div>
       <h1 class="panel-title">About<br><em>you.</em></h1>
-      <p class="panel-sub">Basic borrower information. This helps us match you to lenders whose criteria fit your profile — and speeds up underwriting significantly.</p>
+      <p class="panel-sub">Your contact details and home address. Add a second applicant if the loan is being taken by more than one person.</p>
 
-      <div class="form-grid form-grid-2">
+      <div class="form-grid form-grid-2" style="margin-bottom:1.5rem">
         <div class="field">
           <div class="field-label">First name <span class="field-required">*</span></div>
-          <input class="field-input" type="text" placeholder="First name">
+          <input class="field-input" type="text" id="a1-first" autocomplete="given-name" oninput="clearErr(this)">
         </div>
         <div class="field">
           <div class="field-label">Last name <span class="field-required">*</span></div>
-          <input class="field-input" type="text" placeholder="Last name">
+          <input class="field-input" type="text" id="a1-last" autocomplete="family-name" oninput="clearErr(this)">
         </div>
         <div class="field">
           <div class="field-label">Email <span class="field-required">*</span></div>
-          <input class="field-input" type="email" placeholder="you@company.com">
+          <input class="field-input" type="email" id="a1-email" autocomplete="email" oninput="clearErr(this)">
         </div>
         <div class="field">
           <div class="field-label">Phone <span class="field-required">*</span></div>
-          <input class="field-input" type="tel" placeholder="+44">
+          <input class="field-input" type="tel" id="a1-phone" autocomplete="tel" placeholder="+44" oninput="clearErr(this)">
         </div>
-
-        <div class="field span-2"><div class="divider"></div></div>
-
         <div class="field span-2">
-          <div class="field-label">Are you applying as <span class="field-required">*</span></div>
-          <select class="field-select">
-            <option disabled selected>Select borrower type</option>
+          <div class="field-label">Applying as <span class="field-required">*</span></div>
+          <select class="field-select" id="a-type" onchange="clearErr(this)">
+            <option value="" disabled selected>Select borrower type</option>
             <option>Individual / personal name</option>
             <option>Limited company / SPV</option>
             <option>LLP</option>
@@ -1234,348 +1187,120 @@ body {
             <option>Offshore entity</option>
           </select>
         </div>
+      </div>
 
-        <div class="field">
-          <div class="field-label">UK resident? <span class="field-required">*</span></div>
-          <select class="field-select">
-            <option>Yes — UK national</option>
-            <option>Yes — foreign national</option>
-            <option>No — based overseas</option>
-          </select>
+      <div class="block-title">Home address</div>
+      <div class="addr-wrap" id="addr-home-wrap"></div>
+
+      <div class="field span-2" style="margin:1.5rem 0 0">
+        <div class="toggle-row">
+          <div class="toggle-label-wrap">
+            <span class="toggle-label">Add a second applicant</span>
+            <span class="toggle-sub">For joint borrowers, directors or guarantors who should be named on the enquiry</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="a2-toggle" onchange="toggleApplicant2(this)" aria-label="Add a second applicant">
+            <span class="toggle-slider"></span>
+          </label>
         </div>
+      </div>
 
-        <div class="field">
-          <div class="field-label">Property investment experience</div>
-          <select class="field-select">
-            <option disabled selected>Select experience level</option>
-            <option>First-time investor</option>
-            <option>1–3 previous investments</option>
-            <option>4–10 previous investments</option>
-            <option>Experienced (10+ transactions)</option>
-            <option>Professional developer / investor</option>
-          </select>
-        </div>
-
-        <div class="field span-2">
-          <div class="field-label">Are you a broker submitting on behalf of a client?</div>
-          <div class="toggle-row">
-            <div class="toggle-label-wrap">
-              <span class="toggle-label">Broker / introducer application</span>
-              <span class="toggle-sub">We'll add broker fields and commission tracking to your portal</span>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" id="broker-toggle" onchange="toggleBroker(this)">
-              <span class="toggle-slider"></span>
-            </label>
+      <div id="a2-fields" style="display:none;margin-top:1.25rem">
+        <div class="block-title">Second applicant</div>
+        <div class="form-grid form-grid-2" style="margin-bottom:1.25rem">
+          <div class="field">
+            <div class="field-label">First name <span class="field-required">*</span></div>
+            <input class="field-input" type="text" id="a2-first" autocomplete="off" oninput="clearErr(this)">
+          </div>
+          <div class="field">
+            <div class="field-label">Last name <span class="field-required">*</span></div>
+            <input class="field-input" type="text" id="a2-last" autocomplete="off" oninput="clearErr(this)">
+          </div>
+          <div class="field">
+            <div class="field-label">Email</div>
+            <input class="field-input" type="email" id="a2-email" autocomplete="off" oninput="clearErr(this)">
+          </div>
+          <div class="field">
+            <div class="field-label">Phone</div>
+            <input class="field-input" type="tel" id="a2-phone" autocomplete="off" oninput="clearErr(this)">
           </div>
         </div>
+        <label class="check-row">
+          <input type="checkbox" id="a2-same" checked onchange="toggleSameHome(this)">
+          <span>Lives at the same home address as the first applicant</span>
+        </label>
+        <div id="a2-addr" style="display:none;margin-top:1rem">
+          <div class="block-title">Second applicant's home address</div>
+          <div class="addr-wrap" id="addr-home2-wrap"></div>
+        </div>
+      </div>
 
-        <div class="field span-2" id="broker-fields" style="display:none">
+      <div class="field span-2" style="margin:1.5rem 0 0">
+        <div class="toggle-row">
+          <div class="toggle-label-wrap">
+            <span class="toggle-label">I am a broker or introducer submitting for a client</span>
+            <span class="toggle-sub">Enter the client's details above</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="broker-toggle" onchange="toggleBroker(this)" aria-label="Broker or introducer">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div id="broker-fields" style="display:none;margin-top:1rem">
           <div class="form-grid form-grid-2">
             <div class="field">
-              <div class="field-label">Brokerage name</div>
-              <input class="field-input" type="text" placeholder="Firm name">
+              <div class="field-label">Firm name</div>
+              <input class="field-input" type="text" id="broker-firm">
             </div>
             <div class="field">
               <div class="field-label">FCA number (if applicable)</div>
-              <input class="field-input" type="text" placeholder="FCA registration number">
+              <input class="field-input" type="text" id="broker-fca" placeholder="FCA registration number">
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ─────────────── STEP 4: KYC / ID VERIFICATION ─────────────── -->
-    <div class="step-panel" id="panel-4">
-      <div class="panel-eyebrow">Step 4 of 7</div>
-      <h1 class="panel-title">Verify your<br><em>identity.</em></h1>
-      <p class="panel-sub">Identity verification is required before we can connect you with lenders. This step is shown for illustration; the live service will explain exactly how it works.</p>
+    <!-- ─────────────── STEP 3: SECURITY PROPERTIES ─────────────── -->
+    <div class="step-panel" id="panel-3">
+      <div class="panel-eyebrow">Step 3 of 5</div>
+      <h1 class="panel-title">Security<br><em>properties.</em></h1>
+      <p class="panel-sub">The property or properties that would be offered as security. Add as many as you need; each has its own address, value and existing borrowing.</p>
 
-      <div class="upload-grid" style="margin-bottom:1.5rem">
-        <div class="upload-zone" onclick="toggleUpload(this)">
-<div class="upload-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="9" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M12 8h3M12 11h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="upload-title">Passport or driving licence</div>
-          <div class="upload-sub">Government-issued photo ID. Front and back if driving licence.</div>
-          <span class="upload-btn">Upload document</span>
-        </div>
-        <div class="upload-zone" onclick="toggleUpload(this)">
-          <div class="upload-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 2h7l4 4v12a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M12 2v4h4M7 9h6M7 12h6M7 15h4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="upload-title">Proof of address</div>
-          <div class="upload-sub">Bank statement or utility bill dated within the last 3 months.</div>
-          <span class="upload-btn">Upload document</span>
-        </div>
-        <div class="upload-zone" onclick="toggleUpload(this)">
-          <div class="upload-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="6" y="2" width="8" height="14" rx="2" stroke="#00C2A8" stroke-width="1.2" fill="none"/><circle cx="10" cy="14" r="0.75" fill="#00C2A8"/><path d="M8 5h4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="upload-title">Selfie / liveness check</div>
-          <div class="upload-sub">A quick photo to confirm you match your ID document.</div>
-          <span class="upload-btn">Take photo</span>
-        </div>
-        <div class="upload-zone" onclick="toggleUpload(this)">
-          <div class="upload-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="1" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 6h2M11 6h2M7 9h2M11 9h2M7 12h2M11 12h2" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="upload-title">Company documents</div>
-          <div class="upload-sub">If borrowing via a company — certificate of incorporation & structure chart.</div>
-          <span class="upload-btn">Upload documents</span>
-        </div>
-      </div>
-
-      <div class="info-box">
-        <span class="info-box-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round" fill="none"/><circle cx="10" cy="13.5" r="1.2" fill="#00C2A8"/></svg></span>
-        <span class="info-box-text">In this demonstration no documents are uploaded or stored. In the live service we will explain how your documents are handled and how long they are kept.</span>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="checklist">
-        <div class="check-item">
-<div class="check-circle"></div>
-<span class="check-text">AML screening — not run in demonstration</span>
-        </div>
-        <div class="check-item">
-<div class="check-circle"></div>
-<span class="check-text">PEP &amp; sanctions screening — not run in demonstration</span>
-        </div>
-        <div class="check-item">
-          <div class="check-circle"></div>
-          <span class="check-text">Photo ID verification — awaiting upload</span>
-        </div>
-        <div class="check-item">
-          <div class="check-circle"></div>
-          <span class="check-text">Proof of address — awaiting upload</span>
-        </div>
-      </div>
+      <div id="prop-list"></div>
+      <button type="button" class="btn-add" id="prop-add" onclick="addProperty()">+ Add another security property</button>
+      <div class="field-hint" style="margin-top:0.75rem">Estimated values are your own estimates. No valuation is carried out at this stage.</div>
     </div>
 
-    <!-- ─────────────── STEP 5: FINANCIAL PROFILE ─────────────── -->
+    <!-- ─────────────── STEP 4: OCCUPANCY ─────────────── -->
+    <div class="step-panel" id="panel-4">
+      <div class="panel-eyebrow">Step 4 of 5</div>
+      <h1 class="panel-title">Who lives<br>there<em>?</em></h1>
+      <p class="panel-sub">Whether you or a family member lives in, or plans to live in, a security property can affect the type of lending that is suitable. Please answer for each property.</p>
+
+      <div id="occ-list"></div>
+
+      <div class="indicator-box" id="indicator-box" role="status" aria-live="polite"></div>
+    </div>
+
+    <!-- ─────────────── STEP 5: REVIEW ─────────────── -->
     <div class="step-panel" id="panel-5">
-      <div class="panel-eyebrow">Step 5 of 7</div>
-      <h1 class="panel-title">Financial<br><em>profile.</em></h1>
-      <p class="panel-sub">In the live service you will be able to provide bank statements and source-of-funds evidence. Nothing is uploaded in this demonstration.</p>
+      <div class="panel-eyebrow">Step 5 of 5</div>
+      <h1 class="panel-title">Check and<br><em>send.</em></h1>
+      <p class="panel-sub">Please check your enquiry. This is a demonstration, so nothing will be sent. In the live service, our team would use this to decide the next steps and what else we need.</p>
 
-      <div class="ob-card" style="margin-bottom:1.5rem">
-        <div class="ob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div>
-        <div class="ob-body">
-          <div class="ob-title">Open banking — not available</div>
-          <div class="ob-desc">Bank connection is not available in this demonstration.</div>
-          <button class="ob-btn" disabled aria-disabled="true">Not available in demo</button>
-        </div>
-      </div>
-
-      <div style="text-align:center;margin:1rem 0">
-        <span style="font-family:'Outfit',sans-serif;font-size:0.65rem;color:var(--steel);letter-spacing:0.1em">OR UPLOAD MANUALLY</span>
-      </div>
-
-      <div class="upload-grid">
-        <div class="upload-zone" onclick="toggleUpload(this)">
-          <div class="upload-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V7M8 17V4M13 17v-6M18 17v-9" stroke="#00C2A8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="upload-title">3 months bank statements</div>
-          <div class="upload-sub">Personal or business accounts used for this transaction</div>
-          <span class="upload-btn">Upload PDF</span>
-        </div>
-        <div class="upload-zone" onclick="toggleUpload(this)">
-          <div class="upload-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M10 6v8M7.5 8.5C7.5 7.5 8.5 7 10 7s2.5.7 2.5 1.75-1 1.75-2.5 2c-1.5.25-2.5 1-2.5 2.25S8.5 14.5 10 14.5s2.5-.7 2.5-1.5" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="upload-title">Source of funds evidence</div>
-          <div class="upload-sub">Demonstrating the origin of your deposit / equity contribution</div>
-          <span class="upload-btn">Upload documents</span>
-        </div>
-      </div>
+      <div id="review"></div>
 
       <div class="info-box" style="margin-top:1.25rem">
         <span class="info-box-icon">ℹ</span>
-        <span class="info-box-text">Lenders will need to understand where your deposit and equity are coming from, so we will ask for source-of-funds evidence in the live service.</span>
+        <span class="info-box-text">This is a short initial enquiry, not a full lender application. If we can help, we will tell you what further information and documents are needed.</span>
       </div>
     </div>
-
-    <!-- ─────────────── STEP 6: MATCHED LENDERS ─────────────── -->
-    <div class="step-panel" id="panel-6">
-      <div class="panel-eyebrow">Step 6 of 7</div>
-      <h1 class="panel-title">Your matched<br><em>lenders.</em></h1>
-      <p class="panel-sub">Illustrative layout only. In the live service, this step will show lenders whose criteria may suit your deal. No lenders have been matched and no figures below are real.</p>
-
-      <div style="display:flex;align-items:center;gap:10px;padding:0.85rem 1rem;background:rgba(0,194,168,0.06);border:1px solid rgba(0,194,168,0.15);border-radius:6px;margin-bottom:0.5rem">
-        <span style="font-size:1rem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></span>
-        <span style="font-size:0.78rem;font-weight:300;color:var(--chalk-dim);line-height:1.5"><strong style="color:var(--chalk);font-weight:500">Illustrative layout.</strong> No lenders are matched in this demonstration.</span>
-      </div>
-
-      <div class="match-cards">
-        <div class="match-card top">
-          <div class="match-card-left">
-            <div class="match-top-badge"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg> Layout example</div>
-            <div class="match-lender-name">Example lender A</div>
-            <div class="match-specs">
-              <div class="match-spec-item">
-                <div class="match-spec-label">Rate</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Arrangement</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Completion</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Max LTV</div>
-                <div class="match-spec-val">—</div>
-              </div>
-            </div>
-          </div>
-          <div class="match-prob">
-            <div class="match-prob-ring" style="background:rgba(0,194,168,0.12);border:2px solid rgba(0,194,168,0.4)">
-              <span class="match-prob-pct" style="color:var(--teal)">94%</span>
-            </div>
-            <div class="match-prob-label">Fit<br>indicator</div>
-          </div>
-        </div>
-
-        <div class="match-card">
-          <div class="match-card-left">
-            <div class="match-lender-name">Example lender B</div>
-            <div class="match-specs">
-              <div class="match-spec-item">
-                <div class="match-spec-label">Rate</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Arrangement</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Completion</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Max LTV</div>
-                <div class="match-spec-val">—</div>
-              </div>
-            </div>
-          </div>
-          <div class="match-prob">
-            <div class="match-prob-ring" style="background:rgba(58,191,138,0.1);border:2px solid rgba(58,191,138,0.3)">
-              <span class="match-prob-pct" style="color:var(--success)">87%</span>
-            </div>
-            <div class="match-prob-label">Fit<br>indicator</div>
-          </div>
-        </div>
-
-        <div class="match-card">
-          <div class="match-card-left">
-            <div class="match-lender-name">Example lender C</div>
-            <div class="match-specs">
-              <div class="match-spec-item">
-                <div class="match-spec-label">Rate</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Arrangement</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Completion</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Max LTV</div>
-                <div class="match-spec-val">—</div>
-              </div>
-            </div>
-          </div>
-          <div class="match-prob">
-            <div class="match-prob-ring" style="background:rgba(224,154,58,0.1);border:2px solid rgba(224,154,58,0.3)">
-              <span class="match-prob-pct" style="color:var(--warning)">71%</span>
-            </div>
-            <div class="match-prob-label">Fit<br>indicator</div>
-          </div>
-        </div>
-
-        <div class="match-card">
-          <div class="match-card-left">
-            <div class="match-lender-name">Example lender D</div>
-            <div class="match-specs">
-              <div class="match-spec-item">
-                <div class="match-spec-label">Rate</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Arrangement</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Completion</div>
-                <div class="match-spec-val">—</div>
-              </div>
-              <div class="match-spec-item">
-                <div class="match-spec-label">Max LTV</div>
-                <div class="match-spec-val">—</div>
-              </div>
-            </div>
-          </div>
-          <div class="match-prob">
-            <div class="match-prob-ring" style="background:rgba(136,140,153,0.1);border:2px solid rgba(136,140,153,0.2)">
-              <span class="match-prob-pct" style="color:var(--steel)">58%</span>
-            </div>
-            <div class="match-prob-label">Fit<br>indicator</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─────────────── STEP 7: DIP ─────────────── -->
-    <div class="step-panel" id="panel-7">
-      <div class="panel-eyebrow">Step 7 of 7</div>
-      <h1 class="panel-title">Your decision<br>in <em>principle.</em></h1>
-      <p class="panel-sub">Illustrative layout only. No Decision in Principle is issued in this demonstration and no figures below are real.</p>
-
-      <div class="dip-result">
-        <div class="dip-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 2L4 11h7l-3 7 8-9h-7l3-7z" stroke="#00C2A8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg></div>
-        <div class="dip-title">Indicative terms — example layout</div>
-        <div class="dip-amount">—</div>
-        <div class="dip-sub">Decision in Principle (not issued in demonstration)</div>
-        <div class="dip-specs">
-          <div class="dip-spec">
-            <div class="dip-spec-label">Best rate</div>
-            <div class="dip-spec-val">—</div>
-          </div>
-          <div class="dip-spec">
-            <div class="dip-spec-label">Term</div>
-            <div class="dip-spec-val">—</div>
-          </div>
-          <div class="dip-spec">
-            <div class="dip-spec-label">LTV</div>
-            <div class="dip-spec-val">—</div>
-          </div>
-          <div class="dip-spec">
-            <div class="dip-spec-label">Arrangement fee</div>
-            <div class="dip-spec-val">—</div>
-          </div>
-          <div class="dip-spec">
-            <div class="dip-spec-label">Completion</div>
-            <div class="dip-spec-val">—</div>
-          </div>
-          <div class="dip-spec">
-            <div class="dip-spec-label">Lenders matched</div>
-            <div class="dip-spec-val">—</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="checklist">
-<div class="check-item"><div class="check-circle"></div><span class="check-text">Application — not submitted (demonstration)</span></div>
-<div class="check-item"><div class="check-circle"></div><span class="check-text">Identity verification — not run</span></div>
-<div class="check-item"><div class="check-circle"></div><span class="check-text">Lender matching — not run</span></div>
-<div class="check-item"><div class="check-circle"></div><span class="check-text">Underwriting review — live service only</span></div>
-</div>
-
-<div class="info-box">
-<span class="info-box-icon">ℹ</span>
-<span class="info-box-text">This is a demonstration of the application journey. Nothing has been submitted, sent or stored, and no reference number has been issued.</span>
-</div>
-</div>
 
 <!-- NAV BUTTONS -->
     <div class="nav-buttons">
       <button class="btn-back" id="btn-back" onclick="prevStep()" disabled>Back</button>
-      <span class="step-counter" id="step-counter">Step 1 of 7</span>
+      <span class="step-counter" id="step-counter">Step 1 of 5</span>
       <button class="btn-next" id="btn-next" onclick="nextStep()">Continue</button>
     </div>
 
@@ -1584,12 +1309,10 @@ body {
 
 <script>
 let currentStep = 1;
-const totalSteps = 7;
+const totalSteps = 5;
 
-const timeLabels = [
-'Demonstration only','Demonstration only','Demonstration only','Demonstration only','Demonstration only','Demonstration only','Demonstration only'
-];
-const progressPcts = [14, 28, 42, 57, 71, 85, 100];
+const timeLabels = ['Demonstration only','Demonstration only','Demonstration only','Demonstration only','Demonstration only'];
+const progressPcts = [20, 40, 60, 80, 100];
 
 function goTo(step) {
   if (step > currentStep) return;
@@ -1636,7 +1359,7 @@ function amountCommit(el) {
   amountMessage(n < 100000 || n > 30000000 ? 'This is outside the range the slider covers. You can still continue; lender criteria vary and are not yet confirmed.' : AMOUNT_HINT, false);
 }
 function nextStep() {
-  if (currentStep === 1 && !amountValid(true)) { document.getElementById('loan-amount').focus(); return; }
+  if (!validateStep(currentStep)) return;
   if (currentStep < totalSteps) {
     currentStep++;
     updateUI();
@@ -1681,6 +1404,9 @@ function updateUI() {
   document.getElementById('progress-pct').textContent = pct + '%';
   document.getElementById('time-remaining').textContent = timeLabels[currentStep - 1];
 
+  if (currentStep === 4) renderOccupancy();
+  if (currentStep === 5) renderReview();
+
   // Buttons
   document.getElementById('btn-back').disabled = currentStep === 1;
   document.getElementById('step-counter').textContent = 'Step ' + currentStep + ' of ' + totalSteps;
@@ -1694,7 +1420,7 @@ function updateUI() {
       sub = document.createElement('button');
       sub.id = 'btn-submit-final';
       sub.className = 'btn-submit';
-      sub.textContent = 'Submit (demonstration)';
+      sub.textContent = 'Send enquiry (demonstration)';
       sub.onclick = () => {
   let r = document.getElementById('demo-result');
   if (!r) {
@@ -1720,24 +1446,298 @@ function selectType(el) {
   el.classList.add('selected');
 }
 
-function toggleUpload(el) {
-  el.classList.toggle('uploaded');
-  const icon = el.querySelector('.upload-icon');
-  const btn = el.querySelector('.upload-btn');
-  const title = el.querySelector('.upload-title');
-  if (el.classList.contains('uploaded')) {
-    icon.textContent = '✓';
-    btn.textContent = 'Uploaded ✓';
-  } else {
-    icon.textContent = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 2h7l4 4v12a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#00C2A8" stroke-width="1.2" fill="none"/><path d="M12 2v4h4M7 9h6M7 12h6M7 15h4" stroke="#00C2A8" stroke-width="1.2" stroke-linecap="round"/></svg>';
-    btn.textContent = 'Upload document';
+/* ── BR-004: short enquiry (demonstration) ── */
+const UK_PC = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i;
+const MAX_PROPS = 10;
+const OCC_OPTIONS = [
+  ['no', 'No — nobody lives there or intends to'],
+  ['current', 'Yes — I (or an applicant) currently live there'],
+  ['intend', 'Yes — I (or an applicant) intend to live there'],
+  ['family', 'Yes — a family member lives or intends to live there'],
+  ['unsure', 'Not sure']
+];
+const occState = {};
+let propSeq = 0;
+
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function $(id) { return document.getElementById(id); }
+function gbp(n) { return '£' + Number(n).toLocaleString('en-GB'); }
+function normPc(s) { const c = String(s).toUpperCase().replace(/\s+/g, ''); return c.length > 3 ? c.slice(0, -3) + ' ' + c.slice(-3) : c; }
+function normText(s) { return String(s).toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
+/* errors */
+function setErr(el, msg) {
+  const f = el.closest('.field') || el.parentElement;
+  f.classList.add('has-error');
+  let m = f.querySelector(':scope > .field-error');
+  if (!m) { m = document.createElement('div'); m.className = 'field-error'; m.setAttribute('role', 'alert'); f.appendChild(m); }
+  m.textContent = msg;
+  el.setAttribute('aria-invalid', 'true');
+}
+function clearErr(el) {
+  const f = el.closest('.field');
+  if (!f) return;
+  f.classList.remove('has-error');
+  const m = f.querySelector(':scope > .field-error');
+  if (m) m.remove();
+  el.removeAttribute('aria-invalid');
+}
+
+/* money inputs (GBP, whole pounds) */
+function moneyTyped(el) {
+  const before = el.value.slice(0, el.selectionStart).replace(/[^0-9]/g, '').length;
+  const digits = el.value.replace(/[^0-9]/g, '').replace(/^0+(?=[0-9])/, '').slice(0, 10);
+  el.value = digits ? Number(digits).toLocaleString('en-GB') : '';
+  let pos = 0, seen = 0;
+  while (pos < el.value.length && seen < before) { if (/[0-9]/.test(el.value[pos])) seen++; pos++; }
+  el.setSelectionRange(pos, pos);
+  clearErr(el);
+}
+function moneyVal(id) {
+  const el = $(id);
+  const n = el ? parseInt(String(el.value).replace(/[^0-9]/g, ''), 10) : NaN;
+  return isNaN(n) ? 0 : n;
+}
+function moneyField(id, label, required, hint) {
+  return '<div class="field"><div class="field-label">' + label + (required ? ' <span class="field-required">*</span>' : '') + '</div>' +
+    '<div class="money"><span>£</span><input class="field-input" type="text" inputmode="numeric" autocomplete="off" id="' + id + '" oninput="moneyTyped(this)" aria-label="' + esc(label) + ' in pounds"></div>' +
+    (hint ? '<div class="field-hint">' + hint + '</div>' : '') + '</div>';
+}
+
+/* reusable address entry with demonstration postcode lookup */
+function addrHTML(key) {
+  return '<div class="addr" id="addr-' + key + '">' +
+    '<div class="addr-lookup"><input class="field-input" type="text" id="' + key + '-lookup" placeholder="Postcode, e.g. SW1A 1AA" autocomplete="off" aria-label="Postcode to look up" ' +
+    'onkeydown="if(event.key===\'Enter\'){event.preventDefault();addrLookup(\'' + key + '\')}">' +
+    '<button type="button" class="addr-btn" onclick="addrLookup(\'' + key + '\')">Find address</button></div>' +
+    '<div class="field-hint">Demonstration lookup: it returns example addresses only, not real ones. You can always enter the address manually below.</div>' +
+    '<div class="addr-results" id="' + key + '-results" hidden></div>' +
+    '<div class="form-grid form-grid-2 addr-fields">' +
+    '<div class="field span-2"><div class="field-label">Address line 1 <span class="field-required">*</span></div><input class="field-input" type="text" id="' + key + '-l1" autocomplete="off" oninput="clearErr(this)"></div>' +
+    '<div class="field span-2"><div class="field-label">Address line 2</div><input class="field-input" type="text" id="' + key + '-l2" autocomplete="off"></div>' +
+    '<div class="field"><div class="field-label">Town / city <span class="field-required">*</span></div><input class="field-input" type="text" id="' + key + '-town" autocomplete="off" oninput="clearErr(this)"></div>' +
+    '<div class="field"><div class="field-label">Postcode <span class="field-required">*</span></div><input class="field-input" type="text" id="' + key + '-pc" autocomplete="off" oninput="clearErr(this)" onblur="this.value=normPc(this.value)"></div>' +
+    '</div></div>';
+}
+function addrLookup(key) {
+  const box = $(key + '-results');
+  const pc = normPc($(key + '-lookup').value);
+  box.hidden = false;
+  if (!UK_PC.test(pc)) {
+    box.innerHTML = '<div class="addr-msg" role="alert">Enter a full UK postcode, or fill in the address manually below.</div>';
+    return;
   }
+  let html = '';
+  for (let n = 1; n <= 3; n++) {
+    html += '<button type="button" class="addr-result" onclick="addrPick(\'' + key + '\',' + n + ',\'' + pc + '\')">' + n + ' Example Street, Example Town, ' + pc + '<small>demonstration</small></button>';
+  }
+  box.innerHTML = html + '<div class="addr-msg">Example addresses only. Choose one to try the form, or enter your own address manually below.</div>';
+}
+function addrPick(key, n, pc) {
+  $(key + '-l1').value = n + ' Example Street';
+  $(key + '-town').value = 'Example Town';
+  $(key + '-pc').value = pc;
+  ['l1', 'town', 'pc'].forEach(k => clearErr($(key + '-' + k)));
+  const box = $(key + '-results');
+  box.innerHTML = '<div class="addr-msg">Example address filled in. You can edit any line.</div>';
+}
+function addrRead(key) {
+  return { l1: $(key + '-l1').value.trim(), l2: $(key + '-l2').value.trim(), town: $(key + '-town').value.trim(), pc: normPc($(key + '-pc').value) };
+}
+function addrText(a) { return [a.l1, a.l2, a.town, a.pc].filter(Boolean).join(', '); }
+function validateAddr(key) {
+  let first = null;
+  const l1 = $(key + '-l1'), town = $(key + '-town'), pc = $(key + '-pc');
+  if (!l1.value.trim()) { setErr(l1, 'Please enter the first line of the address.'); first = first || l1; }
+  if (!town.value.trim()) { setErr(town, 'Please enter the town or city.'); first = first || town; }
+  if (!pc.value.trim()) { setErr(pc, 'Please enter the postcode.'); first = first || pc; }
+  else if (!UK_PC.test(normPc(pc.value))) { setErr(pc, 'Please enter a valid UK postcode.'); first = first || pc; }
+  return first;
+}
+
+/* applicants */
+function toggleApplicant2(el) { $('a2-fields').style.display = el.checked ? 'block' : 'none'; }
+function toggleSameHome(el) { $('a2-addr').style.display = el.checked ? 'none' : 'block'; }
+function applicants() {
+  const list = [{ name: ($('a1-first').value + ' ' + $('a1-last').value).trim(), email: $('a1-email').value.trim(), phone: $('a1-phone').value.trim(), addr: addrRead('home') }];
+  if ($('a2-toggle').checked) {
+    list.push({ name: ($('a2-first').value + ' ' + $('a2-last').value).trim(), email: $('a2-email').value.trim(), phone: $('a2-phone').value.trim(),
+      addr: $('a2-same').checked ? addrRead('home') : addrRead('home2'), same: $('a2-same').checked });
+  }
+  return list;
+}
+
+/* security properties */
+function propIds() { return [...document.querySelectorAll('#prop-list .prop-card')].map(c => c.dataset.pid); }
+function addProperty() {
+  if (propIds().length >= MAX_PROPS) return;
+  const id = ++propSeq;
+  const d = document.createElement('div');
+  d.className = 'prop-card'; d.dataset.pid = id; d.id = 'prop-' + id;
+  d.innerHTML = '<div class="prop-head"><div class="prop-title">Security property <span class="prop-num"></span></div>' +
+    '<button type="button" class="btn-link prop-remove" onclick="removeProperty(' + id + ')">Remove</button></div>' +
+    addrHTML('p' + id) +
+    '<div class="form-grid form-grid-2" style="margin-top:1.25rem">' +
+    '<div class="field span-2"><div class="field-label">Property type <span class="field-required">*</span></div><select class="field-select" id="p' + id + '-type" onchange="clearErr(this)">' +
+    '<option value="" disabled selected>Select type</option><option>House</option><option>Flat / apartment</option><option>HMO</option><option>Office / commercial</option><option>Retail unit</option><option>Industrial / warehouse</option><option>Mixed-use</option><option>Land</option><option>Other</option></select></div>' +
+    moneyField('p' + id + '-value', 'Estimated value', true) +
+    moneyField('p' + id + '-mortgage', 'Outstanding mortgage', false, 'Include any other secured borrowing. Leave blank if none.') +
+    moneyField('p' + id + '-price', 'Purchase price (if buying)', false) +
+    '</div>';
+  $('prop-list').appendChild(d);
+  renumberProps();
+}
+function removeProperty(id) {
+  if (propIds().length <= 1) return;
+  const el = $('prop-' + id);
+  if (el) el.remove();
+  delete occState[id];
+  renumberProps();
+}
+function renumberProps() {
+  const cards = document.querySelectorAll('#prop-list .prop-card');
+  cards.forEach((c, i) => {
+    c.querySelector('.prop-num').textContent = i + 1;
+    c.querySelector('.prop-remove').style.display = cards.length > 1 ? '' : 'none';
+  });
+  $('prop-add').disabled = cards.length >= MAX_PROPS;
+}
+function properties() {
+  return propIds().map((id, i) => ({
+    id, n: i + 1, addr: addrRead('p' + id), type: $('p' + id + '-type').value,
+    value: moneyVal('p' + id + '-value'), mortgage: moneyVal('p' + id + '-mortgage'), price: moneyVal('p' + id + '-price'),
+    occ: occState[id] || ''
+  }));
+}
+
+/* occupancy and regulatory indicators (an indicator only, never a determination) */
+function occLabel(v) { const o = OCC_OPTIONS.find(x => x[0] === v); return o ? o[1] : ''; }
+function renderOccupancy() {
+  const props = properties();
+  $('occ-list').innerHTML = props.map(p => {
+    const opts = '<option value="" disabled' + (p.occ ? '' : ' selected') + '>Select an answer</option>' +
+      OCC_OPTIONS.map(o => '<option value="' + o[0] + '"' + (p.occ === o[0] ? ' selected' : '') + '>' + esc(o[1]) + '</option>').join('');
+    return '<div class="occ-row"><div class="field"><div class="field-label">Property ' + p.n + ' <span class="field-required">*</span></div>' +
+      '<div class="occ-addr">' + esc(addrText(p.addr) || 'Address not yet entered') + '</div>' +
+      '<select class="field-select" id="occ-' + p.id + '" aria-label="Occupancy of property ' + p.n + '" onchange="occChanged(' + p.id + ',this)">' + opts + '</select></div></div>';
+  }).join('');
+  updateIndicators();
+}
+function occChanged(id, el) { occState[id] = el.value; clearErr(el); updateIndicators(); }
+function addrMatch(a, b) {
+  if (!a.pc || !b.pc || normText(a.pc) !== normText(b.pc)) return '';
+  return (a.l1 && b.l1 && normText(a.l1) === normText(b.l1)) ? 'full' : 'postcode';
+}
+function indicators() {
+  const props = properties(), apps = applicants();
+  const review = [], notes = [];
+  props.forEach(p => {
+    if (p.occ && p.occ !== 'no') review.push('Property ' + p.n + ': ' + occLabel(p.occ).replace(/^Yes — /, '').replace(/^No — /, '') + '.');
+    apps.forEach((a, i) => {
+      const who = a.name || ('applicant ' + (i + 1));
+      const m = addrMatch(p.addr, a.addr);
+      if (m === 'full') notes.push('Property ' + p.n + ' appears to share an address with the home address of ' + who + '.' + (p.occ === 'no' ? ' You answered that nobody lives there, so please check the address.' : ''));
+      else if (m === 'postcode') notes.push('Property ' + p.n + ' shares a postcode with the home address of ' + who + '.');
+    });
+  });
+  return { review, notes };
+}
+function updateIndicators() {
+  const box = $('indicator-box'); if (!box) return;
+  const r = indicators();
+  const fine = '<div class="fine">This is an indicator only. It is not a decision on whether lending is regulated, which our team assesses using the full facts. An address match on its own is never used to decide.</div>';
+  if (r.review.length) {
+    box.className = 'indicator-box review';
+    box.innerHTML = '<strong>This enquiry may need a regulated lending assessment</strong>Based on your answers:<ul>' + r.review.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>' +
+      (r.notes.length ? '<ul>' + r.notes.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>' : '') + fine;
+  } else if (r.notes.length) {
+    box.className = 'indicator-box';
+    box.innerHTML = '<strong>Points to confirm</strong><ul>' + r.notes.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>' + fine;
+  } else {
+    box.className = 'indicator-box';
+    box.innerHTML = '<strong>No regulated lending indicators raised</strong>Nothing in your answers suggests a regulated lending assessment is needed at this stage.' + fine;
+  }
+}
+
+/* review */
+function renderReview() {
+  const props = properties(), apps = applicants();
+  const sel = document.querySelector('.type-card.selected .type-card-title');
+  const f = (id) => { const e = $(id); return e && e.value ? e.value : '—'; };
+  const row = (k, v) => '<div class="rev-row"><span>' + esc(k) + '</span><b>' + esc(v) + '</b></div>';
+  let h = '<div class="rev-block"><h3>Finance</h3>' +
+    row('Finance type', sel ? sel.textContent : '—') + row('Loan amount', gbp(amountValue())) + row('Purpose', f('f-purpose')) + row('Term', f('f-term')) +
+    row('Charge', f('f-charge')) + row('Funds needed', f('f-when')) + row('Exit strategy', f('f-exit')) + '</div>';
+  h += '<div class="rev-block"><h3>Applicants</h3>' + apps.map((a, i) =>
+    row('Applicant ' + (i + 1), a.name || '—') + row('Contact', [a.email, a.phone].filter(Boolean).join(' · ') || '—') + row('Home address', addrText(a.addr) || '—')).join('') +
+    row('Applying as', f('a-type')) + '</div>';
+  let totalV = 0, totalM = 0;
+  props.forEach(p => {
+    totalV += p.value; totalM += p.mortgage;
+    h += '<div class="rev-block"><h3>Security property ' + p.n + '</h3>' + row('Address', addrText(p.addr) || '—') + row('Type', p.type || '—') +
+      row('Estimated value', p.value ? gbp(p.value) : '—') + row('Existing borrowing', gbp(p.mortgage)) + (p.price ? row('Purchase price', gbp(p.price)) : '') +
+      row('Occupancy', occLabel(p.occ) || '—') + '</div>';
+  });
+  const loan = amountValue();
+  h += '<div class="rev-block"><h3>Indicative position</h3>' + row('Total estimated value', gbp(totalV)) + row('Total existing borrowing', gbp(totalM)) +
+    (totalV > 0 ? row('Combined borrowing against value', Math.round((loan + totalM) / totalV * 1000) / 10 + '% (indicative, your own figures)') : '') + '</div>';
+  $('review').innerHTML = h;
+  const r = indicators();
+  $('review').insertAdjacentHTML('beforeend', '<div class="indicator-box' + (r.review.length ? ' review' : '') + '"><strong>' +
+    (r.review.length ? 'May need a regulated lending assessment' : (r.notes.length ? 'Points to confirm' : 'No regulated lending indicators raised')) + '</strong>' +
+    '<div class="fine">Indicator only — not a decision on regulated status.</div></div>');
+}
+
+/* validation per step */
+function validateStep(n) {
+  let first = null;
+  const need = (el, msg) => { if (!el.value || !String(el.value).trim()) { setErr(el, msg); first = first || el; return false; } return true; };
+  if (n === 1) {
+    if (!amountValid(true)) first = $('loan-amount');
+    ['f-purpose', 'f-when', 'f-exit'].forEach(id => { const el = $(id); if (!el.value) { setErr(el, 'Please choose an option.'); first = first || el; } });
+  }
+  if (n === 2) {
+    need($('a1-first'), 'Please enter your first name.'); need($('a1-last'), 'Please enter your last name.');
+    const em = $('a1-email');
+    if (need(em, 'Please enter your email address.') && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())) { setErr(em, 'Please enter a valid email address.'); first = first || em; }
+    const ph = $('a1-phone');
+    if (need(ph, 'Please enter a phone number.') && ph.value.replace(/[^0-9]/g, '').length < 10) { setErr(ph, 'Please enter a valid phone number.'); first = first || ph; }
+    const t = $('a-type'); if (!t.value) { setErr(t, 'Please choose an option.'); first = first || t; }
+    const a = validateAddr('home'); first = first || a;
+    if ($('a2-toggle').checked) {
+      need($('a2-first'), 'Please enter their first name.'); need($('a2-last'), 'Please enter their last name.');
+      const e2 = $('a2-email'); if (e2.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e2.value.trim())) { setErr(e2, 'Please enter a valid email address.'); first = first || e2; }
+      if (!$('a2-same').checked) { const b = validateAddr('home2'); first = first || b; }
+    }
+    // find first error in DOM order
+    first = document.querySelector('#panel-2 .has-error input, #panel-2 .has-error select') || first;
+  }
+  if (n === 3) {
+    propIds().forEach(id => {
+      const a = validateAddr('p' + id); first = first || a;
+      const t = $('p' + id + '-type'); if (!t.value) { setErr(t, 'Please choose a property type.'); first = first || t; }
+      const v = $('p' + id + '-value'); if (!moneyVal('p' + id + '-value')) { setErr(v, 'Please enter an estimated value.'); first = first || v; }
+    });
+    first = document.querySelector('#panel-3 .has-error input, #panel-3 .has-error select') || first;
+  }
+  if (n === 4) {
+    properties().forEach(p => { if (!p.occ) { const el = $('occ-' + p.id); setErr(el, 'Please answer for this property.'); first = first || el; } });
+  }
+  if (first) { first.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); first.focus({ preventScroll: true }); return false; }
+  return true;
+}
+
+function initEnquiry() {
+  $('addr-home-wrap').innerHTML = addrHTML('home');
+  $('addr-home2-wrap').innerHTML = addrHTML('home2');
+  addProperty();
 }
 
 function toggleBroker(el) {
   document.getElementById('broker-fields').style.display = el.checked ? 'block' : 'none';
 }
 
+initEnquiry();
 updateUI();
 </script>
 </body>
