@@ -59,6 +59,7 @@ body {
   z-index: 10;
 }
 
+a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
 .sidebar-logo {
   padding: 0 1.75rem 2rem;
   border-bottom: 1px solid var(--border);
@@ -925,8 +926,12 @@ body {
 @media (max-width:600px){.addr-lookup{flex-wrap:wrap}.addr-btn{width:100%}.rev-row{flex-direction:column;gap:0}.rev-row b{text-align:left}}
 
 /* responsive: added for narrow screens (the page had no breakpoints) */
+.m-home{display:none}
 @media (max-width:900px){
   .sidebar{display:none}
+  .m-home{display:flex;align-items:center;gap:10px;padding:0.9rem 1.25rem 0;text-decoration:none;color:var(--chalk);min-height:44px}
+  .m-home .logo-mark{margin-bottom:0}
+  .m-home .logo-name{font-size:1rem}
   .main{margin-left:0}
   .topbar{padding:1rem 1.25rem;gap:0.75rem;flex-wrap:wrap}
   .main>.demo-notice{margin:1rem 1.25rem 0;flex-direction:column;gap:4px}
@@ -953,7 +958,7 @@ body {
 
   <!-- ── SIDEBAR ── -->
   <aside class="sidebar">
-    <div class="sidebar-logo">
+    <a href="index.html" class="sidebar-logo" aria-label="Bridgr — back to the homepage">
       <div class="logo-mark">
         <span style="background:#00C2A8"></span>
         <span style="background:#F4F4F2;opacity:0.12"></span>
@@ -963,7 +968,7 @@ body {
       <div class="logo-name">BRIDGR</div>
       <div class="logo-line"></div>
       <div class="logo-sub">Powered by MCP</div>
-    </div>
+    </a>
 
     <div class="sidebar-intro">
       <div class="sidebar-intro-title">Bridging enquiry</div>
@@ -1026,6 +1031,10 @@ body {
 
   <!-- ── MAIN ── -->
   <div class="main">
+    <a href="index.html" class="m-home" aria-label="Bridgr — back to the homepage">
+      <span class="logo-mark" aria-hidden="true"><span style="background:#00C2A8"></span><span style="background:#F4F4F2;opacity:0.12"></span><span style="background:#F4F4F2;opacity:0.06"></span><span style="background:#C9A96E"></span></span>
+      <span class="logo-name">BRIDGR</span>
+    </a>
 
     <div class="demo-notice" data-demo-notice role="note"><strong>Demonstration</strong><span>This enquiry form is a demonstration. Nothing you enter is sent, stored or assessed, and no enquiry is made. The postcode lookup returns example addresses only.</span></div>
 
