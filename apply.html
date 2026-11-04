@@ -384,6 +384,12 @@ body {
   line-height: 1.5;
 }
 
+/* Amount input: the amount is typed (or set by the slider) in the display box */
+.amount-input{background:transparent;border:0;outline:0;padding:0;margin:0;width:100%;min-width:0;font-family:'Syne',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-0.04em;color:var(--chalk)}
+.amount-display:focus-within{border-color:var(--teal)}
+.amount-display.invalid{border-color:#E05252}
+.field-hint.error{color:#E05252}
+@media (max-width:480px){.amount-input{font-size:1.8rem}}
 /* Amount display */
 .amount-display {
   background: var(--deep-teal);
@@ -1048,12 +1054,12 @@ body {
           <div class="field-label">Loan amount required <span class="field-required">*</span></div>
           <div class="amount-display">
             <span class="amount-prefix">£</span>
-            <span class="amount-val" id="loan-display">1,500,000</span>
+            <input type="text" class="amount-val amount-input" id="loan-amount" inputmode="numeric" autocomplete="off" value="1,500,000" aria-label="Loan amount required in pounds" aria-describedby="loan-amount-msg" oninput="amountTyped(this)" onblur="amountCommit(this)">
           </div>
-          <input type="range" min="100000" max="30000000" step="50000" value="1500000"
-            oninput="document.getElementById('loan-display').textContent=Number(this.value).toLocaleString('en-GB')"
+          <input type="range" id="loan-slider" min="100000" max="30000000" step="50000" value="1500000" aria-label="Loan amount slider"
+            oninput="amountSlid(this)"
             style="margin-bottom:6px">
-          <div class="field-hint">Indicative amount only. Lender criteria vary and are not yet confirmed.</div>
+          <div class="field-hint" id="loan-amount-msg" role="status">Type an amount or use the slider. Indicative amount only. Lender criteria vary and are not yet confirmed.</div>
         </div>
 
         <div class="field">
@@ -1591,7 +1597,46 @@ function goTo(step) {
   updateUI();
 }
 
+const AMOUNT_HINT = 'Type an amount or use the slider. Indicative amount only. Lender criteria vary and are not yet confirmed.';
+function amountValue() {
+  const n = parseInt(String(document.getElementById('loan-amount').value).replace(/[^0-9]/g, ''), 10);
+  return isNaN(n) ? 0 : n;
+}
+function amountMessage(msg, isError) {
+  const m = document.getElementById('loan-amount-msg');
+  m.textContent = msg; m.classList.toggle('error', !!isError);
+  const inp = document.getElementById('loan-amount');
+  inp.closest('.amount-display').classList.toggle('invalid', !!isError);
+  inp.setAttribute('aria-invalid', isError ? 'true' : 'false');
+}
+function amountTyped(el) {
+  // digits only, UK thousands separators, caret kept next to the same digit
+  const digitsBefore = el.value.slice(0, el.selectionStart).replace(/[^0-9]/g, '').length;
+  const digits = el.value.replace(/[^0-9]/g, '').replace(/^0+/, '').slice(0, 10);
+  el.value = digits ? Number(digits).toLocaleString('en-GB') : '';
+  let pos = 0, seen = 0;
+  while (pos < el.value.length && seen < digitsBefore) { if (/[0-9]/.test(el.value[pos])) seen++; pos++; }
+  el.setSelectionRange(pos, pos);
+  const n = amountValue();
+  if (n) document.getElementById('loan-slider').value = Math.min(Math.max(n, 100000), 30000000);
+  amountMessage(AMOUNT_HINT, false);
+}
+function amountSlid(slider) {
+  document.getElementById('loan-amount').value = Number(slider.value).toLocaleString('en-GB');
+  amountMessage(AMOUNT_HINT, false);
+}
+function amountValid(showMsg) {
+  if (amountValue() < 1) { if (showMsg) amountMessage('Please enter the loan amount you need, in pounds.', true); return false; }
+  return true;
+}
+function amountCommit(el) {
+  if (!amountValid(true)) return;
+  const n = amountValue();
+  el.value = n.toLocaleString('en-GB');
+  amountMessage(n < 100000 || n > 30000000 ? 'This is outside the range the slider covers. You can still continue; lender criteria vary and are not yet confirmed.' : AMOUNT_HINT, false);
+}
 function nextStep() {
+  if (currentStep === 1 && !amountValid(true)) { document.getElementById('loan-amount').focus(); return; }
   if (currentStep < totalSteps) {
     currentStep++;
     updateUI();
