@@ -201,7 +201,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 
 @media(max-width:768px){
   nav{padding:0 1.5rem}.nav-links{display:none}
-  .hero{grid-template-columns:1fr;padding:68px 1.5rem 3rem}.hero-right{display:none}
+  .hero{grid-template-columns:1fr;padding:68px 1.5rem 3rem}.hero-right{display:block;padding:0 0 1rem}
   .how{padding:4rem 1.5rem}.how-header{grid-template-columns:1fr}
   .how-track.active{grid-template-columns:1fr 1fr}
   .stats{grid-template-columns:1fr 1fr;padding:3rem 1.5rem;gap:2rem}.stat-block{border-right:none;padding:0}
@@ -218,6 +218,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="concierge.css">
+<link rel="stylesheet" href="calc.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 
@@ -255,29 +257,7 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
     <p class="bx-sub" style="margin-top:-1.5rem;margin-bottom:1.5rem">Speak directly to a bridging finance specialist: <a href="tel:+442089695833" data-phone-link style="color:var(--teal)">0208 969 5833</a></p>
   </div>
   <div class="hero-right">
-    <div class="app-preview">
-      <div class="app-bar">
-        <div class="app-dots"><span></span><span></span><span></span></div>
-        <div class="app-url">bridgr.uk/apply.html</div>
-      </div>
-      <div class="app-body">
-        <div class="app-ey">Illustrative example — sample figures only</div>
-        <div class="app-step"><div class="app-dot" style="background:var(--teal)"></div><div class="app-slabel active">Finance requirements</div><div class="app-check">✓</div></div>
-        <div class="app-step"><div class="app-dot" style="background:var(--teal)"></div><div class="app-slabel active">About you</div><div class="app-check">✓</div></div>
-        <div class="app-step"><div class="app-dot" style="background:var(--teal);opacity:0.4"></div><div class="app-slabel active">Security properties</div><div class="app-check" style="color:var(--steel)">→</div></div>
-        <div class="app-step"><div class="app-dot" style="background:var(--graphite)"></div><div class="app-slabel">Occupancy</div></div>
-        <div class="app-step"><div class="app-dot" style="background:var(--graphite)"></div><div class="app-slabel">Review</div></div>
-        <div class="app-div"></div>
-        <div class="app-cards">
-          <div class="app-card"><div class="app-cl">Sample loan amount</div><div class="app-cv">£2.4m</div><div class="app-cs">Residential bridging</div></div>
-          <div class="app-card"><div class="app-cl">Term</div><div class="app-cv">12mo</div><div class="app-cs">Exit: refinance</div></div>
-        </div>
-        <div class="app-prog">
-          <div class="app-pr"><span class="app-pl">Sample progress</span><span class="app-pp">57%</span></div>
-          <div class="app-pt"><div class="app-pf"></div></div>
-        </div>
-      </div>
-    </div>
+    <div data-bridgr-calc="compact"></div>
   </div>
 </section>
 
@@ -431,6 +411,8 @@ footer{background:var(--carbon);border-top:1px solid var(--border);padding:3.5re
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+<script src="calc-core.js" defer></script>
 <script src="concierge.js" defer></script>
+<script src="mobile-nav.js" defer></script>
 </body>
 </html>

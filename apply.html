@@ -957,6 +957,7 @@ a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
 </style>
 <link rel="stylesheet" href="demo-notice.css">
 <link rel="stylesheet" href="concierge.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 
@@ -1124,15 +1125,13 @@ a.sidebar-logo { display: block; text-decoration: none; color: inherit; }
         </div>
 
         <div class="field">
-          <div class="field-label">Approximate term <span class="field-required">*</span></div>
-          <select class="field-select" id="f-term">
-            <option>1–3 months</option>
-            <option>3–6 months</option>
-            <option selected>6–12 months</option>
-            <option>12–18 months</option>
-            <option>18–24 months</option>
-            <option>24–36 months</option>
+          <div class="field-label">Term <span class="field-required">*</span></div>
+          <select class="field-select" id="f-term" aria-label="Loan term" onchange="termChanged()">
+            <option value="6">6 months</option>
+            <option value="12" selected>12 months</option>
+            <option value="custom">Custom</option>
           </select>
+          <input type="text" class="field-input" id="f-term-months" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="Number of months (1–36)" aria-label="Custom term in months" style="display:none;margin-top:8px" oninput="this.value=this.value.replace(/\D/g,'');clearErr(this)">
         </div>
         <div class="field">
           <div class="field-label">When are funds needed? <span class="field-required">*</span></div>
@@ -1716,7 +1715,7 @@ function renderReview() {
   const f = (id) => { const e = $(id); return e && e.value ? e.value : '—'; };
   const row = (k, v) => '<div class="rev-row"><span>' + esc(k) + '</span><b>' + esc(v) + '</b></div>';
   let h = '<div class="rev-block"><h3>Finance</h3>' +
-    row('Finance type', sel ? sel.textContent : '—') + row('Loan amount', gbp(amountValue())) + row('Purpose', f('f-purpose')) + row('Term', f('f-term')) +
+    row('Finance type', sel ? sel.textContent : '—') + row('Loan amount', gbp(amountValue())) + row('Purpose', f('f-purpose')) + row('Term', termText()) +
     row('Charge', f('f-charge')) + row('Funds needed', f('f-when')) + row('Exit strategy', f('f-exit')) + '</div>';
   h += '<div class="rev-block"><h3>Applicants</h3>' + apps.map((a, i) =>
     row('Applicant ' + (i + 1), a.name || '—') + row('Contact', [a.email, a.phone].filter(Boolean).join(' · ') || '—') + row('Home address', addrText(a.addr) || '—')).join('') +
@@ -1739,11 +1738,28 @@ function renderReview() {
 }
 
 /* validation per step */
+function termValue() { const s = $('f-term').value; if (s !== 'custom') return +s; const n = parseInt($('f-term-months').value, 10); return n >= 1 && n <= 36 ? n : 0; }
+function termText() { const n = termValue(); return n ? n + (n === 1 ? ' month' : ' months') : '—'; }
+function termChanged() { const c = $('f-term').value === 'custom'; $('f-term-months').style.display = c ? '' : 'none'; if (c) $('f-term-months').focus(); }
+(function prefillFromCalculator() {
+  try {
+    const p = new URLSearchParams(location.search);
+    const amt = parseInt(p.get('amount'), 10), term = parseInt(p.get('term'), 10);
+    const la = $('loan-amount');
+    if (amt >= 10000 && amt <= 100000000 && la && la.value === '1,500,000') { la.value = amt.toLocaleString('en-GB'); amountTyped(la); amountCommit(la); }
+    if (term >= 1 && term <= 36) {
+      const s = $('f-term');
+      if (term === 6 || term === 12) s.value = String(term); else { s.value = 'custom'; $('f-term-months').value = term; }
+      termChanged();
+    }
+  } catch (e) {}
+})();
 function validateStep(n) {
   let first = null;
   const need = (el, msg) => { if (!el.value || !String(el.value).trim()) { setErr(el, msg); first = first || el; return false; } return true; };
   if (n === 1) {
     if (!amountValid(true)) first = $('loan-amount');
+    if (!termValue()) { setErr($('f-term-months').style.display === 'none' ? $('f-term') : $('f-term-months'), 'Please enter a term of 1 to 36 months.'); first = first || $('f-term-months'); }
     ['f-purpose', 'f-when', 'f-exit'].forEach(id => { const el = $(id); if (!el.value) { setErr(el, 'Please choose an option.'); first = first || el; } });
   }
   if (n === 2) {

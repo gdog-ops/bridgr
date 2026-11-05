@@ -588,6 +588,9 @@ input[type=range]::-moz-range-thumb {
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="concierge.css">
+<link rel="stylesheet" href="calc.css">
+<style>.cx-wrap{display:block;padding:7rem 4rem 3rem;max-width:1280px;margin:0 auto}.page-header{padding-bottom:2rem}@media (max-width:900px){.cx-wrap{padding:1rem 1.25rem 2.5rem}}</style>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 
@@ -621,261 +624,40 @@ input[type=range]::-moz-range-thumb {
   <div class="fade-up" style="animation-delay:0.1s">
     <div class="eyebrow">Structured Finance Tool</div>
     <h1 class="page-title">Bridging loan<br><em>calculator.</em></h1>
-    <div class="disclaimer-pill">Indicative estimates only — not a formal quote</div>
+    <div class="disclaimer-pill">Illustrative estimates only — not a lender offer, quote or DIP</div>
   </div>
   <p class="page-desc fade-up" style="animation-delay:0.3s">
-    Use this calculator to estimate your total bridging loan costs based on the rates and fees you enter. Adjust loan amount, term, interest rate and fee structure to model your deal. All figures are indicative, and the slider range is a calculator setting, not a lender criterion — speak to our team for a bespoke quote.
+    Enter an exact loan amount and term to see an illustrative estimate of the cost. The rate and fees are assumptions you can change, not lender rates or offers. Speak to our team for terms that fit your case.
   </p>
 </div>
 
-<!-- CALCULATOR -->
-<div class="calc-wrap">
-
-  <!-- LEFT: INPUTS -->
-  <div class="calc-inputs">
-
-    <!-- LOAN DETAILS -->
-    <div class="input-section">
-      <div class="input-section-title">Loan details</div>
-
-      <div class="input-row single">
-        <div class="input-group">
-          <div class="input-label">
-            Loan amount
-            <span id="lbl-loan">£2,000,000</span>
-          </div>
-          <input type="range" id="sl-loan" min="100000" max="30000000" step="50000" value="2000000" oninput="calc()">
-          <div style="display:flex;justify-content:space-between;margin-top:4px">
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">£100k</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">£30m+</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="input-row single">
-        <div class="input-group">
-          <div class="input-label">
-            Property value
-            <span id="lbl-prop">£2,800,000</span>
-          </div>
-          <input type="range" id="sl-prop" min="100000" max="50000000" step="50000" value="2800000" oninput="calc()">
-        </div>
-      </div>
-
-      <div class="input-row single">
-        <div class="input-group">
-          <div class="input-label">
-            Loan term
-            <span id="lbl-term">12 months</span>
-          </div>
-          <input type="range" id="sl-term" min="1" max="36" step="1" value="12" oninput="calc()">
-          <div style="display:flex;justify-content:space-between;margin-top:4px">
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">1 month</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">36 months</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- INTEREST RATE -->
-    <div class="input-section">
-      <div class="input-section-title">Interest rate</div>
-
-      <div class="input-row single">
-        <div class="input-group">
-          <div class="input-label">
-            Monthly rate
-            <span id="lbl-rate">0.85% / month</span>
-          </div>
-          <input type="range" id="sl-rate" min="0.50" max="2.00" step="0.01" value="0.85" oninput="calc()">
-          <div style="display:flex;justify-content:space-between;margin-top:4px">
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--teal)">0.50% — Prime</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">Market avg ~0.76%</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">2.00% — Complex</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="input-row single">
-        <div class="input-group">
-          <div class="input-label" style="margin-bottom:6px">Interest structure</div>
-          <div class="segment cols-3" id="seg-interest">
-            <button class="seg-btn" onclick="setInterest('monthly',this)">Monthly</button>
-            <button class="seg-btn active" onclick="setInterest('rolled',this)">Rolled up</button>
-            <button class="seg-btn" onclick="setInterest('retained',this)">Retained</button>
-          </div>
-          <div id="interest-note" style="font-size:0.72rem;font-weight:300;color:var(--steel);margin-top:8px;line-height:1.5">Interest added to loan and repaid on exit — most common for investors.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FEES -->
-    <div class="input-section">
-      <div class="input-section-title">Fees & costs</div>
-
-      <div class="input-row">
-        <div class="input-group">
-          <div class="input-label">
-            Arrangement fee
-            <span id="lbl-arr">2.00%</span>
-          </div>
-          <input type="range" id="sl-arr" min="0" max="3" step="0.25" value="2.00" oninput="calc()">
-          <div style="display:flex;justify-content:space-between;margin-top:4px">
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">0%</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">3%</span>
-          </div>
-        </div>
-        <div class="input-group">
-          <div class="input-label">
-            Exit fee
-            <span id="lbl-exit">0.00%</span>
-          </div>
-          <input type="range" id="sl-exit" min="0" max="2" step="0.25" value="0" oninput="calc()">
-          <div style="display:flex;justify-content:space-between;margin-top:4px">
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--teal)">0% — Common</span>
-            <span style="font-family:'Outfit',sans-serif;font-size:0.55rem;color:var(--steel)">2%</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="input-row">
-        <div class="input-group">
-          <div class="input-label">
-            Valuation fee
-            <span id="lbl-val">£1,500</span>
-          </div>
-          <input type="range" id="sl-val" min="500" max="5000" step="250" value="1500" oninput="calc()">
-        </div>
-        <div class="input-group">
-          <div class="input-label">
-            Legal fees
-            <span id="lbl-legal">£2,500</span>
-          </div>
-          <input type="range" id="sl-legal" min="500" max="8000" step="250" value="2500" oninput="calc()">
-        </div>
-      </div>
-    </div>
-
-    <!-- LOAN TYPE -->
-    <div class="input-section">
-      <div class="input-section-title">Loan type</div>
-      <div class="segment cols-2" id="seg-type">
-        <button class="seg-btn active" onclick="setType('residential',this)">Residential</button>
-        <button class="seg-btn" onclick="setType('commercial',this)">Commercial</button>
-      </div>
-      <div id="type-note" style="font-size:0.72rem;font-weight:300;color:var(--steel);margin-top:10px;line-height:1.5">Max LTV typically 75–80% on residential. Lower rates available for lower LTVs.</div>
-    </div>
-
-  </div>
-
-  <!-- RIGHT: RESULTS -->
-  <div class="calc-results">
-
-    <div class="result-header">
-      <div class="result-header-label">Total estimated cost</div>
-      <div class="result-total" id="res-total">£237,500</div>
-      <div class="result-total-label">Interest + all fees</div>
-    </div>
-
-    <!-- LTV METER -->
-    <div class="ltv-meter">
-      <div class="ltv-label-row">
-        <span class="ltv-label">Loan to value (LTV)</span>
-        <span class="ltv-val" id="res-ltv">71.4%</span>
-      </div>
-      <div class="ltv-track">
-        <div class="ltv-fill" id="ltv-fill" style="width:71.4%;background:var(--teal)"></div>
-      </div>
-      <div class="ltv-status" id="ltv-status" style="color:var(--teal)">✓ Within typical lending parameters</div>
-    </div>
-
-    <!-- BREAKDOWN BARS -->
-    <div class="breakdown">
-      <div class="breakdown-bar-wrap">
-        <div class="breakdown-row">
-          <span class="breakdown-label">Total interest</span>
-          <span class="breakdown-val" id="res-interest">£204,000</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" id="bar-interest" style="width:86%;background:var(--teal)"></div></div>
-      </div>
-      <div class="breakdown-bar-wrap">
-        <div class="breakdown-row">
-          <span class="breakdown-label">Arrangement fee</span>
-          <span class="breakdown-val" id="res-arr">£40,000</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" id="bar-arr" style="width:17%;background:var(--gold)"></div></div>
-      </div>
-      <div class="breakdown-bar-wrap">
-        <div class="breakdown-row">
-          <span class="breakdown-label">Exit fee</span>
-          <span class="breakdown-val" id="res-exit">£0</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" id="bar-exit" style="width:0%;background:var(--gold-dim)"></div></div>
-      </div>
-      <div class="breakdown-bar-wrap">
-        <div class="breakdown-row">
-          <span class="breakdown-label">Valuation + legal</span>
-          <span class="breakdown-val" id="res-other">£4,000</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" id="bar-other" style="width:2%;background:var(--graphite)"></div></div>
-      </div>
-    </div>
-
-    <!-- SUMMARY CARDS -->
-    <div class="summary-cards">
-      <div class="summary-card">
-        <div class="summary-card-label">Gross loan</div>
-        <div class="summary-card-val" id="res-gross">£2,000,000</div>
-      </div>
-      <div class="summary-card">
-        <div class="summary-card-label">Total repayable</div>
-        <div class="summary-card-val teal" id="res-repay">£2,237,500</div>
-      </div>
-      <div class="summary-card">
-        <div class="summary-card-label">Monthly interest</div>
-        <div class="summary-card-val gold" id="res-monthly">£17,000</div>
-      </div>
-      <div class="summary-card">
-        <div class="summary-card-label">Effective annual rate</div>
-        <div class="summary-card-val" id="res-ear">10.2%</div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="calc-cta">
-      <div class="calc-cta-title">Ready to discuss your deal?</div>
-      <div class="calc-cta-body">These are indicative figures. Our team can give you a bespoke quote tailored to your asset, exit strategy and borrower profile.</div>
-      <a href="contact.html" class="btn-teal">Submit a finance enquiry →</a>
-    </div>
-
-    <div class="calc-disclaimer">
-      Indicative estimates only. Actual rates, fees and terms will vary based on individual circumstances, asset type, LTV, exit strategy and lender assessment. This calculator does not constitute a financial offer or advice. Maplehill Capital Partners arranges finance through its lender network; not all products are available to all borrowers. Seek independent financial advice before proceeding.
-    </div>
-
-  </div>
-</div>
+<!-- CALCULATOR (BR-008: shared component in calc-core.js) -->
+<main class="cx-wrap" id="calculator">
+  <div data-bridgr-calc="full"></div>
+  <noscript><p class="cx-fine" style="padding:1rem">The calculator needs JavaScript. Please enable it, or call an underwriter.</p></noscript>
+</main>
 
 <!-- INFO SECTION -->
 <div class="info-section">
-  <div class="info-eyebrow">UK market context</div>
-  <div class="info-title">How bridging costs work.</div>
+  <div class="info-eyebrow">About this estimate</div>
+  <div class="info-title">How the estimate works.</div>
 
   <div class="info-grid">
     <div class="info-card">
-      <div class="info-card-title">Interest rates</div>
-      <div class="info-card-body">UK bridging rates currently range from 0.52% to 2.00% per month. The average in 2025 is around 0.76% per month. Your rate depends on LTV, asset type, exit strategy and borrower profile. Lower LTV = lower rate.</div>
+      <div class="info-card-title">Interest</div>
+      <div class="info-card-body">Monthly: loan amount × monthly rate × number of months. Rolled up: the loan compounds at the monthly rate for the term, and the interest is repaid on exit. Retained: shown using the same figure as rolled up in this estimate. The rate is an assumption you can change, not a lender rate.</div>
     </div>
     <div class="info-card">
-      <div class="info-card-title">Interest structures</div>
-      <div class="info-card-body">You can pay interest monthly (like a mortgage), roll it up to exit (most common for investors — no monthly payments), or retain it upfront from the loan. Rolled-up interest means a higher loan balance at exit.</div>
+      <div class="info-card-title">Fees</div>
+      <div class="info-card-body">Arrangement and exit fees are a percentage of the loan. Valuation and legal fees are fixed amounts. All four are assumptions you can change. Real fees depend on the lender, the property and the case.</div>
     </div>
     <div class="info-card">
-      <div class="info-card-title">Fees to expect</div>
-      <div class="info-card-body">Arrangement fee: typically 1–2%. Exit fee: 0–1% (many lenders charge none). Valuation: £600–£5,000+ depending on asset. Legal fees: £1,500–£4,000+ for both parties. Broker fee: varies.</div>
+      <div class="info-card-title">Loan to value</div>
+      <div class="info-card-body">The loan amount divided by the property value you enter. It uses your own figures and is not a valuation. Any maximum loan to value is set by the lender, the asset and the borrower.</div>
     </div>
     <div class="info-card">
-      <div class="info-card-title">Complex deals</div>
-      <div class="info-card-body">Listed buildings, mixed-use, distressed assets, second charges and high LTV deals typically attract higher rates. MCP specialises in structuring these — deals that mainstream lenders won't touch.</div>
+      <div class="info-card-title">What this is not</div>
+      <div class="info-card-body">The estimate is illustrative. It is not a lender offer, a quote or a Decision in Principle, and it does not mean finance is available. To talk it through, call an underwriter or start an enquiry.</div>
     </div>
   </div>
 </div>
@@ -886,135 +668,8 @@ input[type=range]::-moz-range-thumb {
   <a href="index.html">← Back to main site</a>
 </div>
 
-<script>
-let interestMode = 'rolled';
-let loanType = 'residential';
-
-function setInterest(mode, btn) {
-  interestMode = mode;
-  document.querySelectorAll('#seg-interest .seg-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const notes = {
-    monthly: 'You pay interest each month — lower total cost but requires cash flow during the term.',
-    rolled: 'Interest added to loan and repaid on exit — most common for investors.',
-    retained: 'Interest deducted from the loan upfront — you receive less but make no payments.'
-  };
-  document.getElementById('interest-note').textContent = notes[mode];
-  calc();
-}
-
-function setType(type, btn) {
-  loanType = type;
-  document.querySelectorAll('#seg-type .seg-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const notes = {
-    residential: 'Max LTV typically 75–80% on residential. Lower rates available for lower LTVs.',
-    commercial: 'Max LTV typically 65–75% on commercial. Rates may be higher for complex assets.'
-  };
-  document.getElementById('type-note').textContent = notes[type];
-  calc();
-}
-
-function fmt(n) {
-  if (n >= 1000000) return '£' + (n/1000000).toFixed(n%1000000===0?0:2) + 'm';
-  if (n >= 1000) return '£' + Math.round(n).toLocaleString('en-GB');
-  return '£' + Math.round(n).toLocaleString('en-GB');
-}
-
-function fmtFull(n) {
-  return '£' + Math.round(n).toLocaleString('en-GB');
-}
-
-function calc() {
-  const loan   = parseFloat(document.getElementById('sl-loan').value);
-  const prop   = parseFloat(document.getElementById('sl-prop').value);
-  const term   = parseInt(document.getElementById('sl-term').value);
-  const rate   = parseFloat(document.getElementById('sl-rate').value) / 100;
-  const arrPct = parseFloat(document.getElementById('sl-arr').value) / 100;
-  const exitPct= parseFloat(document.getElementById('sl-exit').value) / 100;
-  const val    = parseFloat(document.getElementById('sl-val').value);
-  const legal  = parseFloat(document.getElementById('sl-legal').value);
-
-  // Update labels
-  document.getElementById('lbl-loan').textContent = fmt(loan);
-  document.getElementById('lbl-prop').textContent = fmt(prop);
-  document.getElementById('lbl-term').textContent = term + (term === 1 ? ' month' : ' months');
-  document.getElementById('lbl-rate').textContent = (rate*100).toFixed(2) + '% / month';
-  document.getElementById('lbl-arr').textContent  = (arrPct*100).toFixed(2) + '%';
-  document.getElementById('lbl-exit').textContent = (exitPct*100).toFixed(2) + '%';
-  document.getElementById('lbl-val').textContent  = fmtFull(val);
-  document.getElementById('lbl-legal').textContent = fmtFull(legal);
-
-  // LTV
-  const ltv = prop > 0 ? (loan / prop * 100) : 0;
-  const maxLtv = loanType === 'residential' ? 80 : 72;
-  document.getElementById('res-ltv').textContent = ltv.toFixed(1) + '%';
-
-  const ltvFill = document.getElementById('ltv-fill');
-  const ltvStatus = document.getElementById('ltv-status');
-  const ltvPct = Math.min(ltv, 100);
-  ltvFill.style.width = ltvPct + '%';
-
-  if (ltv <= maxLtv * 0.75) {
-    ltvFill.style.background = 'var(--green)';
-    ltvStatus.style.color = 'var(--green)';
-    ltvStatus.textContent = '✓ Strong LTV — competitive rates likely';
-  } else if (ltv <= maxLtv) {
-    ltvFill.style.background = 'var(--teal)';
-    ltvStatus.style.color = 'var(--teal)';
-    ltvStatus.textContent = '✓ Within typical lending parameters';
-  } else if (ltv <= maxLtv * 1.05) {
-    ltvFill.style.background = 'var(--amber)';
-    ltvStatus.style.color = 'var(--amber)';
-    ltvStatus.textContent = '⚠ Approaching maximum LTV — specialist lenders only';
-  } else {
-    ltvFill.style.background = 'var(--red)';
-    ltvStatus.style.color = 'var(--red)';
-    ltvStatus.textContent = '✕ Exceeds typical maximum LTV for this asset type';
-  }
-
-  // Interest calculation
-  let totalInterest;
-  if (interestMode === 'monthly') {
-    totalInterest = loan * rate * term;
-  } else if (interestMode === 'rolled') {
-    // compound monthly roll-up
-    totalInterest = loan * (Math.pow(1 + rate, term) - 1);
-  } else {
-    // retained: same as rolled for estimation purposes
-    totalInterest = loan * (Math.pow(1 + rate, term) - 1);
-  }
-
-  const arrFee   = loan * arrPct;
-  const exitFee  = loan * exitPct;
-  const otherFees = val + legal;
-  const totalCost = totalInterest + arrFee + exitFee + otherFees;
-  const totalRepay = loan + totalCost;
-  const monthlyInterest = loan * rate;
-  const ear = (Math.pow(1 + rate, 12) - 1) * 100;
-
-  // Update results
-  document.getElementById('res-total').textContent   = fmtFull(Math.round(totalCost));
-  document.getElementById('res-interest').textContent = fmtFull(Math.round(totalInterest));
-  document.getElementById('res-arr').textContent      = fmtFull(Math.round(arrFee));
-  document.getElementById('res-exit').textContent     = fmtFull(Math.round(exitFee));
-  document.getElementById('res-other').textContent    = fmtFull(Math.round(otherFees));
-  document.getElementById('res-gross').textContent    = fmtFull(Math.round(loan));
-  document.getElementById('res-repay').textContent    = fmtFull(Math.round(totalRepay));
-  document.getElementById('res-monthly').textContent  = fmtFull(Math.round(monthlyInterest));
-  document.getElementById('res-ear').textContent      = ear.toFixed(1) + '%';
-
-  // Update bars (as % of total cost)
-  const safe = n => totalCost > 0 ? Math.min(100, Math.max(0, (n / totalCost) * 100)) : 0;
-  document.getElementById('bar-interest').style.width = safe(totalInterest) + '%';
-  document.getElementById('bar-arr').style.width      = safe(arrFee) + '%';
-  document.getElementById('bar-exit').style.width     = safe(exitFee) + '%';
-  document.getElementById('bar-other').style.width    = safe(otherFees) + '%';
-}
-
-// Init
-calc();
-</script>
+<script src="calc-core.js" defer></script>
 <script src="concierge.js" defer data-widget="off"></script>
+<script src="mobile-nav.js" defer></script>
 </body>
 </html>
